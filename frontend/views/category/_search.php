@@ -19,6 +19,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title') ?>
 
+  <?= $form->field($model, 'logo_class') ?>
+
     <?= $form->field($model, 'updated_at') ?>
 
     <?= $form->field($model, 'created_at') ?>

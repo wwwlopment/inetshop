@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'name'=>'InetShop',
     'basePath' => dirname(__DIR__),
     'homeUrl'=> '/',
     'bootstrap' => ['log'],

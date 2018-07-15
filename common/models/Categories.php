@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $title
+ * @property string $logo_class
  * @property string $updated_at
  * @property string $created_at
  */
@@ -31,6 +32,7 @@ class Categories extends \yii\db\ActiveRecord
             [['title'], 'required'],
             [['updated_at', 'created_at'], 'safe'],
             [['title'], 'string', 'max' => 50],
+            [['logo_class'], 'string', 'max' => 50],
         ];
     }
 
@@ -42,6 +44,7 @@ class Categories extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
+            'logo_class' => 'Logo_class',
             'updated_at' => 'Updated At',
             'created_at' => 'Created At',
         ];

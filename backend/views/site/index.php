@@ -2,19 +2,18 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Hello, dear Admin !';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1>This is InetShop admin's page !</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">Here you can administer your site.</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
 
-    <div class="body-content">
+  <!--  <div class="body-content">
 
         <div class="row">
             <div class="col-lg-4">
@@ -49,5 +48,5 @@ $this->title = 'My Yii Application';
             </div>
         </div>
 
-    </div>
+    </div>-->
 </div>
