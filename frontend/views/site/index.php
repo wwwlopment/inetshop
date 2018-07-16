@@ -6,13 +6,15 @@ use common\models\Products;
 use Yii;
 use yii\helpers\Html;
 use common\models\Categories;
+use yii\widgets\LinkPager;
+
 ?>
 <!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1 header-style-2">
     <div class="logo col-xs-12 col-sm-12 col-md-10">
         <a class="col-md-4" href="home.html">
 
-            <img src="frontend/web/images/logo_112.jpg" alt="">
+            <img src="<?=Yii::$app->urlManager->baseUrl.'/images/logo_112.jpg'?>" alt="">
 
         </a>
         <span class="section-title text-center vcenter col-md-6">Internet Shop</span>
@@ -46,7 +48,7 @@ use common\models\Categories;
                             <div class="row">
                                 <div class="col-xs-4">
                                     <div class="image">
-                                        <a href="detail.html"><img src="frontend/web/images/cart.jpg" alt=""></a>
+                                        <a href="detail.html"><img src="<?=Yii::$app->urlManager->baseUrl.'/images/cart.jpg'?>" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="col-xs-7">
@@ -107,14 +109,22 @@ use common\models\Categories;
                         <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Категорії</div>
                         <nav class="yamm megamenu-horizontal" role="navigation">
                             <ul class="nav">
-                                <?php $categories = Categories::find()->all();
-                                    foreach ($categories as $category) { ?>
-                                <li id="<?=$category->id?>" class="dropdown menu-item">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="icon <?=$category->logo_class?>"></i><?=$category->title?></a>
-                                </li>
 
-                                <?php }?>
+                                <?php
+                                if (isset ($categories)) {
+                                    foreach ($categories as $category) { ?>
+                                        <li id="<?= $category->id ?>" class="dropdown menu-item">
+                                            <?php
+                                            echo Html::a(Html::tag('i','',['class'=>'icon '.$category->logo_class])
+                                              .$category->title ,['site/index', 'cat' => $category->id],
+                                              ['class'=>'dropdown-toggle']);
+                                            ?>
+
+                                        </li>
+
+                                      <?php
+                                    }
+                                }?>
 
                             </ul><!-- /.nav -->
                         </nav><!-- /.megamenu-horizontal -->
@@ -144,14 +154,17 @@ use common\models\Categories;
 
                             <div class="col col-sm-12 col-md-10 text-right">
                                 <div class="pagination-container">
-                                    <ul class="list-inline list-unstyled">
-                                        <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li class="active"><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                                    </ul><!-- /.list-inline -->
+                                <?php
+                                    if (isset ($pages)) {
+                                    echo LinkPager::widget([
+                                    'pagination' => $pages,
+                                      'options'      => [
+                                        'class'=>'list-inline list-unstyled'],
+
+                                    ]);
+                                    }
+                                ?>
+
                                 </div><!-- /.pagination-container -->        </div><!-- /.col -->
                         </div><!-- /.row -->
                     </div>
@@ -159,12 +172,53 @@ use common\models\Categories;
                         <div id="myTabContent" class="tab-content">
                             <div class="tab-pane active" id="grid-container">
                                 <div class="category-product  inner-top-vs">
-                                    <div id="products"class="row">
-<?php /*$products = Products::find()->where(['category_id'=>1])->orderBy('id')->all();
-foreach ($products as $product) {
-*/?>
+                                    <div class="row">
+                                        <?php
+                                        if (isset ($products)) {
+                                        foreach ($products as $product) {
+                                          if(isset($product->image)) {
+                                            $img_url = '../../frontend/web/uploads/'.$product->image;
+                                          } else {
+                                            $img_url = '';
+                                          }
+                                        ?>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="products">
 
-<?php /*} */?>
+                                                <div class="product">
+                                                    <div class="product-image">
+                                                        <div class="image">
+                                                            <a href="detail.html"><img  src="<?=$img_url?>" data-echo="<?=$img_url?>" alt=""></a>
+                                                        </div><!-- /.image -->
+
+                                                    </div><!-- /.product-image -->
+
+
+                                                    <div class="product-info text-left">
+                                                        <h3 class="name"><a href="detail.html"><?=$product->title;?></a></h3>
+                                                        <div class="description"><?=$product->description;?></div>
+                                                        <div class="product-price">
+				                                        <span class="price"><?=$product->price. ' грн.';?></span>
+
+                                                        </div><!-- /.product-price -->
+
+                                                    </div><!-- /.product-info -->
+                                                    <div class="cart clearfix animate-effect">
+                                                        <div class="action">
+
+                                                            <button id="buy" class="btn btn-primary" type="button">Купити</button>
+
+
+
+                                                        </div><!-- /.action -->
+                                                    </div><!-- /.cart -->
+                                                </div><!-- /.product -->
+
+                                            </div><!-- /.products -->
+                                        </div><!-- /.item -->
+                                        <?php }
+                                        }
+                                        ?>
                                     </div><!-- /.row -->
                                 </div><!-- /.category-product -->
 
@@ -172,60 +226,15 @@ foreach ($products as $product) {
 
                             <div class="tab-pane" id="list-container">
                                 <div class="category-product  inner-top-vs">
-
-
-                                    <div class="category-product-inner">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/1.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
-                                                            </div>
-                                                        </div><!-- /.product-image -->
-                                                    </div><!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
-
-                                                            </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
-                                                            </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
-                                                                    </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
-
-
-                                                                </div><!-- /.action -->
-                                                            </div><!-- /.cart -->
-
-                                                        </div><!-- /.product-info -->
-                                                    </div><!-- /.col -->
-                                                </div><!-- /.product-list-row -->
-                                                <div class="tag new"><span>new</span></div>
-                                            </div><!-- /.product-list -->
-                                        </div><!-- /.products -->
-                                    </div><!-- /.category-product-inner -->
-
+                                  <?php
+                                  if (isset ($products)) {
+                                      foreach ($products as $product) {
+                                  if(isset($product->image)) {
+                                    $img_url = '../../frontend/web/uploads/'.$product->image;
+                                  } else {
+                                    $img_url = '';
+                                  }
+                                  ?>
 
                                     <div class="category-product-inner">
                                         <div class="products">
@@ -234,38 +243,28 @@ foreach ($products as $product) {
                                                     <div class="col col-sm-4 col-lg-4">
                                                         <div class="product-image">
                                                             <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/2.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
+                                                                <img data-echo="<?=$img_url?>"
+                                                                     src="<?=$img_url?>" alt="">
                                                             </div>
                                                         </div><!-- /.product-image -->
                                                     </div><!-- /.col -->
                                                     <div class="col col-sm-8 col-lg-8">
                                                         <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
+                                                            <h3 class="name"><a href="detail.html"><?=$product->title?></a></h3>
+                                                           <!-- <div class="rating rateit-small"></div>-->
                                                             <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
+				                                        	<span class="price"><?=$product->price. ' грн.';?></span>
 
                                                             </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
+                                                            <div class="description m-t-10">                                                            <div class="rating rateit-small"></div>
+                                                            <?=$product->description?>
                                                             </div>
                                                             <div class="cart clearfix animate-effect">
                                                                 <div class="action">
 
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
+                                                                    <button class="btn btn-primary" type="button">Купити
                                                                     </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
+
 
 
                                                                 </div><!-- /.action -->
@@ -274,540 +273,14 @@ foreach ($products as $product) {
                                                         </div><!-- /.product-info -->
                                                     </div><!-- /.col -->
                                                 </div><!-- /.product-list-row -->
-                                                <div class="tag sale"><span>sale</span></div>
                                             </div><!-- /.product-list -->
                                         </div><!-- /.products -->
                                     </div><!-- /.category-product-inner -->
 
+                                    <?php }
+                                      }
+                                    ?>
 
-                                    <div class="category-product-inner">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/3.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
-                                                            </div>
-                                                        </div><!-- /.product-image -->
-                                                    </div><!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
-
-                                                            </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
-                                                            </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
-                                                                    </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
-
-
-                                                                </div><!-- /.action -->
-                                                            </div><!-- /.cart -->
-
-                                                        </div><!-- /.product-info -->
-                                                    </div><!-- /.col -->
-                                                </div><!-- /.product-list-row -->
-                                                <div class="tag hot"><span>hot</span></div>
-                                            </div><!-- /.product-list -->
-                                        </div><!-- /.products -->
-                                    </div><!-- /.category-product-inner -->
-
-
-                                    <div class="category-product-inner">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/4.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
-                                                            </div>
-                                                        </div><!-- /.product-image -->
-                                                    </div><!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
-
-                                                            </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
-                                                            </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
-                                                                    </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
-
-
-                                                                </div><!-- /.action -->
-                                                            </div><!-- /.cart -->
-
-                                                        </div><!-- /.product-info -->
-                                                    </div><!-- /.col -->
-                                                </div><!-- /.product-list-row -->
-                                                <div class="tag hot"><span>hot</span></div>
-                                            </div><!-- /.product-list -->
-                                        </div><!-- /.products -->
-                                    </div><!-- /.category-product-inner -->
-
-
-                                    <div class="category-product-inner">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/5.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
-                                                            </div>
-                                                        </div><!-- /.product-image -->
-                                                    </div><!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
-
-                                                            </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
-                                                            </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
-                                                                    </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
-
-
-                                                                </div><!-- /.action -->
-                                                            </div><!-- /.cart -->
-
-                                                        </div><!-- /.product-info -->
-                                                    </div><!-- /.col -->
-                                                </div><!-- /.product-list-row -->
-                                                <div class="tag sale"><span>sale</span></div>
-                                            </div><!-- /.product-list -->
-                                        </div><!-- /.products -->
-                                    </div><!-- /.category-product-inner -->
-
-
-                                    <div class="category-product-inner">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/6.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
-                                                            </div>
-                                                        </div><!-- /.product-image -->
-                                                    </div><!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
-
-                                                            </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
-                                                            </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
-                                                                    </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
-
-
-                                                                </div><!-- /.action -->
-                                                            </div><!-- /.cart -->
-
-                                                        </div><!-- /.product-info -->
-                                                    </div><!-- /.col -->
-                                                </div><!-- /.product-list-row -->
-                                                <div class="tag new"><span>new</span></div>
-                                            </div><!-- /.product-list -->
-                                        </div><!-- /.products -->
-                                    </div><!-- /.category-product-inner -->
-
-
-                                    <div class="category-product-inner">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/7.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
-                                                            </div>
-                                                        </div><!-- /.product-image -->
-                                                    </div><!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
-
-                                                            </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
-                                                            </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
-                                                                    </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
-
-
-                                                                </div><!-- /.action -->
-                                                            </div><!-- /.cart -->
-
-                                                        </div><!-- /.product-info -->
-                                                    </div><!-- /.col -->
-                                                </div><!-- /.product-list-row -->
-                                                <div class="tag new"><span>new</span></div>
-                                            </div><!-- /.product-list -->
-                                        </div><!-- /.products -->
-                                    </div><!-- /.category-product-inner -->
-
-
-                                    <div class="category-product-inner">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/1.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
-                                                            </div>
-                                                        </div><!-- /.product-image -->
-                                                    </div><!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
-
-                                                            </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
-                                                            </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
-                                                                    </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
-
-
-                                                                </div><!-- /.action -->
-                                                            </div><!-- /.cart -->
-
-                                                        </div><!-- /.product-info -->
-                                                    </div><!-- /.col -->
-                                                </div><!-- /.product-list-row -->
-                                                <div class="tag sale"><span>sale</span></div>
-                                            </div><!-- /.product-list -->
-                                        </div><!-- /.products -->
-                                    </div><!-- /.category-product-inner -->
-
-
-                                    <div class="category-product-inner">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/3.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
-                                                            </div>
-                                                        </div><!-- /.product-image -->
-                                                    </div><!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
-
-                                                            </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
-                                                            </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
-                                                                    </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
-
-
-                                                                </div><!-- /.action -->
-                                                            </div><!-- /.cart -->
-
-                                                        </div><!-- /.product-info -->
-                                                    </div><!-- /.col -->
-                                                </div><!-- /.product-list-row -->
-                                                <div class="tag hot"><span>hot</span></div>
-                                            </div><!-- /.product-list -->
-                                        </div><!-- /.products -->
-                                    </div><!-- /.category-product-inner -->
-
-
-                                    <div class="category-product-inner">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/5.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
-                                                            </div>
-                                                        </div><!-- /.product-image -->
-                                                    </div><!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
-
-                                                            </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
-                                                            </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
-                                                                    </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
-
-
-                                                                </div><!-- /.action -->
-                                                            </div><!-- /.cart -->
-
-                                                        </div><!-- /.product-info -->
-                                                    </div><!-- /.col -->
-                                                </div><!-- /.product-list-row -->
-                                                <div class="tag new"><span>new</span></div>
-                                            </div><!-- /.product-list -->
-                                        </div><!-- /.products -->
-                                    </div><!-- /.category-product-inner -->
-
-
-                                    <div class="category-product-inner">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/2.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
-                                                            </div>
-                                                        </div><!-- /.product-image -->
-                                                    </div><!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
-
-                                                            </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
-                                                            </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
-                                                                    </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
-
-
-                                                                </div><!-- /.action -->
-                                                            </div><!-- /.cart -->
-
-                                                        </div><!-- /.product-info -->
-                                                    </div><!-- /.col -->
-                                                </div><!-- /.product-list-row -->
-                                                <div class="tag sale"><span>sale</span></div>
-                                            </div><!-- /.product-list -->
-                                        </div><!-- /.products -->
-                                    </div><!-- /.category-product-inner -->
-
-
-                                    <div class="category-product-inner">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <img data-echo="frontend/web/images/fashion-products/6.jpg"
-                                                                     src="frontend/web/images/blank.gif" alt="">
-                                                            </div>
-                                                        </div><!-- /.product-image -->
-                                                    </div><!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html">Simple Products Demo
-                                                                    Showcase</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-					<span class="price">
-						$650.99					</span>
-                                                                <span class="price-before-discount">$ 800</span>
-
-                                                            </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
-                                                            </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-
-                                                                    <button class="btn btn-primary" type="button">Add to
-                                                                        cart
-                                                                    </button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="icon fa fa-heart"></i></button>
-                                                                    <button class="left btn btn-primary" type="button">
-                                                                        <i class="fa fa-retweet"></i></button>
-
-
-                                                                </div><!-- /.action -->
-                                                            </div><!-- /.cart -->
-
-                                                        </div><!-- /.product-info -->
-                                                    </div><!-- /.col -->
-                                                </div><!-- /.product-list-row -->
-                                                <div class="tag hot"><span>hot</span></div>
-                                            </div><!-- /.product-list -->
-                                        </div><!-- /.products -->
-                                    </div><!-- /.category-product-inner -->
 
 
                                 </div><!-- /.category-product -->
@@ -817,14 +290,16 @@ foreach ($products as $product) {
 
                             <div class="text-right">
                                 <div class="pagination-container">
-                                    <ul class="list-inline list-unstyled">
-                                        <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li class="active"><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                                    </ul><!-- /.list-inline -->
+                                  <?php
+                                  if (isset ($pages)) {
+                                    echo LinkPager::widget([
+                                      'pagination' => $pages,
+                                      'options'      => [
+                                        'class'=>'list-inline list-unstyled'],
+
+                                    ]);
+                                  }
+                                  ?>
                                 </div><!-- /.pagination-container -->                                </div>
                             <!-- /.text-right -->
 

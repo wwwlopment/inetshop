@@ -86,7 +86,7 @@ UnicaseAsset::register($this);
                             <div class="logo">
                                 <a href="home.html">
 
-                                    <img src="frontend/web/images/logo_112.jpg" alt="">
+                                    <img src="<?=Yii::$app->urlManager->baseUrl.'/images/logo_112.jpg'?>" alt="">
 
                                 </a>
                             </div><!-- /.logo -->
@@ -183,9 +183,9 @@ UnicaseAsset::register($this);
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="clearfix payment-methods">
                     <ul>
-                        <li><img src="frontend/web/images/payments/1.png" alt=""></li>
-                        <li><img src="frontend/web/images/payments/3.png" alt=""></li>
-                        <li><img src="frontend/web/images/payments/4.png" alt=""></li>
+                        <li><img src="<?=Yii::$app->urlManager->baseUrl.'/images/payments/1.png'?>" alt=""></li>
+                        <li><img src="<?=Yii::$app->urlManager->baseUrl.'/images/payments/3.png'?>" alt=""></li>
+                        <li><img src="<?=Yii::$app->urlManager->baseUrl.'/images/payments/4.png'?>" alt=""></li>
                     </ul>
                 </div><!-- /.payment-methods -->
             </div>

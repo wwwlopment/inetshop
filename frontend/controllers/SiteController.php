@@ -1,9 +1,11 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Categories;
 use common\models\Products;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\data\Pagination;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -73,7 +75,25 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+      $categories = Categories::find()->all();
+      $category_id = Yii::$app->request->get('cat');
+      if (!isset($category_id)) {
+        $category_id = 1;
+      }
+      $products = Products::find()->where(['category_id'=>$category_id])->orderBy('id');
+
+      $countQuery = clone $products;
+
+      // paginations - 5 items per page
+      $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 2]);
+
+      $pages->pageSizeParam = false;
+
+      $products = $products->offset($pages->offset)
+        ->limit($pages->limit)
+        ->all();
+
+        return $this->render('index', ['products'=>$products, 'categories'=>$categories, 'pages'=>$pages]);
     }
 
     /**
