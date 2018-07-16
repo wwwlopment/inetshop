@@ -61,4 +61,9 @@ class Products extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
         ];
     }
+
+  public function saveImage($filename) {
+    $this->image = $filename;
+    return $this->save(false);
+  }
 }
