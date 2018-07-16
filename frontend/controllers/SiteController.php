@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Products;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -212,4 +213,61 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionCatajax() {
+      if (Yii::$app->request->isAjax) {
+        $data = Yii::$app->request->post('category_id');
+
+        }
+        $html = '';
+        $products = Products::find()->where(['category_id' => $data])->orderBy('id')->all();
+        foreach ($products as $product) {
+        if(isset($product->image)) {
+          $img_url = 'frontend/web/uploads/'.$product->image;
+        } else {
+          $img_url = '';
+        }
+
+
+          $html .= ' <div class="col-sm-6 col-md-4">';
+          $html .= '<div class="products">';
+          $html .= ' <div class="product">';
+          $html .= '        <div class="product-image">';
+          $html .= '<div class="image">';
+          $html .= '                   <a href="detail.html">';
+          $html .= '<img src="'.$img_url.'" data-echo="'. $img_url.'" alt=""></a>';
+          $html .= '</div>';
+          $html .= '<div class="tag new"><span>new</span></div>';
+          $html .= '</div>';
+          $html .= '<div class="product-info text-left">';
+          $html .= ' <h3 class="name"><a href="detail.html">'.$product->title.'</a>';
+          $html .= ' </h3>';
+          $html .= ' <div class="rating rateit-small"></div>';
+          $html .= ' <div class="description">';
+          $html .= $product->description;
+          $html .= ' </div>';
+
+          $html .= '<div class="product-price">';
+          $html .= '<span class="price">'.$product->price .' " грн"</span>';
+
+          $html .= '</div>';
+
+          $html .= '</div>';
+          $html .= '<div class="cart clearfix animate-effect">';
+          $html .= '<div class="action">';
+
+          $html .= '<button class="btn btn-primary" type="button">Купити';
+          $html .= '</button>';
+
+          $html .= '</div>';
+          $html .= '</div>';
+          $html .= '</div>';
+
+          $html .= '</div>';
+          $html .= '</div>';
+        }
+//   var_dump($data);
+        return json_encode($html);
+      }
+
 }

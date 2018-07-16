@@ -411,5 +411,22 @@ $('#transitionType li a').click(function () {
 
 });
 
+    $(document).on('click', '.dropdown-toggle' , function() {
+        var csrfToken = $('meta[name="csrf-token"]').attr("content");
+        $.ajax({
+            //url: base + 'site/catajax',
+
+            url: 'site/catajax',
+            type: 'post',
+            data: {category_id: '1', _csrf: csrfToken},
+            success: function (data) {
+                var objData = jQuery.parseJSON(data);
+               // console.log(data);
+                 $('#products').append(objData);
+            }
+
+
+        });
+    });
 
 })(jQuery);
