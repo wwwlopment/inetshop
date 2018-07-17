@@ -234,7 +234,52 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionCatajax() {
+
+
+
+  public function actionRmfromcart() {
+    $product_id = Yii::$app->request->get('product_id');
+    $product = Products::findOne($product_id);
+    if (empty($product)) {
+      return false;
+    }
+
+    $session = Yii::$app->session;
+    $session->open();
+    if (isset($_SESSION['cart'][$product_id])) {
+      unset($_SESSION['cart'][$product_id]);
+    }
+
+  }
+
+
+
+   public function actionAddtocart() {
+
+     $product_id = Yii::$app->request->get('product_id');
+     $product = Products::findOne($product_id);
+     if (empty($product)) {
+       return false;
+     }
+
+     $session = Yii::$app->session;
+     $session->open();
+    $quantity = 1;
+    if (isset($_SESSION['cart'][$product_id])) {
+      $_SESSION['cart'][$product_id]['quantity'] += $quantity;
+    } else {
+      $_SESSION['cart'][$product_id] = [
+        'quantity' => $quantity,
+        'title' => $product->title,
+        'price' => $product->price,
+        'image' => $product->image,
+      ];
+
+    }
+  }
+
+
+/*    public function actionCatajax() {
       if (Yii::$app->request->isAjax) {
         $data = Yii::$app->request->post('category_id');
 
@@ -288,6 +333,6 @@ class SiteController extends Controller
         }
 //   var_dump($data);
         return json_encode($html);
-      }
+      }*/
 
 }

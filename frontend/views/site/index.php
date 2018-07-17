@@ -7,6 +7,7 @@ use Yii;
 use yii\helpers\Html;
 use common\models\Categories;
 use yii\widgets\LinkPager;
+use yii\widgets\Pjax;
 
 ?>
 <!-- ============================================== HEADER ============================================== -->
@@ -24,9 +25,11 @@ use yii\widgets\LinkPager;
     <div class="container">
         <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
             <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
-
+          <?php Pjax::begin(); ?>
+          <?= Html::a("Обновить", ['site/index'], ['hidden'=>true, 'id'=>'cart_update']);?>
             <div class="dropdown dropdown-cart">
-                <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+                <a href="/" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+                  <?php if (!empty($_SESSION['cart'])) { ?>
                     <div class="items-cart-inner">
                         <div class="total-price-basket">
                             <span class="lbl">cart -</span>
@@ -43,24 +46,34 @@ use yii\widgets\LinkPager;
                     </div>
                 </a>
                 <ul class="dropdown-menu">
+
                     <li>
+                      <?php foreach ($_SESSION['cart'] as $id => $item) {
+                          if(isset($item['image'])) {
+                          $img_url = '../../frontend/web/uploads/'.$item['image'];
+                          } else {
+                          $img_url = '';
+                          }
+                          ?>
                         <div class="cart-item product-summary">
                             <div class="row">
                                 <div class="col-xs-4">
                                     <div class="image">
-                                        <a href="detail.html"><img src="<?=Yii::$app->urlManager->baseUrl.'/images/cart.jpg'?>" alt=""></a>
+                                        <a href="#"><img class="cart-img" src="<?=$img_url?>" alt=""></a>
                                     </div>
                                 </div>
                                 <div class="col-xs-7">
 
-                                    <h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
-                                    <div class="price">$600.00</div>
+                                    <h3 class="name"><a href="index.php?page-detail"><?=$item['title']?></a></h3>
+                                    <div class="price"><?=$item['price']. ' грн.'?></div>
                                 </div>
                                 <div class="col-xs-1 action">
-                                    <a href="#"><i class="fa fa-trash"></i></a>
+                                    <?= Html::a(Html::tag('i', '', ['class'=> 'fa fa-trash']).'', ['site/index'], ['data-id'=> $id, 'class'=> 'rm_from_cart']);?>
                                 </div>
                             </div>
                         </div><!-- /.cart-item -->
+                        <?php } ?>
+
                         <div class="clearfix"></div>
                         <hr>
 
@@ -79,7 +92,8 @@ use yii\widgets\LinkPager;
                     </li>
                 </ul><!-- /.dropdown-menu-->
             </div><!-- /.dropdown-cart -->
-
+<?php } ?>
+          <?php Pjax::end(); ?>
             <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
         </div
     </div><!-- /.container-class -->
@@ -188,14 +202,14 @@ use yii\widgets\LinkPager;
                                                 <div class="product">
                                                     <div class="product-image">
                                                         <div class="image">
-                                                            <a href="detail.html"><img  src="<?=$img_url?>" data-echo="<?=$img_url?>" alt=""></a>
+                                                            <a href="#"><img  src="<?=$img_url?>" data-echo="<?=$img_url?>" alt=""></a>
                                                         </div><!-- /.image -->
 
                                                     </div><!-- /.product-image -->
 
 
                                                     <div class="product-info text-left">
-                                                        <h3 class="name"><a href="detail.html"><?=$product->title;?></a></h3>
+                                                        <h3 class="name"><a href="#"><?=$product->title;?></a></h3>
                                                         <div class="description"><?=$product->description;?></div>
                                                         <div class="product-price">
 				                                        <span class="price"><?=$product->price. ' грн.';?></span>
@@ -206,7 +220,7 @@ use yii\widgets\LinkPager;
                                                     <div class="cart clearfix animate-effect">
                                                         <div class="action">
 
-                                                            <button id="buy" class="btn btn-primary" type="button">Купити</button>
+                                                            <button  href="<?=\yii\helpers\Url::to(['site/addtocart', 'product_id' => $product->id])?>"  data-id="<?=$product->id?>" class="buy btn btn-primary" type="button">Купити</button>
 
 
 
@@ -250,19 +264,20 @@ use yii\widgets\LinkPager;
                                                     </div><!-- /.col -->
                                                     <div class="col col-sm-8 col-lg-8">
                                                         <div class="product-info">
-                                                            <h3 class="name"><a href="detail.html"><?=$product->title?></a></h3>
+                                                            <h3 class="name"><a href="#"><?=$product->title?></a></h3>
                                                            <!-- <div class="rating rateit-small"></div>-->
                                                             <div class="product-price">
 				                                        	<span class="price"><?=$product->price. ' грн.';?></span>
 
                                                             </div><!-- /.product-price -->
-                                                            <div class="description m-t-10">                                                            <div class="rating rateit-small"></div>
+                                                            <div class="description m-t-10">
+                                                                <!--<div class="rating rateit-small"></div>-->
                                                             <?=$product->description?>
                                                             </div>
                                                             <div class="cart clearfix animate-effect">
                                                                 <div class="action">
 
-                                                                    <button class="btn btn-primary" type="button">Купити
+                                                                    <button href="<?=\yii\helpers\Url::to(['site/addtocart', 'product_id' => $product->id])?>"  data-id="<?=$product->id?>" class="buy btn btn-primary" type="button">Купити
                                                                     </button>
 
 

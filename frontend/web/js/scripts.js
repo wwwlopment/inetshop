@@ -411,7 +411,44 @@ $('#transitionType li a').click(function () {
 
 });
 
-    $(document).on('click', '.dropdown-toggle' , function() {
+$('.buy').on('click', function (e) {
+    $('#cart_update').click();
+    e.preventDefault();
+    var product_id = $(this).data('id');
+    $.ajax({
+         url: '/site/addtocart',
+         data: {product_id : product_id},
+         type: 'get',
+         success: function (res) {
+         },
+        error: function () {
+            alert('Ajax add error!');
+        }
+    });
+
+});
+
+$('.rm_from_cart').on('click', function (e) {
+    e.preventDefault();
+    var rm_product_id = $(this).data('id');
+    $.ajax({
+         url: '/site/rmfromcart',
+         data: {product_id : rm_product_id},
+         type: 'get',
+         success: function (res) {
+             console.log(res);
+             $('#cart_update').click();
+         },
+        error: function () {
+            alert('Ajax rm error!');
+        }
+    });
+
+});
+
+
+
+  /*  $(document).on('click', '.dropdown-toggle' , function() {
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
         $.ajax({
             //url: base + 'site/catajax',
@@ -427,6 +464,6 @@ $('#transitionType li a').click(function () {
 
 
         });
-    });
+    });*/
 
 })(jQuery);
