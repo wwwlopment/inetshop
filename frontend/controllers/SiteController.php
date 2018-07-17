@@ -84,8 +84,8 @@ class SiteController extends Controller
 
       $countQuery = clone $products;
 
-      // paginations - 5 items per page
-      $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 2]);
+      // paginations - 10 items per page
+      $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 10]);
 
       $pages->pageSizeParam = false;
 
