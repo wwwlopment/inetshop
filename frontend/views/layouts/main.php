@@ -84,7 +84,7 @@ UnicaseAsset::register($this);
                     <div class="contact-info">
                         <div class="footer-logo">
                             <div class="logo">
-                                <a href="home.html">
+                                <a href="<?=\yii\helpers\Url::to(['site/index'])?>">
 
                                     <img src="<?=Yii::$app->urlManager->baseUrl.'/images/logo_112.jpg'?>" alt="">
 
@@ -176,7 +176,7 @@ UnicaseAsset::register($this);
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="copyright">
                     Copyright © 2018
-                    <a href="home.html">wwwlopment</a>
+                    <a href="<?=\yii\helpers\Url::to(['site/index'])?>">wwwlopment</a>
                     - All rights Reserved
                 </div>
             </div>

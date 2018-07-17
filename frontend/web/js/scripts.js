@@ -412,7 +412,7 @@ $('#transitionType li a').click(function () {
 });
 
 $('.buy').on('click', function (e) {
-    $('#cart_update').click();
+
     e.preventDefault();
     var product_id = $(this).data('id');
     $.ajax({
@@ -420,15 +420,17 @@ $('.buy').on('click', function (e) {
          data: {product_id : product_id},
          type: 'get',
          success: function (res) {
+             $.pjax.reload({container: '#pjaxContent'});
+           //  $('#cart_update').click();
          },
         error: function () {
             alert('Ajax add error!');
         }
     });
-
+    //upper_total();
 });
 
-$('.rm_from_cart').on('click', function (e) {
+$(document).on('click', '.rm_from_cart', function (e) {
     e.preventDefault();
     var rm_product_id = $(this).data('id');
     $.ajax({
@@ -436,16 +438,47 @@ $('.rm_from_cart').on('click', function (e) {
          data: {product_id : rm_product_id},
          type: 'get',
          success: function (res) {
-             console.log(res);
-             $('#cart_update').click();
+           //  console.log(res);
+             $.pjax.reload({container: '#pjaxContent'});
+            // $("#cart").addClass('open');
+             //$(document).find("#cart").addClass('open');
+             //$('#cart_update').click();
+  $('#cart').toggleClass('open', true);
          },
         error: function () {
             alert('Ajax rm error!');
         }
-    });
 
+    });
+  //  upper_total();
+   // $(document).find('#cart').addClass('open');
 });
 
+
+/*
+    $('#price_subtotal').on('change', function( event ) {
+console.log(111);*/
+    $('.value').html(function () {
+        var newhtml = $('#price_subtotal').html();
+        return newhtml;
+    });
+ //   });
+/*
+    $(document).on('pjax:success', function(e) {
+        alert('ok');
+        //как-то проверяем, что это нужное именно нам событие, а не какое-то другое
+        if (e.target.id === 'response-cart-change-action'){
+            $.pjax({
+                url: '/cart/get-cart',
+                container: '#user-cart-container',
+                timeout: 0,
+                push: false,
+                scrollTo: false,
+                type: 'post'
+            })
+        }
+    });
+*/
 
 
   /*  $(document).on('click', '.dropdown-toggle' , function() {

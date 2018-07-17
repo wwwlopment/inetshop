@@ -246,8 +246,19 @@ class SiteController extends Controller
 
     $session = Yii::$app->session;
     $session->open();
-    if (isset($_SESSION['cart'][$product_id])) {
-      unset($_SESSION['cart'][$product_id]);
+
+
+    if (count($_SESSION['cart'])==0) {
+     // unset($_SESSION['cart']['items']);
+      var_dump('111');
+      unset($_SESSION['cart']);
+    }else {
+      if (isset($_SESSION['cart'][$product_id])) {
+
+        unset($_SESSION['cart'][$product_id]);
+        $_SESSION['cart_items'] = $_SESSION['cart_items'] - 1;
+      }
+
     }
 
   }
@@ -264,6 +275,7 @@ class SiteController extends Controller
 
      $session = Yii::$app->session;
      $session->open();
+
     $quantity = 1;
     if (isset($_SESSION['cart'][$product_id])) {
       $_SESSION['cart'][$product_id]['quantity'] += $quantity;
@@ -274,6 +286,8 @@ class SiteController extends Controller
         'price' => $product->price,
         'image' => $product->image,
       ];
+      $items = count($_SESSION['cart']);
+      $_SESSION['cart_items'] = $items;
 
     }
   }

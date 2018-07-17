@@ -8,12 +8,17 @@ use yii\helpers\Html;
 use common\models\Categories;
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
-
+/*if (isset($_SESSION['cart'])) {
+  echo '<pre>';
+  var_dump($_SESSION['cart']);
+  echo '</pre>';
+  echo count($_SESSION['cart']);
+}*/
 ?>
 <!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1 header-style-2">
-    <div class="logo col-xs-12 col-sm-12 col-md-10">
-        <a class="col-md-4" href="home.html">
+    <div class="logo col-xs-12 col-sm-12 col-md-9">
+        <a class="col-md-4" href="<?=\yii\helpers\Url::to(['/'])?>">
 
             <img src="<?=Yii::$app->urlManager->baseUrl.'/images/logo_112.jpg'?>" alt="">
 
@@ -23,32 +28,46 @@ use yii\widgets\Pjax;
 
     <!-- ============================================== NAVBAR ============================================== -->
     <div class="container">
-        <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
+        <div class="col-xs-12 col-sm-12 col-md-3 animate-dropdown top-cart-row">
             <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
-          <?php Pjax::begin(); ?>
+          <?php Pjax::begin(['id' => 'pjaxContent']); ?>
           <?= Html::a("Обновить", ['site/index'], ['hidden'=>true, 'id'=>'cart_update']);?>
-            <div class="dropdown dropdown-cart">
+            <div id="cart" class="dropdown dropdown-cart">
                 <a href="/" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
-                  <?php if (!empty($_SESSION['cart'])) { ?>
+
                     <div class="items-cart-inner">
                         <div class="total-price-basket">
-                            <span class="lbl">cart -</span>
+                            <span class="lbl">Cart -</span>
                             <span class="total-price">
-						<span class="sign">$</span>
-						<span class="value">600.00</span>
+						<span class="sign"></span>
+
+						<span class="value">0 грн.</span>
 					</span>
                         </div>
                         <div class="basket">
                             <i class="glyphicon glyphicon-shopping-cart"></i>
                         </div>
-                        <div class="basket-item-count"><span class="count">2</span></div>
+                        <div class="basket-item-count"><span class="count">
+                                <?php if (!empty($_SESSION['cart_items'])) {
+                                    echo $_SESSION['cart_items'];
+                                    } else {
+                                    echo '0';
+                                } ?>
+
+                            </span></div>
 
                     </div>
                 </a>
+              <?php if (!empty($_SESSION['cart'])) {
+                $subtotal = 0;
+                $sum = 0;
+                ?>
                 <ul class="dropdown-menu">
 
                     <li>
                       <?php foreach ($_SESSION['cart'] as $id => $item) {
+                          $sum = $item['quantity'] * $item['price'];
+                          $subtotal = $subtotal+$sum;
                           if(isset($item['image'])) {
                           $img_url = '../../frontend/web/uploads/'.$item['image'];
                           } else {
@@ -59,16 +78,16 @@ use yii\widgets\Pjax;
                             <div class="row">
                                 <div class="col-xs-4">
                                     <div class="image">
-                                        <a href="#"><img class="cart-img" src="<?=$img_url?>" alt=""></a>
+                                        <img class="cart-img" src="<?=$img_url?>" alt="">
                                     </div>
                                 </div>
                                 <div class="col-xs-7">
 
-                                    <h3 class="name"><a href="index.php?page-detail"><?=$item['title']?></a></h3>
+                                    <h3 class="name"><?=$item['title']?></h3>
                                     <div class="price"><?=$item['price']. ' грн.'?></div>
                                 </div>
                                 <div class="col-xs-1 action">
-                                    <?= Html::a(Html::tag('i', '', ['class'=> 'fa fa-trash']).'', ['site/index'], ['data-id'=> $id, 'class'=> 'rm_from_cart']);?>
+                                    <?= Html::a(Html::tag('i', '', ['class'=> 'fa fa-trash']).'', ['site/index', 'product_id' => $id], ['data-id'=> $id, 'class'=> 'rm_from_cart']);?>
                                 </div>
                             </div>
                         </div><!-- /.cart-item -->
@@ -80,7 +99,8 @@ use yii\widgets\Pjax;
                         <div class="clearfix cart-total">
                             <div class="pull-right">
 
-                                <span class="text">Sub Total :</span><span class='price'>$600.00</span>
+                                <span class="text">Sub Total :</span>
+                                <span id="price_subtotal" class='price'><?=$subtotal . ' грн.'?></span>
 
                             </div>
                             <div class="clearfix"></div>
