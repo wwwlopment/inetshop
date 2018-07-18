@@ -277,9 +277,9 @@ class SiteController extends Controller
      $session->open();
 
     $quantity = 1;
-    if (isset($_SESSION['cart'][$product_id])) {
-      $_SESSION['cart'][$product_id]['quantity'] += $quantity;
-    } else {
+    //if (isset($_SESSION['cart'][$product_id])) {
+     // $_SESSION['cart'][$product_id]['quantity'] += $quantity;
+    //} else {
       $_SESSION['cart'][$product_id] = [
         'quantity' => $quantity,
         'title' => $product->title,
@@ -289,7 +289,7 @@ class SiteController extends Controller
       $items = count($_SESSION['cart']);
       $_SESSION['cart_items'] = $items;
 
-    }
+    //}
   }
 
 

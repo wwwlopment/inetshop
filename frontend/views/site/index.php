@@ -8,12 +8,12 @@ use yii\helpers\Html;
 use common\models\Categories;
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
-/*if (isset($_SESSION['cart'])) {
+if (isset($_SESSION['cart'])) {
   echo '<pre>';
   var_dump($_SESSION['cart']);
   echo '</pre>';
   echo count($_SESSION['cart']);
-}*/
+}
 ?>
 <!-- ============================================== HEADER ============================================== -->
 <header class="header-style-1 header-style-2">

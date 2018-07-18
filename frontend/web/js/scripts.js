@@ -421,13 +421,12 @@ $('.buy').on('click', function (e) {
          type: 'get',
          success: function (res) {
              $.pjax.reload({container: '#pjaxContent'});
-           //  $('#cart_update').click();
          },
         error: function () {
             alert('Ajax add error!');
         }
     });
-    //upper_total();
+    cp_total();
 });
 
 $(document).on('click', '.rm_from_cart', function (e) {
@@ -440,63 +439,38 @@ $(document).on('click', '.rm_from_cart', function (e) {
          success: function (res) {
            //  console.log(res);
              $.pjax.reload({container: '#pjaxContent'});
-            // $("#cart").addClass('open');
-             //$(document).find("#cart").addClass('open');
-             //$('#cart_update').click();
-  $('#cart').toggleClass('open', true);
+
          },
         error: function () {
             alert('Ajax rm error!');
         }
 
     });
-  //  upper_total();
-   // $(document).find('#cart').addClass('open');
+    cp_total();
 });
 
 
-/*
-    $('#price_subtotal').on('change', function( event ) {
-console.log(111);*/
-    $('.value').html(function () {
-        var newhtml = $('#price_subtotal').html();
-        return newhtml;
-    });
- //   });
-/*
-    $(document).on('pjax:success', function(e) {
-        alert('ok');
-        //как-то проверяем, что это нужное именно нам событие, а не какое-то другое
-        if (e.target.id === 'response-cart-change-action'){
-            $.pjax({
-                url: '/cart/get-cart',
-                container: '#user-cart-container',
-                timeout: 0,
-                push: false,
-                scrollTo: false,
-                type: 'post'
-            })
-        }
-    });
-*/
 
+cp_total();
 
-  /*  $(document).on('click', '.dropdown-toggle' , function() {
-        var csrfToken = $('meta[name="csrf-token"]').attr("content");
-        $.ajax({
-            //url: base + 'site/catajax',
+    $(document).on('click', '.rm_from_cart', function (e) {
+    $(document).on('ready pjax:success', function() {
+        // will fire on initial page load, and subsequent PJAX page loads
+      cp_total();
 
-            url: 'site/catajax',
-            type: 'post',
-            data: {category_id: '1', _csrf: csrfToken},
-            success: function (data) {
-                var objData = jQuery.parseJSON(data);
-               // console.log(data);
-                 $('#products').append(objData);
-            }
-
-
+            e.preventDefault();
+            $('#cart').addClass('open');
         });
-    });*/
+
+
+    });
+
+    function cp_total() {
+        $('.value').html(function () {
+            var newhtml = $('#price_subtotal').html();
+            return newhtml;
+        });
+    }
+
 
 })(jQuery);
