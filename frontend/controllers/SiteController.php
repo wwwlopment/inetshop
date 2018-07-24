@@ -2,6 +2,8 @@
 namespace frontend\controllers;
 
 use common\models\Categories;
+use common\models\OrderDescript;
+use common\models\Orders;
 use common\models\Products;
 use Yii;
 use yii\base\InvalidParamException;
@@ -249,8 +251,6 @@ class SiteController extends Controller
 
 
     if (count($_SESSION['cart'])==0) {
-     // unset($_SESSION['cart']['items']);
-      var_dump('111');
       unset($_SESSION['cart']);
     }else {
       if (isset($_SESSION['cart'][$product_id])) {
@@ -281,10 +281,12 @@ class SiteController extends Controller
      // $_SESSION['cart'][$product_id]['quantity'] += $quantity;
     //} else {
       $_SESSION['cart'][$product_id] = [
+        'id' => $product->id,
         'quantity' => $quantity,
         'title' => $product->title,
         'price' => $product->price,
         'image' => $product->image,
+        'description' => $product->description,
       ];
       $items = count($_SESSION['cart']);
       $_SESSION['cart_items'] = $items;
@@ -292,61 +294,22 @@ class SiteController extends Controller
     //}
   }
 
+public function actionCreateorder() {
+  if (!empty($_SESSION['cart'])) {
+  //  $order = new Orders();
+    $order_description = new OrderDescript();
+    //foreach ($_SESSION['cart'] as $id => $item) {
+//$order->product_id = $item['id'];
+//$order->buyer_name = '';
+//$order->buyer_email = '';
+  //    $order->save(false);
 
-/*    public function actionCatajax() {
-      if (Yii::$app->request->isAjax) {
-        $data = Yii::$app->request->post('category_id');
+    }
+ //unset($_SESSION['cart']);
 
-        }
-        $html = '';
-        $products = Products::find()->where(['category_id' => $data])->orderBy('id')->all();
-        foreach ($products as $product) {
-        if(isset($product->image)) {
-          $img_url = 'frontend/web/uploads/'.$product->image;
-        } else {
-          $img_url = '';
-        }
+  //}
+return $this->render('shopping_cart');
+  }
 
-
-          $html .= ' <div class="col-sm-6 col-md-4">';
-          $html .= '<div class="products">';
-          $html .= ' <div class="product">';
-          $html .= '        <div class="product-image">';
-          $html .= '<div class="image">';
-          $html .= '                   <a href="detail.html">';
-          $html .= '<img src="'.$img_url.'" data-echo="'. $img_url.'" alt=""></a>';
-          $html .= '</div>';
-          $html .= '<div class="tag new"><span>new</span></div>';
-          $html .= '</div>';
-          $html .= '<div class="product-info text-left">';
-          $html .= ' <h3 class="name"><a href="detail.html">'.$product->title.'</a>';
-          $html .= ' </h3>';
-          $html .= ' <div class="rating rateit-small"></div>';
-          $html .= ' <div class="description">';
-          $html .= $product->description;
-          $html .= ' </div>';
-
-          $html .= '<div class="product-price">';
-          $html .= '<span class="price">'.$product->price .' " грн"</span>';
-
-          $html .= '</div>';
-
-          $html .= '</div>';
-          $html .= '<div class="cart clearfix animate-effect">';
-          $html .= '<div class="action">';
-
-          $html .= '<button class="btn btn-primary" type="button">Купити';
-          $html .= '</button>';
-
-          $html .= '</div>';
-          $html .= '</div>';
-          $html .= '</div>';
-
-          $html .= '</div>';
-          $html .= '</div>';
-        }
-//   var_dump($data);
-        return json_encode($html);
-      }*/
 
 }

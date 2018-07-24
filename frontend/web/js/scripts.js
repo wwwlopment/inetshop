@@ -421,6 +421,7 @@ $('.buy').on('click', function (e) {
          type: 'get',
          success: function (res) {
              $.pjax.reload({container: '#pjaxContent'});
+             cp_total();
          },
         error: function () {
             alert('Ajax add error!');
@@ -456,7 +457,8 @@ cp_total();
     $(document).on('click', '.rm_from_cart', function (e) {
     $(document).on('ready pjax:success', function() {
         // will fire on initial page load, and subsequent PJAX page loads
-      cp_total();
+
+        cp_total();
 
             e.preventDefault();
             $('#cart').addClass('open');
@@ -467,7 +469,7 @@ cp_total();
 
     function cp_total() {
         $('.value').html(function () {
-            var newhtml = $('#price_subtotal').html();
+            var newhtml = $(document).find('#price_subtotal').html();
             return newhtml;
         });
     }

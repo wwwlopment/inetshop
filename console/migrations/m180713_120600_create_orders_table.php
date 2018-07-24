@@ -17,8 +17,6 @@ class m180713_120600_create_orders_table extends Migration
             'order_id' => $this->integer(11)->defaultValue(0),
             'buyer_name' => $this->string(50)->notNull(),
             'buyer_email' => $this->string(50)->notNull(),
-            'product_id' => $this->integer(11)->defaultValue(0),
-            'quantity' => $this->integer(11)->defaultValue(0),
             'order_amount' => $this->integer(11)->defaultValue(0),
             'status'        => $this->smallInteger(1)->defaultValue(0),
             'created_at'  => 'timestamp not null',
