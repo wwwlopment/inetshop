@@ -41,8 +41,8 @@ use yii\helpers\Html;
               </tr>
               </tfoot>
               <tbody>
-              <?php if (!empty($_SESSION['cart'])) {
-              $grand_total = 0;
+              <?php      $grand_total = 0;
+              if (!empty($_SESSION['cart'])) {
                   foreach ($_SESSION['cart'] as $id => $item) {
                 if(isset($item['image'])) {
                 $img_url = '../../frontend/web/uploads/'.$item['image'];
