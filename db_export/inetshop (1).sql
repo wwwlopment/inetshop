@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Лип 18 2018 р., 23:58
+-- Час створення: Лип 24 2018 р., 09:54
 -- Версія сервера: 5.7.22-0ubuntu0.16.04.1
 -- Версія PHP: 7.0.30-0ubuntu0.16.04.1
 
@@ -63,8 +63,9 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m000000_000000_base', 1531489297),
 ('m130524_201442_init', 1531489481),
 ('m180713_120209_create_products_table', 1531686948),
-('m180713_120600_create_orders_table', 1531686949),
-('m180713_201917_create_categories_table', 1531697322);
+('m180713_120600_create_orders_table', 1532353460),
+('m180713_201917_create_categories_table', 1531697322),
+('m180723_133459_create_order_descript_table', 1532353460);
 
 -- --------------------------------------------------------
 
@@ -77,10 +78,22 @@ CREATE TABLE `orders` (
   `order_id` int(11) DEFAULT '0',
   `buyer_name` varchar(50) NOT NULL,
   `buyer_email` varchar(50) NOT NULL,
-  `product_id` int(11) DEFAULT '0',
-  `quantity` int(11) DEFAULT '0',
   `order_amount` int(11) DEFAULT '0',
   `status` smallint(1) DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `order_descript`
+--
+
+CREATE TABLE `order_descript` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT '0',
+  `quantity` int(11) DEFAULT '0',
+  `price` int(11) DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -162,6 +175,12 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Індекси таблиці `order_descript`
+--
+ALTER TABLE `order_descript`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Індекси таблиці `products`
 --
 ALTER TABLE `products`
@@ -189,6 +208,11 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблиці `orders`
 --
 ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблиці `order_descript`
+--
+ALTER TABLE `order_descript`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблиці `products`
