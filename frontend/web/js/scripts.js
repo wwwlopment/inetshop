@@ -421,7 +421,9 @@ $('.buy').on('click', function (e) {
          type: 'get',
          success: function (res) {
              $.pjax.reload({container: '#pjaxContent'});
-             cp_total();
+             $(document).on('ready pjax:success', function() {
+                 cp_total();
+             });
          },
         error: function () {
             alert('Ajax add error!');
