@@ -5217,3 +5217,7 @@ a {
 .cart-img {
   width: 50px;
 }
+
+.quantity {
+  color: #98703c;
+}

@@ -143,6 +143,7 @@ UnicaseAsset::register($this);
                                       <div class="col-xs-7">
 
                                           <h3 class="name"><?=$item['title']?></h3>
+                                          <h5 class="quantity">х<?=$item['quantity']?> шт.</h5>
                                           <div class="price"><?=$item['price']. ' грн.'?></div>
                                       </div>
                                       <div class="col-xs-1 action">
