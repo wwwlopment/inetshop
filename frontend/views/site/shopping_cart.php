@@ -11,7 +11,6 @@ use yii\helpers\Url;
 }*/
 //unset($_SESSION['cart']);
 ?>
-
 <div class="body-content outer-top-xs">
   <div class="container">
     <div class="row inner-bottom-sm">

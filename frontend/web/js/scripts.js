@@ -384,7 +384,11 @@ var sum = parseInt(val,10)*parseFloat(subtotal);
         data: {product_id : product_id, quantity : quantity},
         type: 'get',
         success: function (res) {
+            $.pjax.reload({container: '#pjaxContent'});
+            $(document).on('ready pjax:success', function() {
                 grand_total();
+                cp_total();
+            });
         },
         error: function () {
             alert('Ajax add error!');
@@ -409,7 +413,11 @@ $('.quant-input .minus').click(function() {
             data: {product_id : product_id, quantity : quantity},
             type: 'get',
             success: function (res) {
-                       grand_total();
+                $.pjax.reload({container: '#pjaxContent'});
+                $(document).on('ready pjax:success', function() {
+                    grand_total();
+                    cp_total();
+                });
             },
             error: function () {
                 alert('Ajax add error!');
