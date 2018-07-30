@@ -2,7 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\Categories;
-use common\models\OrderDescript;
+use common\models\Order_descript;
 use common\models\Orders;
 use common\models\Products;
 use Yii;
@@ -297,7 +297,7 @@ class SiteController extends Controller
 public function actionCreateorder() {
   if (!empty($_SESSION['cart'])) {
   //  $order = new Orders();
-    $order_description = new OrderDescript();
+    $order_description = new Order_descript();
     //foreach ($_SESSION['cart'] as $id => $item) {
 //$order->product_id = $item['id'];
 //$order->buyer_name = '';
@@ -311,5 +311,35 @@ public function actionCreateorder() {
 return $this->render('shopping_cart');
   }
 
+
+  public function actionQuantity() {
+
+    $product_id = Yii::$app->request->get('product_id');
+    $quantity = Yii::$app->request->get('quantity');
+    $product = Products::findOne($product_id);
+    if (empty($product)) {
+      return false;
+    }
+
+    $session = Yii::$app->session;
+    $session->open();
+
+    //$quantity = 1;
+    //if (isset($_SESSION['cart'][$product_id])) {
+    // $_SESSION['cart'][$product_id]['quantity'] += $quantity;
+    //} else {
+    $_SESSION['cart'][$product_id] = [
+      'id' => $product->id,
+      'quantity' => $quantity,
+      'title' => $product->title,
+      'price' => $product->price,
+      'image' => $product->image,
+      'description' => $product->description,
+    ];
+    //$items = count($_SESSION['cart']);
+    //$_SESSION['cart_items'] = $items;
+
+    //}
+  }
 
 }

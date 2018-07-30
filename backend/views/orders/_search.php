@@ -23,11 +23,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'buyer_email') ?>
 
-    <?= $form->field($model, 'product_id') ?>
-
-    <?php // echo $form->field($model, 'quantity') ?>
-
-    <?php // echo $form->field($model, 'order_amount') ?>
+    <?= $form->field($model, 'order_amount') ?>
 
     <?php // echo $form->field($model, 'status') ?>
 

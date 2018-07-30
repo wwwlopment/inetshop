@@ -2,12 +2,14 @@
 
 use common\models\OrderDescript;
 use yii\helpers\Html;
+use yii\helpers\Url;
 /*if (isset($_SESSION['cart'])) {
   echo '<pre>';
   var_dump($_SESSION['cart']);
   echo '</pre>';
   echo count($_SESSION['cart']);
 }*/
+//unset($_SESSION['cart']);
 ?>
 
 <div class="body-content outer-top-xs">
@@ -33,10 +35,9 @@ use yii\helpers\Html;
                 <td colspan="7">
                   <div class="shopping-cart-btn">
 							<span class="">
-								<a href="#" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
-								<a href="#" class="btn btn-upper btn-primary pull-right outer-right-xs">Update shopping cart</a>
+								<a href="<?=\yii\helpers\Url::to(['/'])?>" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
 							</span>
-                  </div><!-- /.shopping-cart-btn -->
+                  </div>
                 </td>
               </tr>
               </tfoot>
@@ -51,7 +52,15 @@ use yii\helpers\Html;
                 }
                   ?>
               <tr>
-                <td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
+
+                  <td class="romove-item">
+
+                  <!--    <a href="#" title="cancel" class="icon">
+                          <i class="fa fa-trash-o"></i>
+                      </a>-->
+                    <?= Html::a(Html::tag('i', '', ['class'=> 'fa fa-trash-o']).'', [Url::to(['site/createorder']), 'product_id' => $id], ['data-id'=> $id, 'class'=> 'rm_from_cart']);?>
+
+                  </td>
                 <td class="cart-image">
                   <a class="entry-thumbnail" href="#">
                     <img src="<?=$img_url?>" alt="">
@@ -80,11 +89,11 @@ use yii\helpers\Html;
                       <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
                       <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
                     </div>
-                    <input type="text" value="1">
+                    <input class="qinput" data-id="<?=$item['id']?>" type="text" value="<?=$item['quantity']?>">
                   </div>
                 </td>
-                <td class="cart-product-sub-total"><span class="cart-sub-total-price"><?=$item['price']?> грн.</span></td>
-                <td class="cart-product-grand-total"><span class="cart-grand-total-price"><?=$grand_total+=$item['price']?> грн.</span></td>
+                <td class="cart-product-sub-total"><span id="<?=$item['id']?>" class="cart-sub-total-price"><?=$item['price']?> грн.</span></td>
+                <td class="cart-product-grand-total"><span id="<?=$item['id']?>" class="cart-grand-total-price"><?=$grand_total+=$item['price']?> грн.</span></td>
               </tr>
 <?php } ?>
 <?php } ?>
@@ -169,9 +178,7 @@ use yii\helpers\Html;
             <thead>
             <tr>
               <th>
-       <!--         <div class="cart-sub-total">
-                  Subtotal<span class="inner-left-md">$600.00</span>
-                </div>-->
+
                 <div class="cart-grand-total">
                   Grand Total<span class="inner-left-md"><?=$grand_total?> грн.</span>
                 </div>

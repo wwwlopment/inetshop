@@ -18,7 +18,7 @@ class SearchOrders extends Orders
     public function rules()
     {
         return [
-            [['id', 'order_id', 'product_id', 'quantity', 'order_amount', 'status'], 'integer'],
+            [['id', 'order_id', 'order_amount', 'status'], 'integer'],
             [['buyer_name', 'buyer_email', 'created_at'], 'safe'],
         ];
     }
@@ -61,8 +61,6 @@ class SearchOrders extends Orders
         $query->andFilterWhere([
             'id' => $this->id,
             'order_id' => $this->order_id,
-            'product_id' => $this->product_id,
-            'quantity' => $this->quantity,
             'order_amount' => $this->order_amount,
             'status' => $this->status,
             'created_at' => $this->created_at,

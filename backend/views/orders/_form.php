@@ -18,10 +18,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'buyer_email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'product_id')->textInput() ?>
-
-    <?= $form->field($model, 'quantity')->textInput() ?>
-
     <?= $form->field($model, 'order_amount')->textInput() ?>
 
     <?= $form->field($model, 'status')->textInput() ?>

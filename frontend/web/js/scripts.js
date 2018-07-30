@@ -372,16 +372,70 @@ $(document).ready(function(){
 $('.quant-input .plus').click(function() {
     var val = $(this).parent().next().val();
     val = parseInt(val) + 1;
+var subtotal = $(this).closest('tr').find('.cart-sub-total-price').text();
+var sum = parseInt(val,10)*parseFloat(subtotal);
+    $(this).closest('tr').find('.cart-grand-total-price').html(function() {
+    return sum +' грн.';
+    });
+    var product_id = $(this).parent().next().data('id');
+    var quantity = val;
+    $.ajax({
+        url: '/site/quantity',
+        data: {product_id : product_id, quantity : quantity},
+        type: 'get',
+        success: function (res) {
+                grand_total();
+        },
+        error: function () {
+            alert('Ajax add error!');
+        }
+    });
+
     $(this).parent().next().val(val);
 });
 $('.quant-input .minus').click(function() {
     var val = $(this).parent().next().val();
     if (val > 0) {
         val = parseInt(val) - 1;
+        var subtotal = $(this).closest('tr').find('.cart-sub-total-price').text();
+        var sum = parseInt(val,10)*parseFloat(subtotal);
+        $(this).closest('tr').find('.cart-grand-total-price').html(function() {
+            return sum +' грн.';
+        });
+        var product_id = $(this).parent().next().data('id');
+        var quantity = val;
+        $.ajax({
+            url: '/site/quantity',
+            data: {product_id : product_id, quantity : quantity},
+            type: 'get',
+            success: function (res) {
+                       grand_total();
+            },
+            error: function () {
+                alert('Ajax add error!');
+            }
+        });
         $(this).parent().next().val(val);
     }
 });
+    grand_total();
 
+    function grand_total()
+    {
+        var total=0;
+        $("table tbody tr").each(function()
+        {
+
+            var val = $(this).find('td .qinput').val();
+            var subtotal = $(this).find('td .cart-sub-total-price').text();
+            var sum = parseInt(val,10)*parseFloat(subtotal);
+            $(this).find("td .cart-grand-total-price").html(function() {
+                total+= sum;
+                return sum +' грн.';
+            });
+        });
+        $('.inner-left-md').text(total +' грн.');
+    }
 
 /*===================================================================================*/
 /*  WOW 
@@ -478,3 +532,5 @@ cp_total();
 
 
 })(jQuery);
+
+

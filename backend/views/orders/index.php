@@ -29,9 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'order_id',
             'buyer_name',
             'buyer_email:email',
-            'product_id',
-            //'quantity',
-            //'order_amount',
+            'order_amount',
             //'status',
             //'created_at',
 
