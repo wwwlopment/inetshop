@@ -46,7 +46,7 @@ class UnicaseAsset extends AssetBundle
     'js/jquery.rateit.min.js',
     'js/lightbox.min.js',
     'js/bootstrap-select.min.js',
-    'js/wow.min.js',
+    //'js/wow.min.js',
     'js/scripts.js',
   ];
   public $depends = [

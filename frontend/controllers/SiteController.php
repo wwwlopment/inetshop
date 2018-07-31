@@ -297,7 +297,7 @@ class SiteController extends Controller
 public function actionCreateorder() {
   if (!empty($_SESSION['cart'])) {
   //  $order = new Orders();
-    $order_description = new Order_descript();
+   // $order_description = new Order_descript();
     //foreach ($_SESSION['cart'] as $id => $item) {
 //$order->product_id = $item['id'];
 //$order->buyer_name = '';

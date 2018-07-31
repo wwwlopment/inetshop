@@ -3,6 +3,7 @@
 use common\models\OrderDescript;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 /*if (isset($_SESSION['cart'])) {
   echo '<pre>';
   var_dump($_SESSION['cart']);
@@ -17,6 +18,8 @@ use yii\helpers\Url;
       <div class="shopping-cart">
         <div class="col-md-12 col-sm-12 shopping-cart-table ">
           <div class="table-responsive">
+            <?php Pjax::begin(['id' => 'pjaxCreateOrder']); ?>
+            <?= Html::a("Обновить", ['site/createorder'], ['hidden'=>true, 'id'=>'create_order_update']);?>
             <table class="table table-bordered">
               <thead>
               <tr>
@@ -29,7 +32,10 @@ use yii\helpers\Url;
                 <th class="cart-total last-item">Grandtotal</th>
               </tr>
               </thead><!-- /thead -->
+
+
               <tfoot>
+
               <tr>
                 <td colspan="7">
                   <div class="shopping-cart-btn">
@@ -98,8 +104,11 @@ use yii\helpers\Url;
 <?php } ?>
               </tbody><!-- /tbody -->
             </table><!-- /table -->
+            <?php Pjax::end(); ?>
           </div>
-        </div><!-- /.shopping-cart-table -->				<div class="col-md-4 col-sm-12 estimate-ship-tax">
+        </div><!-- /.shopping-cart-table -->
+
+          <div class="col-md-4 col-sm-12 estimate-ship-tax">
           <table class="table table-bordered">
             <thead>
             <tr>

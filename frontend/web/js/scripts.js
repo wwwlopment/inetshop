@@ -369,7 +369,7 @@ $(document).ready(function(){
 /*  QUANTITY
 /*===================================================================================*/
 
-$('.quant-input .plus').click(function() {
+$('body').on('click', '.quant-input .plus', function() {
     var val = $(this).parent().next().val();
     val = parseInt(val) + 1;
 var subtotal = $(this).closest('tr').find('.cart-sub-total-price').text();
@@ -397,7 +397,8 @@ var sum = parseInt(val,10)*parseFloat(subtotal);
 
     $(this).parent().next().val(val);
 });
-$('.quant-input .minus').click(function() {
+
+$('body').on('click', '.quant-input .minus', function() {
     var val = $(this).parent().next().val();
     if (val > 0) {
         val = parseInt(val) - 1;
@@ -448,10 +449,10 @@ $('.quant-input .minus').click(function() {
 /*===================================================================================*/
 /*  WOW 
 /*===================================================================================*/
-
+/*
 $(document).ready(function () {
     new WOW().init();
-});
+});*/
 
 
 /*===================================================================================*/
@@ -503,8 +504,12 @@ $(document).on('click', '.rm_from_cart', function (e) {
          type: 'get',
          success: function (res) {
            //  console.log(res);
-             $.pjax.reload({container: '#pjaxContent'});
-
+             $.pjax.reload({container: '#pjaxContent'}).done(function (){
+                $.pjax.reload({container: '#pjaxCreateOrder'});
+             });
+             $(document).on('ready pjax:success', function() {
+                 grand_total();
+             });
          },
         error: function () {
             alert('Ajax rm error!');
@@ -512,6 +517,7 @@ $(document).on('click', '.rm_from_cart', function (e) {
 
     });
     cp_total();
+    //grand_total();
 });
 
 
