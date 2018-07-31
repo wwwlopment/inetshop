@@ -25,12 +25,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+           // 'id',
             'order_id',
             'product_id',
             'quantity',
             'price',
             'created_at',
+          ['label'=>'Description','content' => function ($model) { return \common\models\Products::findOne($model->product_id)->description ;}],
+          ['label'=>'Image','content' => function ($model) { return '<img width = "70px" src=../../frontend/web/uploads/'. \common\models\Products::findOne($model->product_id)->image.'>';}],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
