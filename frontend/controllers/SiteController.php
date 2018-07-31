@@ -17,6 +17,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\OrderForm;
+
 
 /**
  * Site controller
@@ -296,6 +298,18 @@ class SiteController extends Controller
 
 public function actionCreateorder() {
   if (!empty($_SESSION['cart'])) {
+    $model = new OrderForm();
+
+    if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+Yii::$app->session->setFlash('success', "Все ОК!");
+      unset($_SESSION['cart']);
+
+      return $this->render('shopping_cart', ['model' => $model]);
+    } else {
+      Yii::$app->session->setFlash('error', "Ошибка!");
+      // або сторінка відображається вперше, або ж є помилка в даних
+      return $this->render('shopping_cart', ['model' => $model]);
+    }
   //  $order = new Orders();
    // $order_description = new Order_descript();
     //foreach ($_SESSION['cart'] as $id => $item) {
@@ -340,6 +354,10 @@ return $this->render('shopping_cart');
     //$_SESSION['cart_items'] = $items;
 
     //}
+  }
+
+  public function actionOrder() {
+
   }
 
 }

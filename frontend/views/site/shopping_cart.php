@@ -3,6 +3,7 @@
 use common\models\OrderDescript;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 /*if (isset($_SESSION['cart'])) {
   echo '<pre>';
@@ -196,9 +197,29 @@ use yii\widgets\Pjax;
             <tbody>
             <tr>
               <td>
-                <div class="cart-checkout-btn pull-right">
-                  <button type="submit" class="btn btn-primary">PROCCED TO CHEKOUT</button>
-                  <span class="">Checkout with multiples address!</span>
+                <div class="cart-checkout-btn pull-right col-md-12 col-sm-12">
+                    <?php
+                    $form = ActiveForm::begin([
+                    'id' => 'orderform',
+                    'options' => ['class' => 'form-horizontal form-group'],
+                    ]) ?>
+                  <?= $form->field($model, 'name')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control name-input', 'placeholder'=>'You name..']) ?>
+                  <?= $form->field($model, 'phone')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control phone-input', 'placeholder'=>'You phone..']) ?>
+                  <?= $form->field($model, 'email')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control email-input', 'placeholder'=>'You email..']) ?>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-1 col-lg-11">
+                          <?= Html::submitButton('PROCCED TO CHEKOUT', ['class' => 'btn btn-primary', 'type' => 'submit']); ?>
+                        </div>
+                    </div>
+                  <?php ActiveForm::end() ?>
+                 <!--   <div class="form-group col-md-12 col-sm-12">
+                        <input type="name" class="form-control unicase-form-control name-input" placeholder="You name..">
+                        <input type="phone" class="form-control unicase-form-control phone-input" placeholder="You phone number..">
+                        <input type="email" class="form-control unicase-form-control email-input" placeholder="You email..">
+                    </div>
+                  <button type="submit" class="btn btn-primary">PROCCED TO CHEKOUT</button>-->
+                  <!--<span class="">Checkout with multiples address!</span>-->
                 </div>
               </td>
             </tr>
