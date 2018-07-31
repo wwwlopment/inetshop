@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
+use yii\captcha\Captcha;
 /*if (isset($_SESSION['cart'])) {
   echo '<pre>';
   var_dump($_SESSION['cart']);
@@ -206,7 +207,7 @@ use yii\widgets\Pjax;
                   <?= $form->field($model, 'name')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control name-input', 'placeholder'=>'You name..']) ?>
                   <?= $form->field($model, 'phone')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control phone-input', 'placeholder'=>'You phone..']) ?>
                   <?= $form->field($model, 'email')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control email-input', 'placeholder'=>'You email..']) ?>
-
+                  <?= $form->field($model, 'verifyCode')->widget(Captcha::className())  ?>
                     <div class="form-group">
                         <div class="col-lg-offset-1 col-lg-11">
                           <?= Html::submitButton('PROCCED TO CHEKOUT', ['class' => 'btn btn-primary', 'type' => 'submit']); ?>

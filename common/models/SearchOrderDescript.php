@@ -18,7 +18,7 @@ class SearchOrderDescript extends Order_descript
     public function rules()
     {
         return [
-            [['id', 'product_id', 'quantity', 'price'], 'integer'],
+            [['id', 'order_id','product_id', 'quantity', 'price'], 'integer'],
             [['created_at'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class SearchOrderDescript extends Order_descript
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+          'order_id' => $this->order_id,
             'product_id' => $this->product_id,
             'quantity' => $this->quantity,
             'price' => $this->price,

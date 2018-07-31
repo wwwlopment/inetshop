@@ -35,6 +35,7 @@
                   ['label' => 'Categories', 'icon' => 'reorder', 'url' => ['/category']],
                   ['label' => 'Products', 'icon' => 'gift', 'url' => ['/products']],
                   ['label' => 'Orders', 'icon' => 'pencil-square-o', 'url' => ['/orders']],
+                  ['label' => 'Order description', 'icon' => 'pencil-square-o', 'url' => ['/order_descript']],
 
 
                   ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],

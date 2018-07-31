@@ -29,9 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'order_id',
+
             'buyer_name',
             'buyer_email:email',
+            'buyer_phone',
             'order_amount',
             'status',
             'created_at',

@@ -14,6 +14,7 @@ class m180723_133459_create_order_descript_table extends Migration
     {
         $this->createTable('order_descript', [
           'id' => $this->primaryKey(),
+          'order_id' => $this->integer(11)->defaultValue(0),
           'product_id' => $this->integer(11)->defaultValue(0),
           'quantity' => $this->integer(11)->defaultValue(0),
           'price' => $this->integer(11)->defaultValue(0),

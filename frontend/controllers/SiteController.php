@@ -8,6 +8,7 @@ use common\models\Products;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\data\Pagination;
+use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -67,7 +68,7 @@ class SiteController extends Controller
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+             //   'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
     }
@@ -301,13 +302,41 @@ public function actionCreateorder() {
     $model = new OrderForm();
 
     if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-Yii::$app->session->setFlash('success', "Все ОК!");
-      unset($_SESSION['cart']);
 
-      return $this->render('shopping_cart', ['model' => $model]);
+
+      if (!empty($_SESSION['cart'])) {
+        $sum = 0;
+        $order = new Orders();
+       //print_r(Yii::$app->request->post());die();
+        $order->buyer_name = Yii::$app->request->post('OrderForm')['name'];
+        $order->buyer_email = Yii::$app->request->post('OrderForm')['email'];
+        $order->buyer_phone = Yii::$app->request->post('OrderForm')['phone'];
+        $order->save(false);
+        $db_last_id = $order->id;
+
+        foreach ($_SESSION['cart'] as $id => $item) {
+          $order_descript = new Order_descript();
+          //print_r($order);die();
+          $order_descript->order_id = $db_last_id;
+          $order_descript->product_id = $item['id'];
+          $order_descript->quantity = $item['quantity'];
+          $order_descript->price = $item['price'];
+          $sum += $item['quantity']*$item['price'];
+          $order_descript->save(false);
+        }
+
+        $order = Orders::findOne($db_last_id);
+        $order->order_amount = $sum;
+        $order->save(false);
+       // $order_descript->save(false);
+      }
+
+      unset($_SESSION['cart']);
+      unset($_SESSION['cart_items']);
+      Yii::$app->session->setFlash('success', "Замовлення успішно створене!");
+      return $this->redirect(['/']);
     } else {
-      Yii::$app->session->setFlash('error', "Ошибка!");
-      // або сторінка відображається вперше, або ж є помилка в даних
+
       return $this->render('shopping_cart', ['model' => $model]);
     }
   //  $order = new Orders();
@@ -319,9 +348,7 @@ Yii::$app->session->setFlash('success', "Все ОК!");
   //    $order->save(false);
 
     }
- //unset($_SESSION['cart']);
 
-  //}
 return $this->render('shopping_cart');
   }
 
@@ -359,5 +386,7 @@ return $this->render('shopping_cart');
   public function actionOrder() {
 
   }
+
+
 
 }

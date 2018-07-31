@@ -17,11 +17,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'order_id') ?>
+
 
     <?= $form->field($model, 'buyer_name') ?>
 
     <?= $form->field($model, 'buyer_email') ?>
+    <?= $form->field($model, 'buyer_phone') ?>
 
     <?= $form->field($model, 'order_amount') ?>
 

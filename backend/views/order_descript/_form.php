@@ -11,6 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="order-descript-form">
 
     <?php $form = ActiveForm::begin(); ?>
+  <?= $form->field($model, 'order_id')->textInput() ?>
 
     <?= $form->field($model, 'product_id')->textInput() ?>
 
