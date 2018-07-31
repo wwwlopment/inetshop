@@ -474,7 +474,8 @@ $('#transitionType li a').click(function () {
 
 });
 
-$('.buy').on('click', function (e) {
+    $('body').on('click', '.buy', function(e) {
+//$('.buy').on('click', function (e) {
 
     e.preventDefault();
     var product_id = $(this).data('id');
