@@ -200,20 +200,24 @@ use yii\captcha\Captcha;
               <td>
                 <div class="cart-checkout-btn pull-right col-md-12 col-sm-12">
                     <?php
-                    $form = ActiveForm::begin([
-                    'id' => 'orderform',
-                    'options' => ['class' => 'form-horizontal form-group'],
-                    ]) ?>
-                  <?= $form->field($model, 'name')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control name-input', 'placeholder'=>'You name..']) ?>
-                  <?= $form->field($model, 'phone')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control phone-input', 'placeholder'=>'You phone..']) ?>
-                  <?= $form->field($model, 'email')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control email-input', 'placeholder'=>'You email..']) ?>
-                  <?= $form->field($model, 'verifyCode')->widget(Captcha::className())  ?>
-                    <div class="form-group">
-                        <div class="col-lg-offset-1 col-lg-11">
-                          <?= Html::submitButton('PROCCED TO CHEKOUT', ['class' => 'btn btn-primary', 'type' => 'submit']); ?>
+                    if (isset($model)) {
+                      $form = ActiveForm::begin([
+                        'id' => 'orderform',
+                        'options' => ['class' => 'form-horizontal form-group'],
+                      ]) ?>
+                      <?= $form->field($model, 'name')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control name-input', 'placeholder' => 'You name..']) ?>
+                      <?= $form->field($model, 'phone')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control phone-input', 'placeholder' => 'You phone..']) ?>
+                      <?= $form->field($model, 'email')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control email-input', 'placeholder' => 'You email..']) ?>
+                      <?= $form->field($model, 'verifyCode')->widget(Captcha::className()) ?>
+                        <div class="form-group">
+                            <div class="col-lg-offset-1 col-lg-11">
+                              <?= Html::submitButton('PROCCED TO CHEKOUT', ['class' => 'btn btn-primary', 'type' => 'submit']); ?>
+                            </div>
                         </div>
-                    </div>
-                  <?php ActiveForm::end() ?>
+                      <?php ActiveForm::end() ;
+                  }
+
+                      ?>
                  <!--   <div class="form-group col-md-12 col-sm-12">
                         <input type="name" class="form-control unicase-form-control name-input" placeholder="You name..">
                         <input type="phone" class="form-control unicase-form-control phone-input" placeholder="You phone number..">
