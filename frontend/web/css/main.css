@@ -5221,3 +5221,8 @@ a {
 .quantity {
   color: #98703c;
 }
+
+.row-flex {
+  display: flex;
+  flex-flow: row wrap;
+}

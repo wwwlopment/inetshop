@@ -3,7 +3,8 @@
 namespace common\models;
 
 use Yii;
-
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 /**
  * This is the model class for table "categories".
  *
@@ -15,6 +16,26 @@ use Yii;
  */
 class Categories extends \yii\db\ActiveRecord
 {
+/*  public function behaviors()
+  {
+    return [
+      TimestampBehavior::className(),
+    ];
+  }*/
+/*
+  public function behaviors()
+  {
+    return [
+      // Other behaviors
+      [
+        'class' => TimestampBehavior::className(),
+        'created_at' => 'time_created',
+        'updated_at' => false,
+        'value' => new Expression('NOW()'),
+      ],
+    ];
+  }*/
+
     /**
      * {@inheritdoc}
      */

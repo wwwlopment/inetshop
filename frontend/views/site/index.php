@@ -100,24 +100,24 @@ use yii\widgets\Pjax;
                     <div class="search-result-container">
                         <div id="myTabContent" class="tab-content">
                             <div class="tab-pane active" id="grid-container">
-                                <div class="category-product  inner-top-vs">
-                                    <div class="row">
+                                <div class="category-product inner-top-vs col-sm-12 col-md-12">
+                                    <div class="row row-flex">
                                         <?php
                                         if (isset ($products)) {
                                         foreach ($products as $product) {
                                           if(isset($product->image)) {
-                                            $img_url = '../../frontend/web/uploads/'.$product->image;
+                                            $img_url = $product->image;
                                           } else {
                                             $img_url = '';
                                           }
                                         ?>
-                                        <div class="col-sm-6 col-md-4">
+                                        <div  class="col-sm-6 col-md-4">
                                             <div class="products">
 
                                                 <div class="product">
                                                     <div class="product-image">
                                                         <div class="image">
-                                                            <a href="#"><img  src="<?=$img_url?>" data-echo="<?=$img_url?>" alt=""></a>
+                                                            <a href="#"><img width="200px"  src="<?=$img_url?>" data-echo="<?=$img_url?>" alt=""></a>
                                                         </div><!-- /.image -->
 
                                                     </div><!-- /.product-image -->
@@ -159,7 +159,7 @@ use yii\widgets\Pjax;
                                   if (isset ($products)) {
                                       foreach ($products as $product) {
                                   if(isset($product->image)) {
-                                    $img_url = '../../frontend/web/uploads/'.$product->image;
+                                    $img_url = $product->image;
                                   } else {
                                     $img_url = '';
                                   }
@@ -172,7 +172,7 @@ use yii\widgets\Pjax;
                                                     <div class="col col-sm-4 col-lg-4">
                                                         <div class="product-image">
                                                             <div class="image">
-                                                                <img data-echo="<?=$img_url?>"
+                                                                <img width="150px" data-echo="<?=$img_url?>"
                                                                      src="<?=$img_url?>" alt="">
                                                             </div>
                                                         </div><!-- /.product-image -->

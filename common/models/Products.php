@@ -3,7 +3,8 @@
 namespace common\models;
 
 use Yii;
-
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 /**
  * This is the model class for table "products".
  *
@@ -20,6 +21,26 @@ use Yii;
  */
 class Products extends \yii\db\ActiveRecord
 {
+
+/*  public function behaviors()
+  {
+    return [
+      TimestampBehavior::className(),
+    ];
+  }*/
+
+/*  public function behaviors()
+  {
+    return [
+      // Other behaviors
+      [
+        'class' => TimestampBehavior::className(),
+        'created_at' => 'time_created',
+        'updated_at' => false,
+        'value' => new Expression('NOW()'),
+      ],
+    ];
+  }*/
     /**
      * {@inheritdoc}
      */
@@ -38,7 +59,7 @@ class Products extends \yii\db\ActiveRecord
             [['category_id', 'price', 'available'], 'integer'],
             [['description'], 'string'],
             [['updated_at', 'created_at'], 'safe'],
-            [['title'], 'string', 'max' => 50],
+            [['title'], 'string', 'max' => 255],
             [['vendor', 'image'], 'string', 'max' => 255],
         ];
     }
@@ -63,7 +84,7 @@ class Products extends \yii\db\ActiveRecord
     }
 
   public function saveImage($filename) {
-    $this->image = $filename;
+    $this->image = '../../frontend/web/uploads/'.$filename;
     return $this->save(false);
   }
 }

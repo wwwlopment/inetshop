@@ -545,6 +545,17 @@ cp_total();
         });
     }
 
+    $(document).ready(function(){
+        $('.description').each(function(){
+            var highestBox = 0;
+            $('.description', this).each(function(){
+                if($(this).height() > highestBox) {
+                    highestBox = $(this).height();
+                }
+            });
+            $('.description',this).height(highestBox);
+        });
+    });
 
 })(jQuery);
 

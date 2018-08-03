@@ -53,7 +53,7 @@ use yii\captcha\Captcha;
               if (!empty($_SESSION['cart'])) {
                   foreach ($_SESSION['cart'] as $id => $item) {
                 if(isset($item['image'])) {
-                $img_url = '../../frontend/web/uploads/'.$item['image'];
+                $img_url = $item['image'];
               } else {
                   $img_url = '';
                 }
@@ -70,7 +70,7 @@ use yii\captcha\Captcha;
                   </td>
                 <td class="cart-image">
                   <a class="entry-thumbnail" href="#">
-                    <img src="<?=$img_url?>" alt="">
+                    <img width="150px" src="<?=$img_url?>" alt="">
                   </a>
                 </td>
                 <td class="cart-product-name-info">
