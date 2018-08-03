@@ -4767,7 +4767,7 @@ a {
   margin-top: 0px;
   font-family: 'FjallaOneRegular';
   font-size: 16px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 .shopping-cart .shopping-cart-table table tbody tr .cart-product-name-info h4 a {
   color: #555;
