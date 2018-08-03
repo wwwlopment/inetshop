@@ -4,6 +4,7 @@
 
 /* @var $content string */
 use common\models\Products;
+use frontend\models\SearchForm;
 use yii\helpers\Html;
 use common\models\Categories;
 use yii\widgets\LinkPager;
@@ -23,6 +24,8 @@ use common\widgets\Alert;
 
 
 UnicaseAsset::register($this);
+
+$model = new SearchForm();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -41,7 +44,6 @@ UnicaseAsset::register($this);
 <body class="cnt-homepage">
 <?php $this->beginBody() ?>
 
-<div class="wrap">
   <?php
   /*    NavBar::begin([
           'brandLabel' => Yii::$app->name,
@@ -74,25 +76,68 @@ UnicaseAsset::register($this);
       ]);
       NavBar::end();
       */ ?>
-    <!-- ============================================== HEADER ============================================== -->
-    <header class="header-style-1 header-style-2">
-        <div class="container">
+
+<div class="container">
+    <!-- ============================================================= SEARCH AREA ============================================================= -->
+<div class="main-header">
+    <div class="container">
         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
+                <!-- ============================================================= LOGO ============================================================= -->
+                    <a  href="<?=\yii\helpers\Url::to(['/'])?>">
 
-        <div class="logo col-xs-12 col-sm-12 col-md-8">
-            <a class="col-md-5" href="<?=\yii\helpers\Url::to(['/'])?>">
+                        <img src="<?=Yii::$app->urlManager->baseUrl.'/images/logo_112.jpg'?>" alt="">
 
-                <img src="<?=Yii::$app->urlManager->baseUrl.'/images/logo_112.jpg'?>" alt="">
+                    </a>
+                <!-- ============================================================= LOGO : END ============================================================= -->
+            </div><!-- /.logo-holder -->
 
-            </a>
-            <span class="section-title text-center vcenter col-md-7">Internet Shop</span>
-        </div><!-- /.logo -->
+            <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
+                <div class="contact-row ">
+                <span class="section-title text-center vcenter ">Internet Shop</span>
 
 
+                </div><!-- /.contact-row -->
+                <!-- ============================================================= SEARCH AREA ============================================================= -->
+                <div class="search-area">
+
+                   <form>
+                        <div class="control-group">
+
+                            <ul class="categories-filter animate-dropdown">
+
+                                <li class="dropdown">
+
+                                    <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Категорії <b class="caret"></b></a>
+
+                                    <ul class="dropdown-menu" role="menu" >
+                              <?php
+                              $categories = Categories::find()->all();
+                              if (isset ($categories)) {
+                                foreach ($categories as $category) {
+
+                                  echo Html::tag('li',$category->title ,['class'=>'menu-header']);
+                                    ?>
+
+                                  <?php
+                                }
+                              }?>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <!--/*= $form->field($model, 'q')->label('')->textInput(['class'=>'search-field', 'placeholder'=>'Пошук...']);*/-->
+
+                         <input class="search-field" placeholder="Пошук..." />
+
+                            <a class="search-button" href="#" ></a>
+
+                        </div>
+                    </form>
+                </div>
 
 
-        <!-- ============================================== NAVBAR ============================================== -->
-
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-3 animate-dropdown top-cart-row">
                 <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
               <?php Pjax::begin(['id' => 'pjaxContent']); ?>
@@ -183,62 +228,10 @@ UnicaseAsset::register($this);
               <?php Pjax::end(); ?>
                 <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
             </div>
-            </div>
-        </div><!-- /.container-class -->
-
-        <!-- ============================================== NAVBAR : END ============================================== -->
-
-    </header>
-
-    <!-- ============================================== HEADER : END ============================================== -->
-    <!--<div class="breadcrumb">
-        <div class="container">-->
-            <!--  <div class="breadcrumb-inner">
-                  <ul class="list-inline list-unstyled">
-                      <li><a href="#">Home</a></li>
-                      <li class='active'>Smart Phone</li>
-                  </ul>
-              </div>--><!-- /.breadcrumb-inner -->
-        <!--</div>--><!-- /.container -->
-   <!-- </div>--><!-- /.breadcrumb -->
-
-    <!-- ============================================================= SEARCH AREA ============================================================= -->
-    <div class="row">
-    <div class="container">
-    <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
-        <div class="search-area">
-            <form>
-                <div class="control-group">
-
-                    <ul class="categories-filter animate-dropdown">
-                        <li class="dropdown">
-
-                            <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
-
-                            <ul class="dropdown-menu" role="menu" >
-                                <li class="menu-header">Computer</li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Laptops</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Tv & audio</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Gadgets</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Cameras</a></li>
-
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <input class="search-field" placeholder="Search here..." />
-
-                    <a class="search-button" href="#" ></a>
-
-                </div>
-            </form>
-        </div><!-- /.search-area -->
-        <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+        </div>
     </div>
-    </div>
-    </div>
+</div>
 
-    <div class="container">
 
       <?= Breadcrumbs::widget([
         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -246,7 +239,6 @@ UnicaseAsset::register($this);
       <?= Alert::widget() ?>
       <?= $content ?>
     </div>
-</div>
 
 
 <!-- ============================================================= FOOTER ============================================================= -->

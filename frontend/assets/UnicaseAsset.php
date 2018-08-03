@@ -23,6 +23,7 @@ class UnicaseAsset extends AssetBundle
     'css/animate.min.css',
     'css/rateit.css',
     'css/bootstrap-select.min.css',
+    'css/config.css',
 
     //<!-- Icons/Glyphs -->
     'css/font-awesome.min.css',
@@ -48,6 +49,7 @@ class UnicaseAsset extends AssetBundle
     'js/bootstrap-select.min.js',
     //'js/wow.min.js',
     'js/scripts.js',
+    'js/switchstylesheet.js',
   ];
   public $depends = [
     'yii\web\YiiAsset',
