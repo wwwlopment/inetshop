@@ -55,6 +55,8 @@ class XmlController extends Controller {
     $last_id = Categories::find()->count();
       } else {
       $last_id = Categories::find()->count()+1;
+      echo 'Категорія зайнята';
+      return;
     }
 
     foreach ($xml->shop->offers->offer as $value) {

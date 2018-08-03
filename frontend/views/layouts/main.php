@@ -76,6 +76,9 @@ UnicaseAsset::register($this);
       */ ?>
     <!-- ============================================== HEADER ============================================== -->
     <header class="header-style-1 header-style-2">
+        <div class="container">
+        <div class="row">
+
         <div class="logo col-xs-12 col-sm-12 col-md-8">
             <a class="col-md-5" href="<?=\yii\helpers\Url::to(['/'])?>">
 
@@ -85,8 +88,11 @@ UnicaseAsset::register($this);
             <span class="section-title text-center vcenter col-md-7">Internet Shop</span>
         </div><!-- /.logo -->
 
+
+
+
         <!-- ============================================== NAVBAR ============================================== -->
-        <div class="container">
+
             <div class="col-xs-12 col-sm-12 col-md-3 animate-dropdown top-cart-row">
                 <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
               <?php Pjax::begin(['id' => 'pjaxContent']); ?>
@@ -128,7 +134,7 @@ UnicaseAsset::register($this);
                             $sum = $item['quantity'] * $item['price'];
                             $subtotal = $subtotal+$sum;
                             if(isset($item['image'])) {
-                              $img_url = '../../frontend/web/uploads/'.$item['image'];
+                              $img_url = $item['image'];
                             } else {
                               $img_url = '';
                             }
@@ -176,7 +182,8 @@ UnicaseAsset::register($this);
             <?php } ?>
               <?php Pjax::end(); ?>
                 <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
-            </div
+            </div>
+            </div>
         </div><!-- /.container-class -->
 
         <!-- ============================================== NAVBAR : END ============================================== -->
@@ -184,17 +191,55 @@ UnicaseAsset::register($this);
     </header>
 
     <!-- ============================================== HEADER : END ============================================== -->
-    <div class="breadcrumb">
-        <div class="container">
+    <!--<div class="breadcrumb">
+        <div class="container">-->
             <!--  <div class="breadcrumb-inner">
                   <ul class="list-inline list-unstyled">
                       <li><a href="#">Home</a></li>
                       <li class='active'>Smart Phone</li>
                   </ul>
               </div>--><!-- /.breadcrumb-inner -->
-        </div><!-- /.container -->
-    </div><!-- /.breadcrumb -->
+        <!--</div>--><!-- /.container -->
+   <!-- </div>--><!-- /.breadcrumb -->
+
+    <!-- ============================================================= SEARCH AREA ============================================================= -->
+    <div class="row">
     <div class="container">
+    <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
+        <div class="search-area">
+            <form>
+                <div class="control-group">
+
+                    <ul class="categories-filter animate-dropdown">
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
+
+                            <ul class="dropdown-menu" role="menu" >
+                                <li class="menu-header">Computer</li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Laptops</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Tv & audio</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Gadgets</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Cameras</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <input class="search-field" placeholder="Search here..." />
+
+                    <a class="search-button" href="#" ></a>
+
+                </div>
+            </form>
+        </div><!-- /.search-area -->
+        <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+    </div>
+    </div>
+    </div>
+
+    <div class="container">
+
       <?= Breadcrumbs::widget([
         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
       ]) ?>
