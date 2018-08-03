@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Лип 24 2018 р., 09:54
+-- Час створення: Сер 03 2018 р., 11:28
 -- Версія сервера: 5.7.22-0ubuntu0.16.04.1
--- Версія PHP: 7.0.30-0ubuntu0.16.04.1
+-- Версія PHP: 7.0.31-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -63,9 +63,9 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m000000_000000_base', 1531489297),
 ('m130524_201442_init', 1531489481),
 ('m180713_120209_create_products_table', 1531686948),
-('m180713_120600_create_orders_table', 1532353460),
+('m180713_120600_create_orders_table', 1533041508),
 ('m180713_201917_create_categories_table', 1531697322),
-('m180723_133459_create_order_descript_table', 1532353460);
+('m180723_133459_create_order_descript_table', 1533041526);
 
 -- --------------------------------------------------------
 
@@ -75,13 +75,25 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `order_id` int(11) DEFAULT '0',
   `buyer_name` varchar(50) NOT NULL,
   `buyer_email` varchar(50) NOT NULL,
+  `buyer_phone` varchar(50) NOT NULL,
   `order_amount` int(11) DEFAULT '0',
   `status` smallint(1) DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп даних таблиці `orders`
+--
+
+INSERT INTO `orders` (`id`, `buyer_name`, `buyer_email`, `buyer_phone`, `order_amount`, `status`, `created_at`) VALUES
+(6, 'Stochanskiy Bogdan', 'aptekasbt@gmail.com', '+380956811917', 89170, 0, '2018-07-31 13:32:22'),
+(7, 'Тетяна Данелюк', 'aptekasbt@gmail.com', '+380956811917', 21505, 0, '2018-07-31 21:04:56'),
+(8, 'Тетяна Данелюк', 'aptekasbt@gmail.com', '+380956811917', 35535, 0, '2018-08-02 08:38:07'),
+(9, 'Богдан Тарасович', 'aptekasbt@gmail.com', '+380956811917', 26030, 0, '2018-08-02 09:31:35'),
+(10, 'Stochanskiy Bogdan', 'aptekasbt@gmail.com', '+380956811917', 11599, 0, '2018-08-02 09:38:09'),
+(11, 'Тетяна Данелюк', 'aptekasbt@gmail.com', '+380956811917', 14030, 0, '2018-08-02 09:53:19');
 
 -- --------------------------------------------------------
 
@@ -91,11 +103,29 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `order_descript` (
   `id` int(11) NOT NULL,
+  `order_id` int(11) DEFAULT '0',
   `product_id` int(11) DEFAULT '0',
   `quantity` int(11) DEFAULT '0',
   `price` int(11) DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп даних таблиці `order_descript`
+--
+
+INSERT INTO `order_descript` (`id`, `order_id`, `product_id`, `quantity`, `price`, `created_at`) VALUES
+(10, 6, 4, 4, 18555, '2018-07-31 13:32:22'),
+(11, 6, 2, 2, 7475, '2018-07-31 13:32:22'),
+(12, 7, 1, 1, 6555, '2018-07-31 21:04:56'),
+(13, 7, 2, 2, 7475, '2018-07-31 21:04:56'),
+(14, 8, 2, 3, 7475, '2018-08-02 08:38:07'),
+(15, 8, 1, 2, 6555, '2018-08-02 08:38:07'),
+(16, 9, 2, 1, 7475, '2018-08-02 09:31:35'),
+(17, 9, 4, 1, 18555, '2018-08-02 09:31:35'),
+(18, 10, 5, 1, 11599, '2018-08-02 09:38:09'),
+(19, 11, 2, 1, 7475, '2018-08-02 09:53:19'),
+(20, 11, 1, 1, 6555, '2018-08-02 09:53:19');
 
 -- --------------------------------------------------------
 
@@ -208,12 +238,12 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблиці `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT для таблиці `order_descript`
 --
 ALTER TABLE `order_descript`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT для таблиці `products`
 --

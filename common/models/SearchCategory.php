@@ -19,7 +19,7 @@ class SearchCategory extends Categories
     {
         return [
             [['id'], 'integer'],
-            [['title', 'updated_at', 'created_at'], 'safe'],
+            [['title', 'logo_class', 'updated_at', 'created_at'], 'safe'],
         ];
     }
 
@@ -60,6 +60,7 @@ class SearchCategory extends Categories
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'logo_class' => $this->logo_class,
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ]);

@@ -28,10 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'logo_class',
-            'updated_at',
-            'created_at',
 
+          ['label'=>'Icon','content' => function ($model) { return '<i class="'.$model->logo_class.'">';}],
+          'updated_at',
+          'created_at',
             ['class' => 'yii\grid\ActionColumn'],
+
         ],
     ]); ?>
 </div>

@@ -32,7 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'vendor',
             'description',
             'image',
-            'available',
+          ['label'=>'Image','content' => function ($model) { return '<img width = "50px" src=../../frontend/web/uploads/'. $model->image.'>';}],
+
+          'available',
             'updated_at',
             'created_at',
 

@@ -22,6 +22,20 @@ return [
           ],
     ],
     'components' => [
+        'mailer' => [
+          'class' => 'yii\swiftmailer\Mailer',
+        //  'useFileTransport' => true,
+          'transport' => [
+            'class' => 'Swift_SmtpTransport',
+            'host' => 'ssl://smtp.gmail.com',
+            'username' => 'wwwlopment@gmail.com',
+            'password' => 'shadowed777',
+           // 'port' => '587',
+            'port' => '465',
+            'encryption' => 'tls',
+          ],
+        ],
+
         'log' => [
             'targets' => [
                 [

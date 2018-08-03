@@ -330,9 +330,15 @@ public function actionCreateorder() {
         $order->save(false);
        // $order_descript->save(false);
       }
-
+      $this->sendEmail(
+        Yii::$app->request->post('OrderForm')['email'],
+        Yii::$app->request->post('OrderForm')['name'],
+        'підтвердження покупки',
+        'body'
+        );
       unset($_SESSION['cart']);
       unset($_SESSION['cart_items']);
+
       Yii::$app->session->setFlash('success', "Замовлення успішно створене!");
       return $this->redirect(['/']);
     } else {
@@ -383,8 +389,14 @@ return $this->render('shopping_cart');
     //}
   }
 
-  public function actionOrder() {
-
+  public function sendEmail($email, $name, $subject, $body)
+  {
+    return Yii::$app->mailer->compose()
+      ->setTo($email)
+      ->setFrom([$email => $name])
+      ->setSubject($subject)
+      ->setTextBody($body)
+      ->send();
   }
 
 
