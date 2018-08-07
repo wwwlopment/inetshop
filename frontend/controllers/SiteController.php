@@ -2,12 +2,14 @@
 namespace frontend\controllers;
 
 use common\models\Categories;
+use common\models\Elastic;
 use common\models\Order_descript;
 use common\models\Orders;
 use common\models\Products;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\data\Pagination;
+use yii\elasticsearch\Query;
 use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -271,6 +273,7 @@ class SiteController extends Controller
    public function actionAddtocart() {
 
      $product_id = Yii::$app->request->get('product_id');
+     $view_quantity =  Yii::$app->request->get('view_quantity');
      $product = Products::findOne($product_id);
      if (empty($product)) {
        return false;
@@ -279,7 +282,8 @@ class SiteController extends Controller
      $session = Yii::$app->session;
      $session->open();
 
-    $quantity = 1;
+    $quantity = $view_quantity;
+    //echo $quantity;die();
     //if (isset($_SESSION['cart'][$product_id])) {
      // $_SESSION['cart'][$product_id]['quantity'] += $quantity;
     //} else {
@@ -399,6 +403,43 @@ return $this->render('shopping_cart');
       ->send();
   }
 
+  public function actionSearch() {
 
+      //
+    //        $elastic = new Search();
+    //        $result  = $elastic->Searches(Yii::$app->request->queryParams);
+    //        $query = Yii::$app->request->queryParams;
+    //        return $this->render('search', [
+    //            'searchModel'  => $elastic,
+    //            'dataProvider' => $result,
+    //            'query'        => $query['search'],
+    //        ]);
+    //
+    //    }
+
+      $query = new Query();
+$query->source('*');
+$query->from(Elastic::index(), Elastic::type())->limit(100);
+
+//build and execute the query
+$command = $query->createCommand();
+$rows = $command->search(); // this way you get the raw output of elasticsearch.
+
+    return $this->render('search', ['rows'=>$rows]);
+    }
+
+public function actionInd() {
+      Elastic::createIndex();
+}
+
+
+public function actionView($id) {
+
+  $categories = Categories::find()->all();
+$upsell = Products::find()->limit(10)->offset(15)->all();
+$hot = Products::find()->limit(5)->offset(25)->all();
+$product = Products::findOne(['id'=>$id]);
+return $this->render('view', ['product'=>$product, 'categories'=>$categories, 'upsell'=>$upsell, 'hot'=>$hot]);
+    }
 
 }

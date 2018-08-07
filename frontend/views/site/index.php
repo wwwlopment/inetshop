@@ -43,8 +43,7 @@ use yii\widgets\Pjax;
                                 if (isset ($categories)) {
                                     foreach ($categories as $category) { ?>
                                         <li id="<?= $category->id ?>" class="dropdown menu-item">
-                                            <?php
-                                            echo Html::a(Html::tag('i','',['class'=>'icon '.$category->logo_class])
+                                            <?= Html::a(Html::tag('i','',['class'=>'icon '.$category->logo_class])
                                               .$category->title ,['site/index', 'cat' => $category->id],
                                               ['class'=>'dropdown-toggle']);
                                             ?>
@@ -117,14 +116,18 @@ use yii\widgets\Pjax;
                                                 <div class="product">
                                                     <div class="product-image">
                                                         <div class="image">
-                                                            <a href="#"><img width="200px"  src="<?=$img_url?>" data-echo="<?=$img_url?>" alt=""></a>
+                                                          <?= Html::a(Html::img($img_url,['width'=>'200px', 'data-echo'=>$img_url]), ['view', 'id' => $product->id])?>
+
                                                         </div><!-- /.image -->
 
                                                     </div><!-- /.product-image -->
 
 
                                                     <div class="product-info text-left">
-                                                        <h3 class="name"><a href="#"><?=$product->title;?></a></h3>
+                                                        <h3 class="name">
+                                                            <?= Html::a($product->title, ['view', 'id' => $product->id])?>
+                                                        </h3>
+
                                                         <div class="description"><?=$product->description;?></div>
                                                         <div class="product-price">
 				                                        <span class="price"><?=$product->price. ' грн.';?></span>

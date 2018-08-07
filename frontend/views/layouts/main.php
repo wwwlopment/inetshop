@@ -25,7 +25,7 @@ use common\widgets\Alert;
 
 UnicaseAsset::register($this);
 
-$model = new SearchForm();
+//$model = new SearchForm();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

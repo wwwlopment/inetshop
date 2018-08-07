@@ -479,9 +479,14 @@ $('#transitionType li a').click(function () {
 
     e.preventDefault();
     var product_id = $(this).data('id');
+    if ($(document).find('#view_quantity').length) {
+        var view_quantity = parseInt($(document).find('#view_quantity').val());
+    }else {
+        var view_quantity = 1;
+    }
     $.ajax({
          url: '/site/addtocart',
-         data: {product_id : product_id},
+         data: {product_id : product_id, view_quantity : view_quantity},
          type: 'get',
          success: function (res) {
              $.pjax.reload({container: '#pjaxContent'});
