@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+          ['label'=>'Image','content' => function ($model) { return '<img width = "50px" src="'.$model->image.'">';}],
 
             'id',
             'title',
@@ -31,8 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'price',
             'vendor',
             'description',
-            'image',
-          ['label'=>'Image','content' => function ($model) { return '<img width = "50px" src="'.$model->image.'">';}],
+          //  'image',
 
           'available',
             'updated_at',

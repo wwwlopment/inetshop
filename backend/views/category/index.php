@@ -24,14 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+          ['label'=>'Icon','content' => function ($model) { return '<i class="'.$model->logo_class.'">';}],
 
             'id',
             'title',
             'logo_class',
 
-          ['label'=>'Icon','content' => function ($model) { return '<i class="'.$model->logo_class.'">';}],
-          'updated_at',
-          'created_at',
+        //  'updated_at',
+        //  'created_at',
             ['class' => 'yii\grid\ActionColumn'],
 
         ],
