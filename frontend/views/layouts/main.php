@@ -15,6 +15,11 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\UnicaseAsset;
 use common\widgets\Alert;
 
+$upsell = Products::find()->limit(10)->offset(15)->all();
+$hot = Products::find()->limit(5)->offset(25)->all();
+
+/*$upsell = Yii::$app->params['upsel'];
+$hot = Yii::$app->params['hot'];*/
 /*if (isset($_SESSION['cart'])) {
   echo '<pre>';
   var_dump($_SESSION['cart']);
@@ -232,15 +237,307 @@ UnicaseAsset::register($this);
     </div>
 </div>
 
+    <?php if ($_SERVER['REQUEST_URI'] != '/site/createorder') { ?>
+    <div class='col-md-3 sidebar'>
+        <!-- ================================== TOP NAVIGATION ================================== -->
+        <div class="side-menu animate-dropdown outer-bottom-xs">
+            <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Категорії</div>
+            <nav class="yamm megamenu-horizontal" role="navigation">
+                <ul class="nav">
 
+                  <?php
+                  if (isset ($categories)) {
+                    foreach ($categories as $category) { ?>
+                        <li id="<?= $category->id ?>" class="dropdown menu-item">
+                          <?= Html::a(Html::tag('i','',['class'=>'icon '.$category->logo_class])
+                            .$category->title ,['site/index', 'cat' => $category->id],
+                            ['class'=>'dropdown-toggle']);
+                          ?>
+
+                        </li>
+
+                      <?php
+                    }
+                  }?>
+
+                </ul><!-- /.nav -->
+            </nav><!-- /.megamenu-horizontal -->
+        </div><!-- /.side-menu -->
+        <div class="sidebar-widget hot-deals wow fadeInUp">
+            <h3 class="section-title">гарячі продажі</h3>
+            <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-xs">
+
+              <?php foreach ($hot as $hot_item) { ?>
+                  <div class="item">
+                      <div class="products">
+                          <div class="hot-deal-wrapper">
+                              <div class="image">
+                                  <img  width="200px" src="<?=$hot_item->image?>" alt="">
+                              </div>
+                              <div class="sale-offer-tag"><span>35%<br>off</span></div>
+                              <div class="timing-wrapper">
+                                  <div class="box-wrapper">
+                                      <div class="date box">
+                                          <span class="key">120</span>
+                                          <span class="">Days</span>
+                                      </div>
+                                  </div>
+
+                                  <div class="box-wrapper">
+                                      <div class="hour box">
+                                          <span class="key">20</span>
+                                          <span class="">HRS</span>
+                                      </div>
+                                  </div>
+
+                                  <div class="box-wrapper">
+                                      <div class="minutes box">
+                                          <span class="key">36</span>
+                                          <span class="">MINS</span>
+                                      </div>
+                                  </div>
+
+                                  <div class="box-wrapper hidden-md">
+                                      <div class="seconds box">
+                                          <span class="key">60</span>
+                                          <span class="">SEC</span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div><!-- /.hot-deal-wrapper -->
+
+                          <div class="product-info text-left m-t-20">
+                              <h3 class="name">
+                                <?= Html::a($hot_item->title, ['view', 'id' => $hot_item->id])?>
+                              </h3>
+                              <div class="rating rateit-small"></div>
+
+                              <div class="product-price">
+								<span class="price">
+									<?=$hot_item->price . ' грн.'?>
+								</span>
+
+                                  <!-- <span class="price-before-discount">$800.00</span>-->
+
+                              </div><!-- /.product-price -->
+
+                          </div><!-- /.product-info -->
+
+                          <div class="cart clearfix animate-effect">
+                              <div class="action">
+
+                                  <div class="add-cart-button btn-group">
+                                      <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+                                          <i class="fa fa-shopping-cart"></i>
+                                      </button>
+                                      <!--<button class="btn btn-primary" type="button">В кошик</button>-->
+                                      <button  href="<?=\yii\helpers\Url::to(['site/addtocart', 'product_id' => $hot_item->id])?>"  data-id="<?=$hot_item->id?>" class="buy btn btn-primary" type="button">Купити</button>
+                                  </div>
+
+                              </div><!-- /.action -->
+                          </div><!-- /.cart -->
+                      </div>
+                  </div>
+              <?php } ?>
+
+
+
+
+            </div><!-- /.sidebar-widget -->
+        </div>
+        <!-- ============================================== HOT DEALS: END ============================================== -->					<!-- ============================================== COLOR============================================== -->
+        <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
+            <div id="advertisement" class="advertisement">
+                <div class="item bg-color">
+                    <div class="container-fluid">
+                        <div class="caption vertical-top text-left">
+                            <div class="big-text">
+                                Save<span class="big">50%</span>
+                            </div>
+
+
+                            <div class="excerpt">
+                                on selected items
+                            </div>
+                        </div><!-- /.caption -->
+                    </div><!-- /.container-fluid -->
+                </div><!-- /.item -->
+
+                <div class="item" style="background-image: url('../../web/images/advertisement/1.jpg');">
+
+                </div><!-- /.item -->
+
+                <div class="item bg-color">
+                    <div class="container-fluid">
+                        <div class="caption vertical-top text-left">
+                            <div class="big-text">
+                                Save<span class="big">50%</span>
+                            </div>
+
+
+                            <div class="excerpt fadeInDown-2">
+                                on selected items
+                            </div>
+                        </div><!-- /.caption -->
+                    </div><!-- /.container-fluid -->
+                </div><!-- /.item -->
+
+            </div><!-- /.owl-carousel -->
+        </div>
+
+        <!-- ================================== TOP NAVIGATION : END ================================== -->
+    </div><!-- /.sidebar -->
+    <?php }?>
+    <!-- ============================================== CATEGORY : END ============================================== -->					<!-- ============================================== HOT DEALS ============================================== -->
+<div class="col-md-9">
       <?= Breadcrumbs::widget([
         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
       ]) ?>
       <?= Alert::widget() ?>
       <?= $content ?>
-    </div>
+</div>
+
+</div>
+<div class="container">
+<!-- ============================================== UPSELL PRODUCTS ============================================== -->
+<section class="section featured-product wow fadeInUp">
+    <h3 class="section-title">upsell products</h3>
+    <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
+
+      <?php foreach ($upsell as $upsel_item) { ?>
+
+          <div class="item item-carousel">
+              <div class="products">
+
+                  <div class="product">
+                      <div class="product-image">
+                          <div class="image">
+                            <?= Html::a(Html::img($upsel_item->image,['width'=>'150px', 'data-echo'=>$upsel_item->image]), ['view', 'id' => $upsel_item->id])?>
+                          </div><!-- /.image -->
+
+                          <div class="tag sale"><span>sale</span></div>
+                      </div><!-- /.product-image -->
 
 
+                      <div class="product-info text-left col-md-12">
+                          <h3 class="name"><a href="detail.html"><?=$upsel_item->title?></a></h3>
+                          <div class="rating rateit-small"></div>
+                          <div class="description"></div>
+
+                          <div class="product-price">
+				<span class="price">
+					<?=$upsel_item->price . ' грн.'?>				</span>
+                              <!-- <span class="price-before-discount">$ 800</span>-->
+
+                          </div><!-- /.product-price -->
+
+                      </div><!-- /.product-info -->
+                      <div class="cart clearfix animate-effect">
+                          <div class="action">
+                              <ul class="list-unstyled">
+                                  <li class="add-cart-button btn-group">
+                                      <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+                                          <i class="fa fa-shopping-cart"></i>
+                                      </button>
+                                      <!-- <button class="btn btn-primary" type="button">Купити</button>-->
+                                      <button  href="<?=\yii\helpers\Url::to(['site/addtocart', 'product_id' => $upsel_item->id])?>"  data-id="<?=$upsel_item->id?>" class="buy btn btn-primary" type="button">Купити</button>
+                                  </li>
+
+                                  <li class="lnk wishlist">
+                                      <a class="add-to-cart" href="detail.html" title="Wishlist">
+                                          <i class="icon fa fa-heart"></i>
+                                      </a>
+                                  </li>
+
+                                  <li class="lnk">
+                                      <a class="add-to-cart" href="detail.html" title="Compare">
+                                          <i class="fa fa-retweet"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div><!-- /.action -->
+                      </div><!-- /.cart -->
+                  </div><!-- /.product -->
+
+              </div><!-- /.products -->
+          </div><!-- /.item -->
+      <?php } ?>
+
+    </div><!-- /.home-owl-carousel -->
+</section><!-- /.section -->
+<!-- ============================================== UPSELL PRODUCTS : END ============================================== -->
+<!-- ============================================== BRANDS CAROUSEL ============================================== -->
+<div id="brands-carousel" class="logo-slider wow fadeInUp">
+
+    <h3 class="section-title">Our Brands</h3>
+    <div class="logo-slider-inner">
+        <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
+
+            <div class="item m-t-15">
+                <a href="#" class="image">
+                    <img data-echo="../../frontend/web/images/brands/brand1.png" src="../../frontend/web/images/blank.gif" alt="">
+                </a>
+            </div><!--/.item-->
+
+            <div class="item m-t-10">
+                <a href="#" class="image">
+                    <img data-echo="../../frontend/web/images/brands/brand2.png" src="../../frontend/web/images/blank.gif" alt="">
+                </a>
+            </div><!--/.item-->
+
+            <div class="item">
+                <a href="#" class="image">
+                    <img data-echo="../../frontend/web/images/brands/brand3.png" src="../../frontend/web/images/blank.gif" alt="">
+                </a>
+            </div><!--/.item-->
+
+            <div class="item">
+                <a href="#" class="image">
+                    <img data-echo="../../frontend/web/images/brands/brand4.png" src="../../frontend/web/images/blank.gif" alt="">
+                </a>
+            </div><!--/.item-->
+
+            <div class="item">
+                <a href="#" class="image">
+                    <img data-echo="../../frontend/web/images/brands/brand5.png" src="../../frontend/web/images/blank.gif" alt="">
+                </a>
+            </div><!--/.item-->
+
+            <div class="item">
+                <a href="#" class="image">
+                    <img data-echo="../../frontend/web/images/brands/brand6.png" src="../../frontend/web/images/blank.gif" alt="">
+                </a>
+            </div><!--/.item-->
+
+            <div class="item">
+                <a href="#" class="image">
+                    <img data-echo="../../frontend/web/images/brands/brand2.png" src="../../frontend/web/images/blank.gif" alt="">
+                </a>
+            </div><!--/.item-->
+
+            <div class="item">
+                <a href="#" class="image">
+                    <img data-echo="../../frontend/web/images/brands/brand4.png" src="../../frontend/web/images/blank.gif" alt="">
+                </a>
+            </div><!--/.item-->
+
+            <div class="item">
+                <a href="#" class="image">
+                    <img data-echo="../../frontend/web/images/brands/brand1.png" src="../../frontend/web/images/blank.gif" alt="">
+                </a>
+            </div><!--/.item-->
+
+            <div class="item">
+                <a href="#" class="image">
+                    <img data-echo="../../frontend/web/images/brands/brand5.png" src="../../frontend/web/images/blank.gif" alt="">
+                </a>
+            </div><!--/.item-->
+        </div><!-- /.owl-carousel #logo-slider -->
+    </div><!-- /.logo-slider-inner -->
+
+</div><!-- /.logo-slider -->
+<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
+</div>
 <!-- ============================================================= FOOTER ============================================================= -->
 <footer id="footer" class="footer color-bg">
     <div class="links-social inner-top-sm">

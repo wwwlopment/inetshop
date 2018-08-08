@@ -28,6 +28,7 @@ use frontend\models\OrderForm;
  */
 class SiteController extends Controller
 {
+
     /**
      * {@inheritdoc}
      */
@@ -99,6 +100,8 @@ class SiteController extends Controller
       $products = $products->offset($pages->offset)
         ->limit($pages->limit)
         ->all();
+
+
 
         return $this->render('index', ['products'=>$products, 'categories'=>$categories, 'pages'=>$pages]);
     }

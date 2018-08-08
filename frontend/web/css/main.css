@@ -278,13 +278,14 @@ img[src="assets/images/blank.gif"] {
   margin-bottom: 100px;
 }
 .outer-bottom-sm {
-  margin-bottom: 80px;
+  /*margin-bottom: 80px;*/
 }
 .outer-bottom-vs {
   margin-bottom: 60px;
 }
 .outer-bottom-xs {
   margin-bottom: 40px;
+  margin-top: 30px;
 }
 .outer-bottom-small {
   margin-bottom: 50px;
@@ -3663,7 +3664,7 @@ a {
 }
 .cnt-homepage .single-product .single-product-gallery .owl-item .single-product-gallery-item > a > img {
   display: block;
-  width: 100%;
+  max-width: 100%;
 }
 .cnt-homepage .single-product .single-product-gallery .owl-item .single-product-gallery-thumbs.gallery-thumbs .owl-item {
   margin-left: 10px;

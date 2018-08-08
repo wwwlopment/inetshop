@@ -17,48 +17,12 @@ use yii\widgets\Pjax;
 */?>
 
 
-<!-- ============================================== HEADER : END ============================================== -->
-<div class="breadcrumb">
-    <div class="container">
-      <!--  <div class="breadcrumb-inner">
-            <ul class="list-inline list-unstyled">
-                <li><a href="#">Home</a></li>
-                <li class='active'>Smart Phone</li>
-            </ul>
-        </div>--><!-- /.breadcrumb-inner -->
-    </div><!-- /.container -->
-</div><!-- /.breadcrumb -->
+
 <div class="body-content outer-top-xs">
     <div class='container'>
         <div class="homepage-container">
             <div class='row outer-bottom-sm'>
-                <div class='col-md-3 sidebar'>
-                    <!-- ================================== TOP NAVIGATION ================================== -->
-                    <div class="side-menu animate-dropdown outer-bottom-xs">
-                        <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Категорії</div>
-                        <nav class="yamm megamenu-horizontal" role="navigation">
-                            <ul class="nav">
 
-                                <?php
-                                if (isset ($categories)) {
-                                    foreach ($categories as $category) { ?>
-                                        <li id="<?= $category->id ?>" class="dropdown menu-item">
-                                            <?= Html::a(Html::tag('i','',['class'=>'icon '.$category->logo_class])
-                                              .$category->title ,['site/index', 'cat' => $category->id],
-                                              ['class'=>'dropdown-toggle']);
-                                            ?>
-
-                                        </li>
-
-                                      <?php
-                                    }
-                                }?>
-
-                            </ul><!-- /.nav -->
-                        </nav><!-- /.megamenu-horizontal -->
-                    </div><!-- /.side-menu -->
-                    <!-- ================================== TOP NAVIGATION : END ================================== -->
-                </div><!-- /.sidebar -->
                 <div class='col-md-9'>
                     <!-- ========================================== SECTION – HERO ========================================= -->
 
