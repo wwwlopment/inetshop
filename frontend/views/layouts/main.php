@@ -7,6 +7,7 @@ use common\models\Products;
 use frontend\models\SearchForm;
 use yii\helpers\Html;
 use common\models\Categories;
+use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
 use yii\bootstrap\Nav;
@@ -46,7 +47,7 @@ UnicaseAsset::register($this);
   <?php $this->head() ?>
 </head>
 
-<body class="cnt-homepage">
+<div class="cnt-homepage">
 <?php $this->beginBody() ?>
 
   <?php
@@ -106,7 +107,19 @@ UnicaseAsset::register($this);
                 <!-- ============================================================= SEARCH AREA ============================================================= -->
                 <div class="search-area">
 
-                   <form>
+                 <!--  <form>-->
+                    <?php
+                   // $search_model = new \app\models\Search();
+                   // $q='';
+                    $form = ActiveForm::begin([
+                      'action'  => ['elastic/search'],
+                      'method'  => 'get',
+                            'id' => 'form-input-example',
+                            'options' => [
+                               // 'class' => 'form-horizontal col-lg-11',
+                               // 'enctype' => 'multipart/form-data'
+                            ],
+                        ]); ?>
                         <div class="control-group">
 
                             <ul class="categories-filter animate-dropdown">
@@ -133,12 +146,14 @@ UnicaseAsset::register($this);
 
                             <!--/*= $form->field($model, 'q')->label('')->textInput(['class'=>'search-field', 'placeholder'=>'Пошук...']);*/-->
 
-                         <input class="search-field" placeholder="Пошук..." />
-
-                            <a class="search-button" href="#" ></a>
+                         <input name="search" class="search-field" placeholder="Пошук..." />
+<!--                            --><?php /*$form->field($search_model, 'search')->textInput(['class'=>'search-field'])->hint('Пошук')->label(false);*/?>
+                           <?=Html::a('', '#', ['class' => 'search-button'])?>
+                        <!--    <a class="search-button" href="#" ></a>-->
 
                         </div>
-                    </form>
+<!--                    </form>
+-->                    <?php ActiveForm::end(); ?>
                 </div>
 
 
@@ -398,6 +413,7 @@ UnicaseAsset::register($this);
 </div>
 
 </div>
+</div>
 <div class="container">
 <!-- ============================================== UPSELL PRODUCTS ============================================== -->
 <section class="section featured-product wow fadeInUp">
@@ -537,7 +553,7 @@ UnicaseAsset::register($this);
 
 </div><!-- /.logo-slider -->
 <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
-</div>
+<!--</div>-->
 <!-- ============================================================= FOOTER ============================================================= -->
 <footer id="footer" class="footer color-bg">
     <div class="links-social inner-top-sm">

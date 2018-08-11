@@ -3,43 +3,31 @@
 
 namespace common\models;
 
-use yii\elasticsearch\ActiveRecord;
-use yii\elasticsearch\Query;
+use Yii;
 
+class Elastic extends \yii\elasticsearch\ActiveRecord
+{
 
-class Elastic extends ActiveRecord {
-
-  //protected $client;
-
-
-    public static function index(){
-        return "elasticsearch";
-    }
-
-   public static function type(){
-        return "product";
-    }
-
-    public static function mapping() {
-
-      return [
+  /**
+     * @return array This model's mapping
+     */
+    public static function mapping()
+    {
+        return [
             static::type() => [
-
                 'properties' => [
-                    'id'             => ['type' => 'long'],
                     'title'           => ['type' => 'string'],
-                    'price'    => ['type' => 'float'],
+                    'description'    => ['type' => 'string'],
                     'vendor' => ['type' => 'string'],
-                    'created_at'     => ['type' => 'long'],
-                    'updated_at'     => ['type' => 'long'],
-                    'available'         => ['type' => 'boolean'],
-                    'description'         => ['type' => 'long'],
-                    'image'         => ['type' => 'string'],
+                    'price'     => ['type' => 'long'],
+                    'category_id'     => ['type' => 'long'],
                 ]
             ],
         ];
     }
-  /**
+
+
+    /**
      * Set (update) mappings for this model
      */
     public static function updateMapping()
@@ -50,22 +38,6 @@ class Elastic extends ActiveRecord {
     }
 
     /**
-     * Create this model's index
-     */
-    public static function createIndex()
-    {
-        $db = static::getDb();
-        $command = $db->createCommand();
-        $command->createIndex(static::index(), [
-            'settings' => [ 'index' => ['refresh_interval' => '1s'] ],
-            'mappings' => static::mapping(),
-            //'warmers' => [ /* ... */ ],
-            //'aliases' => [ /* ... */ ],
-            //'creation_date' => '...'
-        ]);
-    }
-
-/**
      * Delete this model's index
      */
     public static function deleteIndex()
@@ -75,78 +47,48 @@ class Elastic extends ActiveRecord {
         $command->deleteIndex(static::index(), static::type());
     }
 
-    public static function updateRecord($product_id, $columns){
-       try{
-            $record = self::get($product_id);
-            foreach($columns as $key => $value){
-                 $record->$key = $value;
-            }
 
-            return $record->update();
-        }
-        catch(\Exception $e){
-            //handle error here
-            return false;
-        }
-    }
-
-
-
-    public static function deleteRecord($product_id)
+        /**
+     * Create this model's index
+     */
+    public static function createIndex()
     {
-        try{
-            $record = self::get($product_id);
-            $record->delete();
-            return 1;
-        }
-        catch(\Exception $e){
-            //handle error here
-            return false;
-        }
+        $db = static::getDb();
+        $command = $db->createCommand();
+        $command->createIndex(static::index(), [
+            'settings' => [  'index' => ['refresh_interval' => '1s'],/* ... */ ],
+            'mappings' => static::mapping(),
+            //'warmers' => [ /* ... */ ],
+            //'aliases' => [ /* ... */ ],
+            //'creation_date' => '...'
+        ]);
     }
 
-    public static function addRecord(Products $products){
-        $isExist = false;
 
-        try{
-            $record = self::get($products->id);
-            if(!$record){
-                $record = new self();
-                $record->setPrimaryKey($products->id);
-            }
-            else{
-                $isExist = true;
-            }
-        }
-        catch(\Exception $e){
-            $record = new self();
-            $record->setPrimaryKey($products->id);
-        }
+/*
+  public function behaviors()
+  {
+    return array(
+      'searchable' => array(
+        'class' => 'YiiElasticSearch\SearchableBehavior',
+      ),
+    );
+  }*/
 
+  public function attributes()
+  {
 
-        $record->id   = $products->id;
-        $record->title = $products->title;
-        $record->category_id = $products->category_id;
-        $record->price = $products->price;
-        $record->vendor = $products->vendor;
-        $record->description = $products->description;
-        $record->image = $products->image;
-        $record->available = $products->available;
+    return['title', 'description', 'vendor', 'price', 'category_id'];
 
-        try{
-            if(!$isExist){
-                $result = $record->insert();
-            }
-            else{
-                $result = $record->update();
-            }
-        }
-        catch(\Exception $e){
-            $result = false;
-            //handle error here
-        }
-
-        return $result;
+  }
+  public function getElasticIndex()
+    {
+        return 'myindex';
     }
+
+  public function getElasticType()
+  {
+    return 'mymodel';
+  }
 
 }
