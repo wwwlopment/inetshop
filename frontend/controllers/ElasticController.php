@@ -30,7 +30,7 @@ class ElasticController extends Controller
   public function actionElasticupd()
   {
 
-    Products::createIndex();
+   // Products::createIndex();
 /*$products = Products::find()->all();
     foreach ($products as $product) {
       $elastic = new elastic();
@@ -57,11 +57,10 @@ class ElasticController extends Controller
 
   public function actionSearch()
   {
-
     $elastic = new Search();
-    $result  = $elastic->Searches(Yii::$app->request->queryParams);
+    //  $result  = $elastic->Searches(Yii::$app->request->queryParams);
+      $result  = $elastic->Searches(Yii::$app->request->queryParams);
     $query = Yii::$app->request->queryParams;
-    //print_r($query['search']);die();
     return $this->render('search', [
       'searchModel'  => $elastic,
       'dataProvider' => $result,
@@ -69,6 +68,7 @@ class ElasticController extends Controller
     ]);
 
   }
+
 
 
 }

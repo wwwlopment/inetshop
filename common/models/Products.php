@@ -21,29 +21,9 @@ use yii\elasticsearch\ActiveRecord;
  * @property string $updated_at
  * @property string $created_at
  */
-//class Products extends \yii\db\ActiveRecord
-class Products extends ActiveRecord
+class Products extends \yii\db\ActiveRecord
 {
 
-/*  public function behaviors()
-  {
-    return [
-      TimestampBehavior::className(),
-    ];
-  }*/
-
-/*  public function behaviors()
-  {
-    return [
-      // Other behaviors
-      [
-        'class' => TimestampBehavior::className(),
-        'created_at' => 'time_created',
-        'updated_at' => false,
-        'value' => new Expression('NOW()'),
-      ],
-    ];
-  }*/
     /**
      * {@inheritdoc}
      */
@@ -70,204 +50,15 @@ class Products extends ActiveRecord
     Я, поставил всем атрибутам правила как безопасные.
     В можете указать любые другие, которые вам необходимы.
     */
-          [$this->attributes(), 'safe'],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'category_id' => 'Category ID',
-            'price' => 'Price',
-            'vendor' => 'Vendor',
-            'description' => 'Description',
-            'image' => 'Image',
-            'available' => 'Available',
-            'updated_at' => 'Updated At',
-            'created_at' => 'Created At',
         ];
     }
 
 
-  /**
-   * {@inheritdoc}
-   */
-  public function attributes()
-  {
-    /**
-     Атрибуты. Важно указать. Иначе, данные не сохранятся.
-    */
-    return [
-      'id',
-      'title',
-      'category_id',
-      'price',
-      'vendor',
-      'description',
-      'image',
-      'available',
-      'updated_at',
-      'created_at',
-    ];
-  }
+
 
   public function saveImage($filename) {
     $this->image = '../../frontend/web/uploads/'.$filename;
     return $this->save(false);
   }
 
-
-
-  /**
-   * @return array This model's mapping
-   */
-  public static function mapping()
-  {
-    return [
-      static::type() => [
-        'properties' => [
-          'id'           => ['type' => 'long'],
-          'title'           => ['type' => 'string'],
-          'description'    => ['type' => 'string'],
-          'vendor' => ['type' => 'string'],
-          'price'     => ['type' => 'long'],
-          'category_id'     => ['type' => 'long'],
-          'image'     => ['type' => 'string'],
-          'available'     => ['type' => 'long'],
-   //       'updated_at'     => ['type' => 'string'],
-   //       'created_at'     => ['type' => 'string'],
-        ]
-      ],
-    ];
-  }
-
-
-  /**
-   * Set (update) mappings for this model
-   */
-  public static function updateMapping()
-  {
-    $db = static::getDb();
-    $command = $db->createCommand();
-    $command->setMapping(static::index(), static::type(), static::mapping());
-  }
-
-  /**
-   * Delete this model's index
-   */
-  public static function deleteIndex()
-  {
-    $db = static::getDb();
-    $command = $db->createCommand();
-    $command->deleteIndex(static::index(), static::type());
-  }
-
-
-  /**
-   * Create this model's index
-   */
-
-  public static function createIndex()
-  {
-    $db = static::getDb();
-    $command = $db->createCommand();
-    $command->createIndex(static::index(), [
-      'settings' => [ 'index' => ['refresh_interval' => '1s'] ],
-      'mappings' => static::mapping(),
-      //'warmers' => [ /* ... */ ],
-      //'aliases' => [ /* ... */ ],
-      //'creation_date' => '...'
-    ]);
-  }
-
-  public static function index()
-  {
-    return 'inetshop';
-  }
-
-  public static function type()
-  {
-    return 'products';
-  }
-
-  public static function updateRecord($products_id, $columns){
-    try{
-      $record = self::get($products_id);
-      foreach($columns as $key => $value){
-        $record->$key = $value;
-      }
-
-      return $record->update();
-    }
-    catch(\Exception $e){
-      //handle error here
-      return false;
-    }
-  }
-
-  public static function deleteRecord($products_id)
-  {
-    try{
-      $record = self::get($products_id);
-      $record->delete();
-      return 1;
-    }
-    catch(\Exception $e){
-      //handle error here
-      return false;
-    }
-  }
-
-public static function addRecord(Products $products){
-  $isExist = false;
-
-  try{
-    $record = self::get($products->id);
-    if(!$record){
-      $record = new self();
-      $record->setPrimaryKey($products->id);
-    }
-    else{
-      $isExist = true;
-    }
-  }
-  catch(\Exception $e){
-    $record = new self();
-    $record->setPrimaryKey($products->id);
-  }
-
-  $suppliers = [
-    ['id' => '1', 'name' => 'ABC'],
-    ['id' => '2', 'name' => 'XYZ'],
-  ];
-
-  $record->id   = $products->id;
-  $record->title = $products->title;
-  $record->vendor = $products->vendor;
-  $record->available = $products->available;
-  $record->image = $products->image;
-  $record->price = $products->price;
-  $record->status = 1;
-  $record->suppliers = $suppliers;
-
-  try{
-    if(!$isExist){
-      $result = $record->insert();
-    }
-    else{
-      $result = $record->update();
-    }
-  }
-  catch(\Exception $e){
-    $result = false;
-    //handle error here
-  }
-
-  return $result;
-}
 }

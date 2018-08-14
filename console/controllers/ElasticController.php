@@ -2,6 +2,7 @@
 //namespace @yii\console\controllers\;
 namespace console\controllers;
 
+use common\models\ElasticProducts;
 use common\models\Products;
 //use Yii;
 use yii\console\Controller;
@@ -196,13 +197,13 @@ class ElasticController extends Controller
 
    // $this->actionAll();
 
-    $output = shell_exec("curl -XPUT \"http://localhost:9200/".Products::index()."\" -d '{ \"settings\": { \"number_of_shards\":1, \"number_of_replicas\":0 } }'");
+    $output = shell_exec("curl -XPUT \"http://localhost:9200/".ElasticProducts::index()."\" -d '{ \"settings\": { \"number_of_shards\":1, \"number_of_replicas\":0 } }'");
     echo $output."\n";
 
-    Products::deleteIndex();
-    Products::createIndex();
-    Products::updateMapping();
-    $output = shell_exec('curl -XPUT "http://localhost:9200/'.Products::index().'/_settings" -d \'{ "index" : { "max_result_window" : 5000000 } }\'');
+    ElasticProducts::deleteIndex();
+    ElasticProducts::createIndex();
+    ElasticProducts::updateMapping();
+    $output = shell_exec('curl -XPUT "http://localhost:9200/'.ElasticProducts::index().'/_settings" -d \'{ "index" : { "max_result_window" : 5000000 } }\'');
     echo $output."\n";
 
     sleep(2);

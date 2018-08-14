@@ -282,78 +282,85 @@ UnicaseAsset::register($this);
             <h3 class="section-title">гарячі продажі</h3>
             <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-xs">
 
-              <?php foreach ($hot as $hot_item) { ?>
-                  <div class="item">
-                      <div class="products">
-                          <div class="hot-deal-wrapper">
-                              <div class="image">
-                                  <img  width="200px" src="<?=$hot_item->image?>" alt="">
-                              </div>
-                              <div class="sale-offer-tag"><span>35%<br>off</span></div>
-                              <div class="timing-wrapper">
-                                  <div class="box-wrapper">
-                                      <div class="date box">
-                                          <span class="key">120</span>
-                                          <span class="">Days</span>
-                                      </div>
-                                  </div>
+              <?php
+           //   $hot = [];
+              if (isset($hot)) {
+                foreach ($hot as $hot_item) { ?>
+                    <div class="item">
+                        <div class="products">
+                            <div class="hot-deal-wrapper">
+                                <div class="image">
+                                    <img width="200px" src="<?= $hot_item->image ?>" alt="">
+                                </div>
+                                <div class="sale-offer-tag"><span>35%<br>off</span></div>
+                                <div class="timing-wrapper">
+                                    <div class="box-wrapper">
+                                        <div class="date box">
+                                            <span class="key">120</span>
+                                            <span class="">Days</span>
+                                        </div>
+                                    </div>
 
-                                  <div class="box-wrapper">
-                                      <div class="hour box">
-                                          <span class="key">20</span>
-                                          <span class="">HRS</span>
-                                      </div>
-                                  </div>
+                                    <div class="box-wrapper">
+                                        <div class="hour box">
+                                            <span class="key">20</span>
+                                            <span class="">HRS</span>
+                                        </div>
+                                    </div>
 
-                                  <div class="box-wrapper">
-                                      <div class="minutes box">
-                                          <span class="key">36</span>
-                                          <span class="">MINS</span>
-                                      </div>
-                                  </div>
+                                    <div class="box-wrapper">
+                                        <div class="minutes box">
+                                            <span class="key">36</span>
+                                            <span class="">MINS</span>
+                                        </div>
+                                    </div>
 
-                                  <div class="box-wrapper hidden-md">
-                                      <div class="seconds box">
-                                          <span class="key">60</span>
-                                          <span class="">SEC</span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div><!-- /.hot-deal-wrapper -->
+                                    <div class="box-wrapper hidden-md">
+                                        <div class="seconds box">
+                                            <span class="key">60</span>
+                                            <span class="">SEC</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.hot-deal-wrapper -->
 
-                          <div class="product-info text-left m-t-20">
-                              <h3 class="name">
-                                <?= Html::a($hot_item->title, ['view', 'id' => $hot_item->id])?>
-                              </h3>
-                              <div class="rating rateit-small"></div>
+                            <div class="product-info text-left m-t-20">
+                                <h3 class="name">
+                                  <?= Html::a($hot_item->title, ['view', 'id' => $hot_item->id]) ?>
+                                </h3>
+                                <div class="rating rateit-small"></div>
 
-                              <div class="product-price">
+                                <div class="product-price">
 								<span class="price">
-									<?=$hot_item->price . ' грн.'?>
+									<?= $hot_item->price . ' грн.' ?>
 								</span>
 
-                                  <!-- <span class="price-before-discount">$800.00</span>-->
+                                    <!-- <span class="price-before-discount">$800.00</span>-->
 
-                              </div><!-- /.product-price -->
+                                </div><!-- /.product-price -->
 
-                          </div><!-- /.product-info -->
+                            </div><!-- /.product-info -->
 
-                          <div class="cart clearfix animate-effect">
-                              <div class="action">
+                            <div class="cart clearfix animate-effect">
+                                <div class="action">
 
-                                  <div class="add-cart-button btn-group">
-                                      <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                          <i class="fa fa-shopping-cart"></i>
-                                      </button>
-                                      <!--<button class="btn btn-primary" type="button">В кошик</button>-->
-                                      <button  href="<?=\yii\helpers\Url::to(['site/addtocart', 'product_id' => $hot_item->id])?>"  data-id="<?=$hot_item->id?>" class="buy btn btn-primary" type="button">Купити</button>
-                                  </div>
+                                    <div class="add-cart-button btn-group">
+                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </button>
+                                        <!--<button class="btn btn-primary" type="button">В кошик</button>-->
+                                        <button href="<?= \yii\helpers\Url::to(['site/addtocart', 'product_id' => $hot_item->id]) ?>"
+                                                data-id="<?= $hot_item->id ?>" class="buy btn btn-primary"
+                                                type="button">Купити
+                                        </button>
+                                    </div>
 
-                              </div><!-- /.action -->
-                          </div><!-- /.cart -->
-                      </div>
-                  </div>
-              <?php } ?>
+                                </div><!-- /.action -->
+                            </div><!-- /.cart -->
+                        </div>
+                    </div>
+                <?php }
+              }?>
 
 
 
@@ -420,7 +427,10 @@ UnicaseAsset::register($this);
     <h3 class="section-title">upsell products</h3>
     <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
 
-      <?php foreach ($upsell as $upsel_item) { ?>
+      <?php
+             // $upsell = [];
+              if (isset($upsell)) {
+                  foreach ($upsell as $upsel_item) { ?>
 
           <div class="item item-carousel">
               <div class="products">
@@ -477,7 +487,8 @@ UnicaseAsset::register($this);
 
               </div><!-- /.products -->
           </div><!-- /.item -->
-      <?php } ?>
+      <?php }
+      } ?>
 
     </div><!-- /.home-owl-carousel -->
 </section><!-- /.section -->

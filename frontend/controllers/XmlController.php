@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Categories;
+use common\models\ElasticProducts;
 use common\models\Products;
 use Yii;
 use yii\captcha\Captcha;
@@ -55,12 +56,24 @@ class XmlController extends Controller {
     $last_id = Categories::find()->count();
       } else {
       $last_id = Categories::find()->count()+1;
-      echo 'Категорія зайнята';
-      return;
+  //    echo 'Категорія зайнята';
+   //    return;
     }
 
     foreach ($xml->shop->offers->offer as $value) {
      //var_dump($value);
+$ela_prod = new ElasticProducts();
+$ela_prod->attributes = [
+'title'=> $value->name,
+'category_id'=> $last_id,
+'price'=> $value->price,
+'vendor'=> $value->vendorCode,
+'description'=> $value->description,
+'image'=> $value->picture,
+'available'=> $value->available,
+  ];
+$ela_prod->save();
+
 $product = new Products();
 $product->title = $value->name;
 $product->category_id = $last_id;
@@ -70,6 +83,7 @@ $product->description = $value->description;
 $product->image = $value->picture;
 $product->available = $value->available;
 //$product->created_at = time();
+
 $product->save(false);
 
     }

@@ -6,9 +6,11 @@ use common\models\Elastic;
 use common\models\Order_descript;
 use common\models\Orders;
 use common\models\Products;
+use common\models\SearchProducts;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\data\Pagination;
+use yii\elasticsearch\ActiveDataProvider;
 use yii\elasticsearch\Query;
 use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
@@ -88,7 +90,14 @@ class SiteController extends Controller
       if (!isset($category_id)) {
         $category_id = 1;
       }
+ /*     $params = [
+        'match' => [
+          'category_id' => $category_id,
+        ],
+        //'sort' => ['id' => 'asc'],
+      ];*/
       $products = Products::find()->where(['category_id'=>$category_id])->orderBy('id');
+     // $products = Products::find()->query($params);
 
       $countQuery = clone $products;
 
@@ -407,33 +416,23 @@ return $this->render('shopping_cart');
   }
 
   public function actionSearch() {
+      $params = [];
+    $search = Yii::$app->request->get('search');
+      $sp = new SearchProducts();
+      $sp->globalSearch = $search;
+      $res = $sp->search($params);
 
-      //
-    //        $elastic = new Search();
-    //        $result  = $elastic->Searches(Yii::$app->request->queryParams);
-    //        $query = Yii::$app->request->queryParams;
-    //        return $this->render('search', [
-    //            'searchModel'  => $elastic,
-    //            'dataProvider' => $result,
-    //            'query'        => $query['search'],
-    //        ]);
-    //
-    //    }
 
-      $query = new Query();
-$query->source('*');
-$query->from(Elastic::index(), Elastic::type())->limit(100);
+  //$search1 = str_replace(' ', '', $search);
+  //$query= Products::find()->where(['like', 'title', $search1])->all();
+  //$query= Products::find()->where(['like', 'title', $search1])->all();
+/*    $dataProvider = new ActiveDataProvider([
+      'query' => $query,
+      'pagination' => ['pageSize' => 10],
+    ]);*/
 
-//build and execute the query
-$command = $query->createCommand();
-$rows = $command->search(); // this way you get the raw output of elasticsearch.
-
-    return $this->render('search', ['rows'=>$rows]);
+    return $this->render('search', compact('dataProvider', 'query' ,'res'));
     }
-
-public function actionInd() {
-      Elastic::createIndex();
-}
 
 
 public function actionView($id) {
