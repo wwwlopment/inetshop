@@ -128,7 +128,7 @@ UnicaseAsset::register($this);
 
                                 <li class="dropdown">
 
-                                    <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Категорії <b class="caret"></b></a>
+                                    <a class="dropdown-toggle"  data-toggle="dropdown" href="#">Категорії <b class="caret"></b></a>
 
                                     <ul class="dropdown-menu" role="menu" >
                               <?php
@@ -136,7 +136,8 @@ UnicaseAsset::register($this);
                               if (isset ($categories)) {
                                 foreach ($categories as $category) {
 
-                                  echo Html::tag('li',$category->title ,['class'=>'menu-header']);
+                                  echo Html::tag('li',Html::a($category->title, ['site/index', 'cat' => $category->id], ['role'=>'menuitem', 'tabindex'=>'-1']) ,['class'=>'menu-header']);
+                      /*            <a role="menuitem" tabindex="-1" href="category.html">- Tv &amp; audio</a>*/
                                     ?>
 
                                   <?php
@@ -280,6 +281,69 @@ UnicaseAsset::register($this);
                 </ul><!-- /.nav -->
             </nav><!-- /.megamenu-horizontal -->
         </div><!-- /.side-menu -->
+
+
+        <div class="sidebar-module-container">
+            <h3 class="section-title">Фільтр</h3>
+            <div class="sidebar-filter">
+
+
+            <div class="sidebar-widget outer-bottom-xs wow fadeInUp">
+                <div class="widget-header">
+                    <h4 class="widget-title">Ціна</h4>
+                </div>
+                <div class="sidebar-widget-body m-t-20">
+                    <div class="price-range-holder">
+      	    <span class="min-max">
+                 <span class="pull-left">200.00 грн.</span>
+                 <span class="pull-right">800.00 грн.</span>
+            </span>
+                        <input type="text" id="amount" style="border:0; color:#666666; font-weight:bold;text-align:center;">
+
+                        <input type="text" class="price-slider" value="" >
+
+                    </div><!-- /.price-range-holder -->
+                    <a href="#" class="lnk btn btn-primary">Показати</a>
+                </div><!-- /.sidebar-widget-body -->
+            </div><!-- /.sidebar-widget -->
+            <!-- ============================================== PRICE SILDER : END ============================================== -->
+            <!-- ============================================== MANUFACTURES============================================== -->
+            <div class="sidebar-widget outer-bottom-xs wow fadeInUp">
+                <div class="widget-header">
+                    <h4 class="widget-title">Виробники</h4>
+                </div>
+                <div class="sidebar-widget-body m-t-10">
+                    <ul class="list">
+                        <li><a href="#">Forever 18</a></li>
+                        <li><a href="#">Nike</a></li>
+                        <li><a href="#">Dolce & Gabbana</a></li>
+                        <li><a href="#">Alluare</a></li>
+                        <li><a href="#">Chanel</a></li>
+                        <li><a href="#">Other Brand</a></li>
+                    </ul>
+                    <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
+                </div><!-- /.sidebar-widget-body -->
+            </div><!-- /.sidebar-widget -->
+            <!-- ============================================== MANUFACTURES: END ============================================== -->
+            <!-- ============================================== COLOR============================================== -->
+            <div class="sidebar-widget wow fadeInUp outer-bottom-xs ">
+                <div class="widget-header">
+                    <h4 class="widget-title">Кольори</h4>
+                </div>
+                <div class="sidebar-widget-body m-t-10">
+                    <ul class="list">
+                        <li><a href="#">Red</a></li>
+                        <li><a href="#">Blue</a></li>
+                        <li><a href="#">Yellow</a></li>
+                        <li><a href="#">Pink</a></li>
+                        <li><a href="#">Brown</a></li>
+                        <li><a href="#">Teal</a></li>
+                    </ul>
+                </div><!-- /.sidebar-widget-body -->
+            </div><!-- /.sidebar-widget -->
+            <!-- ============================================== COLOR: END ============================================== -->
+            </div>
+        </div>
         <div class="sidebar-widget hot-deals wow fadeInUp">
             <h3 class="section-title">гарячі продажі</h3>
             <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-xs">
@@ -477,11 +541,11 @@ UnicaseAsset::register($this);
                                       </a>
                                   </li>
 
-                                  <li class="lnk">
+                                  <!--<li class="lnk">
                                       <a class="add-to-cart" href="detail.html" title="Compare">
                                           <i class="fa fa-retweet"></i>
                                       </a>
-                                  </li>
+                                  </li>-->
                               </ul>
                           </div><!-- /.action -->
                       </div><!-- /.cart -->
