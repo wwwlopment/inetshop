@@ -1,5 +1,7 @@
 <?php
 use yii\helpers\BaseStringHelper;
+use yii\helpers\Html;
+
 $this->title = 'Search';
 ?>
 <div class="container-fluid">
@@ -7,23 +9,31 @@ $this->title = 'Search';
   <?php
 //  $result = $dataProvider->getModels();
   $result = $dataProvider['hits']['hits'];
-echo var_dump($result);die();
-  foreach ($result as $key) {
+//echo var_dump($result);die();
 
     echo "<div class='row'>";
 
+
+
+  foreach ($result as $key) {
     echo "<div class='panel panel-default'>";
+ //echo var_dump($key['_source']);die();
+    //foreach ($key['_source'] as $key2 => $value) {
 
-    foreach ($key['_source'] as $key => $value) {
-//echo var_dump($key);die();
+       // echo var_dump($key['_source']['title']);
+echo "<div class='panel-heading'><strong>" . $key['_source']['title']['0'] . "</strong></div>";
+
+echo "<div class='panel-body'>" . BaseStringHelper::truncateWords($key['_source']['description']['0'], 50, '...', true) . "<br>";
+
+echo '<img width="150px" src="' . $key['_source']['image']['0'] . '"></div>';
+echo '<div class="panel-footer">'.Html::a('Перейти', ['site/view', 'id' => $key['_source']['id']], ['class'=>'btn btn-success']).'</div>';
+echo "</div>";
 
 
-
-
-
-      if ($key == "title") {
-        echo "<div class='panel-heading'><strong>" . $value['0'] . "</strong></div>";
-      }
+/*
+   //   if ($key == "title") {
+        echo "<div class='panel-heading'><strong>" . $key[$value['0']] . "</strong></div>";
+     // }
       if ($key == "description") {
         echo "<div class='panel-body'>" . BaseStringHelper::truncateWords($value['0'], 50, '...', true) . "<br>";
       }
@@ -32,18 +42,21 @@ echo var_dump($result);die();
       }
 
       if ($key == "id") {
-
-       echo '<span class="label label-success" href="'.\yii\helpers\Url::to(['site/view', 'product_id' => $value['0']]).'">Купити</span>';
+       echo '<span class="label label-success">'.Html::a('Купити', ['site/view', 'id' => $value]).'</span>';
+                                                       // echo Html::a('Купити', ['site/view', 'id' => $value]);
 
       //  echo '<span class="label label-success">' . $value['0'] . '</span></div>';
       }
-
+*/
 
 
     }
-    echo "</div>";
+
     echo "</div>";
 
-  }?>
+  //}
+
+
+  ?>
 
 </div>

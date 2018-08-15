@@ -62,17 +62,7 @@ class XmlController extends Controller {
 
     foreach ($xml->shop->offers->offer as $value) {
      //var_dump($value);
-$ela_prod = new ElasticProducts();
-$ela_prod->attributes = [
-'title'=> $value->name,
-'category_id'=> $last_id,
-'price'=> $value->price,
-'vendor'=> $value->vendorCode,
-'description'=> $value->description,
-'image'=> $value->picture,
-'available'=> $value->available,
-  ];
-$ela_prod->save();
+
 
 $product = new Products();
 $product->title = $value->name;
@@ -86,6 +76,19 @@ $product->available = $value->available;
 
 $product->save(false);
 
+
+      $ela_prod = new ElasticProducts();
+      $ela_prod->attributes = [
+        'id'=> $product->id,
+        'title'=> $value->name,
+        'category_id'=> $last_id,
+        'price'=> $value->price,
+        'vendor'=> $value->vendorCode,
+        'description'=> $value->description,
+        'image'=> $value->picture,
+        'available'=> $value->available,
+      ];
+      $ela_prod->save();
     }
 /*
     'title' => 'Title',

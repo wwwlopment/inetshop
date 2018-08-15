@@ -77,7 +77,7 @@ class ElasticProducts extends ActiveRecord
     return [
       static::type() => [
         'properties' => [
-          'id'           => ['type' => 'string'],
+          'id'           => ['type' => 'long'],
           'title'           => ['type' => 'string'],
           'description'    => ['type' => 'string'],
           'vendor' => ['type' => 'string'],

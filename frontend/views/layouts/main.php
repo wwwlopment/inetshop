@@ -326,7 +326,7 @@ UnicaseAsset::register($this);
 
                             <div class="product-info text-left m-t-20">
                                 <h3 class="name">
-                                  <?= Html::a($hot_item->title, ['view', 'id' => $hot_item->id]) ?>
+                                  <?= Html::a($hot_item->title, ['site/view', 'id' => $hot_item->id]) ?>
                                 </h3>
                                 <div class="rating rateit-small"></div>
 
@@ -385,7 +385,7 @@ UnicaseAsset::register($this);
                     </div><!-- /.container-fluid -->
                 </div><!-- /.item -->
 
-                <div class="item" style="background-image: url('../../web/images/advertisement/1.jpg');">
+                <div class="item" style="background-image: url('../../../frontend/web/images/advertisement/1.jpg');">
 
                 </div><!-- /.item -->
 
@@ -438,7 +438,7 @@ UnicaseAsset::register($this);
                   <div class="product">
                       <div class="product-image">
                           <div class="image">
-                            <?= Html::a(Html::img($upsel_item->image,['width'=>'150px', 'data-echo'=>$upsel_item->image]), ['view', 'id' => $upsel_item->id])?>
+                            <?= Html::a(Html::img($upsel_item->image,['width'=>'150px', 'data-echo'=>$upsel_item->image]), ['site/view', 'id' => $upsel_item->id])?>
                           </div><!-- /.image -->
 
                           <div class="tag sale"><span>sale</span></div>
