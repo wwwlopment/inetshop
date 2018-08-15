@@ -5,11 +5,7 @@ namespace frontend\controllers;
 use common\models\Categories;
 use common\models\ElasticProducts;
 use common\models\Products;
-use Yii;
-use yii\captcha\Captcha;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 class XmlController extends Controller {
   const PAGE_SIZE = 10;

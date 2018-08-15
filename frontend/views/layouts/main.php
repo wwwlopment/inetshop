@@ -255,7 +255,7 @@ UnicaseAsset::register($this);
     </div>
 </div>
 
-    <?php if ($_SERVER['REQUEST_URI'] != '/site/createorder') { ?>
+    <?php if (Yii::$app->controller->route  != 'site/createorder') { ?>
     <div class='col-md-3 sidebar'>
         <!-- ================================== TOP NAVIGATION ================================== -->
         <div class="side-menu animate-dropdown outer-bottom-xs">
@@ -265,6 +265,14 @@ UnicaseAsset::register($this);
 
                   <?php
                   if (isset ($categories)) {
+                          /*echo '<li id="0>" class="dropdown menu-item">'.
+                          Html::a(Html::tag('i','',['class'=>'icon fa fa-asterisk fa-fw']).
+                            'Всі товари' ,['site/index', 'cat' => '0'],
+                            ['class'=>'dropdown-toggle']);
+                          */?><!--
+
+                        </li>-->
+                    <?php
                     foreach ($categories as $category) { ?>
                         <li id="<?= $category->id ?>" class="dropdown menu-item">
                           <?= Html::a(Html::tag('i','',['class'=>'icon '.$category->logo_class])
@@ -282,6 +290,8 @@ UnicaseAsset::register($this);
             </nav><!-- /.megamenu-horizontal -->
         </div><!-- /.side-menu -->
 
+      <?php
+      if (Yii::$app->controller->route == 'site/index') { ?>
 
         <div class="sidebar-module-container">
             <h3 class="section-title">Фільтр</h3>
@@ -344,6 +354,8 @@ UnicaseAsset::register($this);
             <!-- ============================================== COLOR: END ============================================== -->
             </div>
         </div>
+        <?php }?>
+
         <div class="sidebar-widget hot-deals wow fadeInUp">
             <h3 class="section-title">гарячі продажі</h3>
             <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-xs">

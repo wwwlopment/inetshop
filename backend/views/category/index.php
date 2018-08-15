@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Create Categories', ['create'], ['class' => 'btn btn-success']) ?>
+
     </p>
 
     <?= GridView::widget([
@@ -37,3 +38,4 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+<?= Html::a('Іконки FontAwesome', 'https://fontawesome.ru/all-icons/', ['target'=>'_blank']) ?>
