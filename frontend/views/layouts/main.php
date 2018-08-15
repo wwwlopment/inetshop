@@ -112,10 +112,12 @@ UnicaseAsset::register($this);
                    // $search_model = new \app\models\Search();
                    // $q='';
                     $form = ActiveForm::begin([
+
                       'action'  => ['elastic/search'],
                       'method'  => 'get',
                             'id' => 'form-input-example',
                             'options' => [
+                              'name'=>'search_form',
                                // 'class' => 'form-horizontal col-lg-11',
                                // 'enctype' => 'multipart/form-data'
                             ],
@@ -148,7 +150,7 @@ UnicaseAsset::register($this);
 
                          <input name="search" class="search-field" placeholder="Пошук..." />
 <!--                            --><?php /*$form->field($search_model, 'search')->textInput(['class'=>'search-field'])->hint('Пошук')->label(false);*/?>
-                           <?=Html::a('', '#', ['class' => 'search-button'])?>
+                           <?=Html::a('', '#', ['class' => 'search-button', 'onclick'=>'$(\'#form-input-example\').submit();']);?>
                         <!--    <a class="search-button" href="#" ></a>-->
 
                         </div>
