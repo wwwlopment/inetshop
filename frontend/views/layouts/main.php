@@ -16,6 +16,8 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\UnicaseAsset;
 use common\widgets\Alert;
 
+
+
 $upsell = Products::find()->limit(10)->offset(15)->all();
 $hot = Products::find()->limit(5)->offset(25)->all();
 
@@ -27,6 +29,7 @@ $hot = Yii::$app->params['hot'];*/
   echo '</pre>';
   echo count($_SESSION['cart']);
 }*/
+
 
 
 UnicaseAsset::register($this);
@@ -170,7 +173,7 @@ UnicaseAsset::register($this);
 
                         <div class="items-cart-inner">
                             <div class="total-price-basket">
-                                <span class="lbl">Cart -</span>
+                                <span class="lbl">Кошик -</span>
                                 <span class="total-price">
 						<span class="sign"></span>
 
@@ -233,14 +236,14 @@ UnicaseAsset::register($this);
                             <div class="clearfix cart-total">
                                 <div class="pull-right">
 
-                                    <span class="text">Sub Total :</span>
+                                    <span class="text">Підсумок :</span>
                                     <span id="price_subtotal" class='price'><?=$subtotal . ' грн.'?></span>
 
                                 </div>
 
                                 <div class="clearfix"></div>
 
-                                <a href="<?=\yii\helpers\Url::to(['site/createorder'])?>" data-pjax=0 class="btn btn-upper btn-primary   btn-block m-t-20">Checkout</a>
+                                <a href="<?=\yii\helpers\Url::to(['site/createorder'])?>" data-pjax=0 class="btn btn-upper btn-primary   btn-block m-t-20">Оформити</a>
                             </div><!-- /.cart-total-->
 
 
@@ -357,7 +360,7 @@ UnicaseAsset::register($this);
         <?php }?>
 
         <div class="sidebar-widget hot-deals wow fadeInUp">
-            <h3 class="section-title">гарячі продажі</h3>
+            <h3 class="section-title">Вигідні ціни :</h3>
             <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-xs">
 
               <?php
@@ -502,7 +505,7 @@ UnicaseAsset::register($this);
 <div class="container">
 <!-- ============================================== UPSELL PRODUCTS ============================================== -->
 <section class="section featured-product wow fadeInUp">
-    <h3 class="section-title">upsell products</h3>
+    <h3 class="section-title">Топ продажів:</h3>
     <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
 
       <?php
@@ -574,7 +577,7 @@ UnicaseAsset::register($this);
 <!-- ============================================== BRANDS CAROUSEL ============================================== -->
 <div id="brands-carousel" class="logo-slider wow fadeInUp">
 
-    <h3 class="section-title">Our Brands</h3>
+    <h3 class="section-title">Бренди</h3>
     <div class="logo-slider-inner">
         <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
 
@@ -689,12 +692,12 @@ UnicaseAsset::register($this);
                     <!-- ============================================================= INFORMATION============================================================= -->
                     <div class="contact-information">
                         <div class="module-heading">
-                            <h4 class="module-title">information</h4>
+                            <h4 class="module-title">Контакти :</h4>
                         </div><!-- /.module-heading -->
 
                         <div class="module-body outer-top-xs">
                             <ul class="toggle-footer" style="">
-                                <li class="media">
+          <!--                      <li class="media">
                                     <div class="pull-left">
                      <span class="icon fa-stack fa-lg">
                       <i class="fa fa-circle fa-stack-2x"></i>
@@ -704,7 +707,7 @@ UnicaseAsset::register($this);
                                     <div class="media-body">
                                         <p>868 Any Stress,Burala Casi,Picasa USA.</p>
                                     </div>
-                                </li>
+                                </li>-->
 
                                 <li class="media">
                                     <div class="pull-left">
@@ -726,7 +729,7 @@ UnicaseAsset::register($this);
                     </span>
                                     </div>
                                     <div class="media-body">
-                                        <span><a href="#">wwwlopment@gmail.com</a></span><br>
+                                        <span><a href="mailto:wwwlopment@gmail.com">wwwlopment@gmail.com</a></span><br>
                                     </div>
                                 </li>
 

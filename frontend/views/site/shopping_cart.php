@@ -25,13 +25,13 @@ use yii\captcha\Captcha;
             <table class="table table-bordered">
               <thead>
               <tr>
-                <th class="cart-romove item">Remove</th>
-                <th class="cart-description item">Image</th>
-                <th class="cart-product-name item">Product Name</th>
+                <th class="cart-romove item">Видалити</th>
+                <th class="cart-description item">Зображення</th>
+                <th class="cart-product-name item">Найменування</th>
                <!-- <th class="cart-edit item">Edit</th>-->
-                <th class="cart-qty item">Quantity</th>
-                <th class="cart-sub-total item">Subtotal</th>
-                <th class="cart-total last-item">Grandtotal</th>
+                <th class="cart-qty item">Кількість</th>
+                <th class="cart-sub-total item">Сума</th>
+                <th class="cart-total last-item">Всього</th>
               </tr>
               </thead><!-- /thead -->
 
@@ -42,7 +42,7 @@ use yii\captcha\Captcha;
                 <td colspan="7">
                   <div class="shopping-cart-btn">
 							<span class="">
-								<a href="<?=\yii\helpers\Url::to(['/'])?>" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
+								<a href="<?=\yii\helpers\Url::to(['/'])?>" class="btn btn-upper btn-primary outer-left-xs">Продовжити покупки</a>
 							</span>
                   </div>
                 </td>
@@ -190,7 +190,7 @@ use yii\captcha\Captcha;
               <th>
 
                 <div class="cart-grand-total">
-                  Grand Total<span class="inner-left-md"><?=$grand_total?> грн.</span>
+                  Всього : <span class="inner-left-md"><?=$grand_total?> грн.</span>
                 </div>
               </th>
             </tr>
@@ -205,13 +205,13 @@ use yii\captcha\Captcha;
                         'id' => 'orderform',
                         'options' => ['class' => 'form-horizontal form-group'],
                       ]) ?>
-                      <?= $form->field($model, 'name')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control name-input', 'placeholder' => 'You name..']) ?>
-                      <?= $form->field($model, 'phone')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control phone-input', 'placeholder' => 'You phone..']) ?>
-                      <?= $form->field($model, 'email')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control email-input', 'placeholder' => 'You email..']) ?>
-                      <?= $form->field($model, 'verifyCode')->widget(Captcha::className()) ?>
+                      <?= $form->field($model, 'name')->label('Ім\'я')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control name-input', 'placeholder' => 'You name..']) ?>
+                      <?= $form->field($model, 'phone')->label('Телефон')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control phone-input', 'placeholder' => 'You phone..']) ?>
+                      <?= $form->field($model, 'email')->label('Е-мейл')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control email-input', 'placeholder' => 'You email..']) ?>
+                      <?= $form->field($model, 'verifyCode')->label('Код підтвердження')->widget(Captcha::className()) ?>
                         <div class="form-group">
                             <div class="col-lg-offset-1 col-lg-11">
-                              <?= Html::submitButton('PROCCED TO CHEKOUT', ['class' => 'btn btn-primary', 'type' => 'submit']); ?>
+                              <?= Html::submitButton('ОФОРМИТИ ПОКУПКУ', ['class' => 'btn btn-primary', 'type' => 'submit']); ?>
                             </div>
                         </div>
                       <?php ActiveForm::end() ;

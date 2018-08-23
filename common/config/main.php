@@ -16,5 +16,8 @@ return [
                   // configure more hosts if you have a cluster
               ],
         ],
+        'authManager'  => [
+          'class'        => 'yii\rbac\DbManager',
+        ],
     ],
 ];

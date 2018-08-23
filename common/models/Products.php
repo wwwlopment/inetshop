@@ -32,6 +32,25 @@ class Products extends \yii\db\ActiveRecord
         return 'products';
     }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function attributeLabels()
+  {
+    return [
+      'id' => 'ID',
+      'description' => 'Description',
+      'title' => 'Title',
+      'category_id' => 'Category_id',
+      'price' => 'Price',
+      'available' => 'Available',
+      'vendor' => 'Vendor',
+      'image' => 'Image',
+      'updated_at' => 'Updated At',
+      'created_at' => 'Created At',
+    ];
+  }
+
     /**
      * {@inheritdoc}
      */

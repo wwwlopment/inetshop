@@ -13,7 +13,7 @@ use common\models\Products;
 class SearchProducts extends Products
 {
 
-  public $globalSearch;
+  //public $globalSearch;
     /**
      * {@inheritdoc}
      */
@@ -21,7 +21,7 @@ class SearchProducts extends Products
     {
         return [
             [['id', 'category_id', 'price', 'available'], 'integer'],
-            [['title', 'vendor', 'globalSearch' , 'description', 'image', 'updated_at', 'created_at'], 'safe'],
+            [['title', 'vendor', 'description', 'image', 'updated_at', 'created_at'], 'safe'],
         ];
     }
 
@@ -60,19 +60,19 @@ class SearchProducts extends Products
         }
 
         // grid filtering conditions
- /*       $query->andFilterWhere([
+        $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
             'price' => $this->price,
             'available' => $this->available,
-            'updated_at' => $this->updated_at,
-            'created_at' => $this->created_at,
-        ]);*/
+          //  'updated_at' => $this->updated_at,
+           // 'created_at' => $this->created_at,
+        ]);
 
-        $query->orFilterWhere(['like', 'title', $this->globalSearch])
-            ->orFilterWhere(['like', 'vendor', $this->globalSearch])
-            ->orFilterWhere(['like', 'description', $this->globalSearch]);
-           // ->andFilterWhere(['like', 'image', $this->image]);
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'vendor', $this->vendor])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'image', $this->image]);
 
         return $dataProvider;
     }

@@ -13,8 +13,13 @@ return [
     'homeUrl' => '/admin',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+      'rbac' => 'dektrium\rbac\RbacConsoleModule',
+    ],
     'components' => [
+      'authManager'  => [
+        'class'        => 'yii\rbac\DbManager',
+      ],
       'elasticsearch' => [
         'class' => 'yii\elasticsearch\Connection',
         'nodes' => [

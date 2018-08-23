@@ -31,17 +31,20 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
 
+                  ['label' => 'Menu Users', 'options' => ['class' => 'header']],
+                         ['label' => 'Користувачі', 'icon' => 'users', 'url' => ['/user']],
+
                   ['label' => 'Menu InetShop', 'options' => ['class' => 'header']],
-                  ['label' => 'Categories', 'icon' => 'reorder', 'url' => ['/category']],
-                  ['label' => 'Products', 'icon' => 'gift', 'url' => ['/products']],
-                  ['label' => 'Orders', 'icon' => 'pencil-square-o', 'url' => ['/orders']],
-                  ['label' => 'Order description', 'icon' => 'pencil-square-o', 'url' => ['/order_descript']],
+                  ['label' => 'Категорії', 'icon' => 'reorder', 'url' => ['/category']],
+                  ['label' => 'Продукти', 'icon' => 'gift', 'url' => ['/products']],
+                  ['label' => 'Замовлення', 'icon' => 'pencil-square-o', 'url' => ['/orders']],
+                  ['label' => 'Деталізація замовлення', 'icon' => 'pencil-square-o', 'url' => ['/order_descript']],
 
 
                   ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Вхід', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
 
 /*                    [
                         'label' => 'Some tools',
