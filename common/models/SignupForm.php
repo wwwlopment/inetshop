@@ -3,12 +3,12 @@ namespace common\models;
 
 use Yii;
 //use yii\base\Model;
-use mdm\admin\models\form\Login as LoginF;
+use mdm\admin\models\form\Signup as SignupF;
 
 /**
  * Login form
  */
-class LoginForm extends LoginF
+class SignupForm extends SignupF
 {
 
 }

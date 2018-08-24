@@ -32,7 +32,7 @@
                 'items' => [
 
                   ['label' => 'Menu Users', 'options' => ['class' => 'header']],
-                         ['label' => 'Користувачі', 'icon' => 'users', 'url' => ['/user']],
+                         ['label' => 'Користувачі', 'icon' => 'users', 'url' => ['/rbac/default/index']],
 
                   ['label' => 'Menu InetShop', 'options' => ['class' => 'header']],
                   ['label' => 'Категорії', 'icon' => 'reorder', 'url' => ['/category']],

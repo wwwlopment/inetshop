@@ -24,7 +24,8 @@
         "guzzlehttp/guzzle": "^6.3",
         "elasticsearch/elasticsearch": "^6.0",
         "phpoffice/phpspreadsheet": "^1.4",
-        "dektrium/yii2-rbac": "1.0.0-alpha@dev"
+        "mdmsoft/yii2-admin": "dev-master#e9cc1d8adc as 2.8-p1"
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

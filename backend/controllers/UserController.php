@@ -124,4 +124,40 @@ class UserController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+  public function actionLogin()
+  {
+    if (!Yii::$app->user->isGuest) {
+      return $this->goHome();
+    }
+
+    $model = new LoginForm();
+    if ($model->load(Yii::$app->request->post()) && $model->login()) {
+      return $this->goBack();
+    } else {
+      $model->password = '';
+
+      return $this->render('login', [
+        'model' => $model,
+      ]);
+    }
+  }
+
+
+  public function actionSignup()
+  {
+    $model = new SignupForm();
+    if ($model->load(Yii::$app->request->post())) {
+      if ($user = $model->signup()) {
+        if (Yii::$app->getUser()->login($user)) {
+          return $this->goHome();
+        }
+      }
+    }
+
+    return $this->render('signup', [
+      'model' => $model,
+    ]);
+  }
+
 }
