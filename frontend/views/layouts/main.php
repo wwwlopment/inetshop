@@ -103,7 +103,8 @@ UnicaseAsset::register($this);
 
             <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
                 <div class="contact-row ">
-                <span class="section-title text-center vcenter ">Internet Shop</span>
+<!--                    <img style="width:400px;" src="<?/*=Yii::$app->urlManager->baseUrl.'/images/my_logo4.png'*/?>" alt="">
+-->                <span id='shop_name' class="section-title text-center vcenter ">" Pony "</span>
 
 
                 </div><!-- /.contact-row -->

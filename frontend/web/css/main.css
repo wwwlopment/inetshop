@@ -344,7 +344,7 @@ img[src="assets/images/blank.gif"] {
 .section-title {
   font-size: 20px;
   font-family: 'FjallaOneRegular';
-  border-bottom: 1px solid #e3e3e3;
+ /* border-bottom: 1px solid #e3e3e3;*/
   padding-bottom: 10px;
   text-transform: uppercase;
 }
@@ -5214,8 +5214,8 @@ a {
   font-size: 45px;
   font-style: italic;
   font-family: 'Roboto', sans-serif;
-  border-bottom: 1px solid;
-  border-top: 1px solid;
+/*  border-bottom: 1px solid;
+  border-top: 1px solid;*/
   text-transform: unset;
   padding: 35px;
 }
@@ -5231,4 +5231,9 @@ a {
 .row-flex {
   display: flex;
   flex-flow: row wrap;
+}
+
+#shop_name {
+  font-family: 'Bangers', cursive;
+  font-size: 120px;
 }

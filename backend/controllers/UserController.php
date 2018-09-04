@@ -160,4 +160,19 @@ class UserController extends Controller
     ]);
   }
 
+  public function actionChange_password() {
+      $user = Yii::$app->user->identity;
+      $loadedPost = $user->load(Yii::$app->request->post());
+
+      if ($loadedPost && $user->validate()) {
+        $user->save(false);
+        Yii::$app->session->setFlash('success', 'Ви успішно змінили пароль.');
+        return $this->refresh();
+      }
+
+      return $this->render('change_password', ['user' => $user]);
+  }
+
+
+
 }

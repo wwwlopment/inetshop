@@ -14,12 +14,11 @@ return [
     'bootstrap' => ['log'],
   'language' => 'ru',
     'modules' => [
-      'rbac' => [
+/*      'rbac' => [
         'class' => 'mdm\admin\Module',
         'controllerMap' => [
           'assignment' => [
             'class' => 'mdm\admin\controllers\AssignmentController',
-            /* 'userClassName' => 'app\models\User', */
             'idField' => 'id',
             'usernameField' => 'username',
 
@@ -27,15 +26,15 @@ return [
         ],
         'layout' => 'left-menu',
         'mainLayout' => '@app/views/layouts/admin.php',
-      ],
+      ],*/
     ],
  /* 'defaultRoute' => 'site/index',
   'layout' => 'main',*/
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'authManager' => [
+       /* 'authManager' => [
           'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\DbManager'
-        ],
+        ],*/
         'request' => [
             'csrfParam' => '_csrf-frontend',
           'baseUrl'=> '',
@@ -47,15 +46,15 @@ return [
           // configure more hosts if you have a cluster
         ],
       ],
-      'user' => [
+      /*'user' => [
         'identityClass' => 'mdm\admin\models\User',
         'loginUrl' => ['rbac/user/login'],
-      ],
-  /*      'user' => [
+      ],*/
+        'user' => [
             'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
+          //  'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
-        ],*/
+        ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
@@ -87,7 +86,7 @@ return [
         'site/*',
         'admin/*',
         'some-controller/some-action',
-        'rbac/*',
+        //'rbac/*',
         // The actions listed here will be allowed to everyone including guests.
         // So, 'admin/*' should not appear here in the production, of course.
         // But in the earlier stages of your development, you may probably want to

@@ -37,7 +37,8 @@ use yii\helpers\Html;
                                  alt="User Image"/>
 
                             <p>
-                                Administrator
+                                <?=  Yii::$app->user->identity->username; ?>
+                                <!--Administrator-->
                                 <small>of the InetShop</small>
                             </p>
                         </li>

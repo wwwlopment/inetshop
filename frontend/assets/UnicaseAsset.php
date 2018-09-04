@@ -29,7 +29,8 @@ class UnicaseAsset extends AssetBundle
     'css/font-awesome.min.css',
     //<!-- Fonts -->
     'http://fonts.googleapis.com/css?family=Roboto:300,400,500,700',
-
+    //'fonts/Bangers-Regular.ttf',
+    'https://fonts.googleapis.com/css?family=Bangers',
   ];
   public $js = [
     //<!-- HTML5 elements and media queries Support for IE8 : HTML5 shim and Respond.js -->
