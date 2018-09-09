@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\ElasticProducts;
 use common\models\ImageUpload;
 use Yii;
 use common\models\Products;
@@ -71,6 +72,19 @@ class ProductsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
+      $ela_prod = new ElasticProducts();
+      $ela_prod->attributes = $model;
+      /*$ela_prod->attributes = [
+        'id'=> $product->id,
+        'title'=> $value->name,
+        'category_id'=> $last_id,
+        'price'=> $value->price,
+        'vendor'=> $value->vendorCode,
+        'description'=> $value->description,
+        'image'=> $value->picture,
+        'available'=> $value->available,
+      ];*/
+      $ela_prod->save();
 
         return $this->render('create', [
             'model' => $model,
