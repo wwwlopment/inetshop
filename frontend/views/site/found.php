@@ -7,7 +7,7 @@ use yii\widgets\LinkPager;
 $query = yii\helpers\Html::encode($query);
 
 $this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['/site']];
-$this->title = "Результаты поиска по запросу \"$query\"";
+$this->title = "Результати пошуку по запиту \"$query\"";
 $this->params['breadcrumbs'][] = $this->title;
 
 SearchAssets::register($this);
