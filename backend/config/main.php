@@ -13,7 +13,7 @@ return [
     'homeUrl' => '/admin',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-  'language' => 'ru',
+  'language' => 'uk',
     'modules' => [
       'rbac' => [
         'class' => 'mdm\admin\Module',

@@ -12,7 +12,7 @@ return [
     'basePath' => dirname(__DIR__),
     'homeUrl'=> '/',
     'bootstrap' => ['log'],
-  'language' => 'ru',
+  'language' => 'uk',
     'modules' => [
 /*      'rbac' => [
         'class' => 'mdm\admin\Module',
