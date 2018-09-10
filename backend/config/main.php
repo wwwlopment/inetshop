@@ -35,11 +35,10 @@ return [
       'authManager' => [
         'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\DbManager'
       ],
-      'elasticsearch' => [
-        'class' => 'yii\elasticsearch\Connection',
-        'nodes' => [
-          ['http_address' => '127.0.0.1:9200'],
-          // configure more hosts if you have a cluster
+      'search' => [
+        'class' => 'himiklab\yii2\search\Search',
+        'models' => [
+          'common\models\Products',
         ],
       ],
         'view' => [
@@ -90,7 +89,6 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-
 
             ],
         ],

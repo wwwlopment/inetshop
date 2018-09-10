@@ -38,6 +38,12 @@ return [
             'encryption' => 'tls',
           ],
         ],
+      'search' => [
+        'class' => 'himiklab\yii2\search\Search',
+        'models' => [
+          'common\models\Products',
+        ],
+      ],
 
         'log' => [
             'targets' => [

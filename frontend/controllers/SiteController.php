@@ -2,16 +2,14 @@
 namespace frontend\controllers;
 
 use common\models\Categories;
-use common\models\Elastic;
 use common\models\Order_descript;
 use common\models\Orders;
 use common\models\Products;
 use common\models\SearchProducts;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\data\ArrayDataProvider;
 use yii\data\Pagination;
-use yii\elasticsearch\ActiveDataProvider;
-use yii\elasticsearch\Query;
 use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -415,25 +413,30 @@ return $this->render('shopping_cart');
       ->send();
   }
 
-  public function actionSearch() {
-      $params = [];
-    $search = Yii::$app->request->get('search');
-      $sp = new SearchProducts();
-      $sp->globalSearch = $search;
-      $res = $sp->search($params);
 
 
-  //$search1 = str_replace(' ', '', $search);
-  //$query= Products::find()->where(['like', 'title', $search1])->all();
-  //$query= Products::find()->where(['like', 'title', $search1])->all();
-/*    $dataProvider = new ActiveDataProvider([
-      'query' => $query,
+  public function actionSearch()
+  {
+   $q = Yii::$app->request->queryParams['search'];
+    /** @var \himiklab\yii2\search\Search $search */
+    $search = Yii::$app->search;
+    //$searchData = $search->find($q); // Search by full index.
+    $searchData = $search->find($q, ['model' => 'products']); // Search by index provided only by model `page`.
+
+    $dataProvider = new ArrayDataProvider([
+      'allModels' => $searchData['results'],
       'pagination' => ['pageSize' => 10],
-    ]);*/
+    ]);
 
-    return $this->render('search', compact('dataProvider', 'query' ,'res'));
-    }
-
+    return $this->render(
+      'found',
+      [
+        'hits' => $dataProvider->getModels(),
+        'pagination' => $dataProvider->getPagination(),
+        'query' => $searchData['query']
+      ]
+    );
+  }
 
 public function actionView($id) {
 

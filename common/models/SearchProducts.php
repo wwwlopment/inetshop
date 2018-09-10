@@ -12,8 +12,6 @@ use common\models\Products;
  */
 class SearchProducts extends Products
 {
-
-  //public $globalSearch;
     /**
      * {@inheritdoc}
      */
@@ -65,8 +63,8 @@ class SearchProducts extends Products
             'category_id' => $this->category_id,
             'price' => $this->price,
             'available' => $this->available,
-          //  'updated_at' => $this->updated_at,
-           // 'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

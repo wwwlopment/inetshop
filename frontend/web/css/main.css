@@ -1490,7 +1490,7 @@ a {
 }
 .sidebar .side-menu nav .nav > li > a:after {
   color: #bababa;
-  content: "\f0a9";
+  /*content: "\f0a9";*/
   float: right;
   font-size: 12px;
   height: 20px;

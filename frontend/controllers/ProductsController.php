@@ -1,16 +1,13 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
-use common\models\ElasticProducts;
-use common\models\ImageUpload;
 use Yii;
 use common\models\Products;
 use common\models\SearchProducts;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
  * ProductsController implements the CRUD actions for Products model.
@@ -73,7 +70,6 @@ class ProductsController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -128,20 +124,4 @@ class ProductsController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
-  public function actionSetImage($id) {
-    $model = new ImageUpload();
-
-    if (Yii::$app->request->isPost) {
-      $product = $this->findModel($id);
-      $file = UploadedFile::getInstance($model, 'image');
-      if ($product->saveImage($model->uploadFile($file, $product->image))) {
-        return $this->redirect(['view', 'id' => $product->id]);
-      }
-
-    }
-
-    return $this->render('image', ['model' => $model]);
-  }
-
 }
