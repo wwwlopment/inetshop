@@ -576,75 +576,7 @@ UnicaseAsset::register($this);
 </section><!-- /.section -->
 <!-- ============================================== UPSELL PRODUCTS : END ============================================== -->
 <!-- ============================================== BRANDS CAROUSEL ============================================== -->
-<div id="brands-carousel" class="logo-slider wow fadeInUp">
 
-    <h3 class="section-title">Бренди</h3>
-    <div class="logo-slider-inner">
-        <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-
-            <div class="item m-t-15">
-                <a href="#" class="image">
-                    <img data-echo="../../frontend/web/images/brands/brand1.png" src="../../frontend/web/images/blank.gif" alt="">
-                </a>
-            </div><!--/.item-->
-
-            <div class="item m-t-10">
-                <a href="#" class="image">
-                    <img data-echo="../../frontend/web/images/brands/brand2.png" src="../../frontend/web/images/blank.gif" alt="">
-                </a>
-            </div><!--/.item-->
-
-            <div class="item">
-                <a href="#" class="image">
-                    <img data-echo="../../frontend/web/images/brands/brand3.png" src="../../frontend/web/images/blank.gif" alt="">
-                </a>
-            </div><!--/.item-->
-
-            <div class="item">
-                <a href="#" class="image">
-                    <img data-echo="../../frontend/web/images/brands/brand4.png" src="../../frontend/web/images/blank.gif" alt="">
-                </a>
-            </div><!--/.item-->
-
-            <div class="item">
-                <a href="#" class="image">
-                    <img data-echo="../../frontend/web/images/brands/brand5.png" src="../../frontend/web/images/blank.gif" alt="">
-                </a>
-            </div><!--/.item-->
-
-            <div class="item">
-                <a href="#" class="image">
-                    <img data-echo="../../frontend/web/images/brands/brand6.png" src="../../frontend/web/images/blank.gif" alt="">
-                </a>
-            </div><!--/.item-->
-
-            <div class="item">
-                <a href="#" class="image">
-                    <img data-echo="../../frontend/web/images/brands/brand2.png" src="../../frontend/web/images/blank.gif" alt="">
-                </a>
-            </div><!--/.item-->
-
-            <div class="item">
-                <a href="#" class="image">
-                    <img data-echo="../../frontend/web/images/brands/brand4.png" src="../../frontend/web/images/blank.gif" alt="">
-                </a>
-            </div><!--/.item-->
-
-            <div class="item">
-                <a href="#" class="image">
-                    <img data-echo="../../frontend/web/images/brands/brand1.png" src="../../frontend/web/images/blank.gif" alt="">
-                </a>
-            </div><!--/.item-->
-
-            <div class="item">
-                <a href="#" class="image">
-                    <img data-echo="../../frontend/web/images/brands/brand5.png" src="../../frontend/web/images/blank.gif" alt="">
-                </a>
-            </div><!--/.item-->
-        </div><!-- /.owl-carousel #logo-slider -->
-    </div><!-- /.logo-slider-inner -->
-
-</div><!-- /.logo-slider -->
 <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
 <!--</div>-->
 <!-- ============================================================= FOOTER ============================================================= -->
