@@ -718,7 +718,7 @@ UnicaseAsset::register($this);
                     </span>
                                     </div>
                                     <div class="media-body">
-                                        <p>(987) 1234 567 890<br>(123) 456 789 012</p>
+                                        <p>+38(067) 756-51-28<br>+38(095) 212-51-37</p>
                                     </div>
                                 </li>
 
@@ -730,7 +730,7 @@ UnicaseAsset::register($this);
                     </span>
                                     </div>
                                     <div class="media-body">
-                                        <span><a href="mailto:wwwlopment@gmail.com">wwwlopment@gmail.com</a></span><br>
+                                        <span><a href="mailto:sergiymedd635@gmail.com">sergiymedd635@gmail.com</a></span><br>
                                     </div>
                                 </li>
 

@@ -161,16 +161,22 @@ class UserController extends Controller
   }
 
   public function actionChange_password() {
-      $user = Yii::$app->user->identity;
-      $loadedPost = $user->load(Yii::$app->request->post());
+    $id = \Yii::$app->user->id;
 
-      if ($loadedPost && $user->validate()) {
-        $user->save(false);
-        Yii::$app->session->setFlash('success', 'Ви успішно змінили пароль.');
-        return $this->refresh();
-      }
+    try {
+      $model = new \common\models\ChangePasswordForm($id);
+    } catch (InvalidParamException $e) {
+      throw new \yii\web\BadRequestHttpException($e->getMessage());
+    }
 
-      return $this->render('change_password', ['user' => $user]);
+    if ($model->load(\Yii::$app->request->post()) && $model->validate() && $model->changePassword()) {
+      \Yii::$app->session->setFlash('success', 'Password Changed!');
+    }
+
+    return $this->render('changePassword', [
+      'model' => $model,
+    ]);
+
   }
 
 

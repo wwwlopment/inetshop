@@ -8,7 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
-    'name'=>'InetShop',
+    'name'=>'Pony shop',
     'basePath' => dirname(__DIR__),
     'homeUrl' => '/admin',
     'controllerNamespace' => 'backend\controllers',
