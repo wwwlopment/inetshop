@@ -59,4 +59,19 @@ $this->params['breadcrumbs'][] = $this->title;
     */?>
 
 </div>
+<div class="col col-sm-12 col-md-10 text-right">
+    <div class="pagination-container">
+      <?php
+      if (isset ($pages)) {
+        echo LinkPager::widget([
+          'pagination' => $pages,
+          'options'      => [
+            'class'=>'list-inline list-unstyled'],
+
+        ]);
+      }
+      ?>
+
+    </div><!-- /.pagination-container -->
+</div><!-- /.col -->
 

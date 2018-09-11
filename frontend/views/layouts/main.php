@@ -599,17 +599,18 @@ UnicaseAsset::register($this);
                         </div><!-- /.footer-logo -->
 
                         <div class="module-body m-t-20">
-                            <p class="about-us"> "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.
+                            <p class="about-us">
+                                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.
                             </p>
 
                             <div class="social-icons">
 
-                                <a href="http://facebook.com/transvelo" class='active'><i
+                                <a href="https://facebook.com" class='active'><i
                                             class="icon fa fa-facebook"></i></a>
-                                <a href="#"><i class="icon fa fa-twitter"></i></a>
-                                <a href="#"><i class="icon fa fa-linkedin"></i></a>
+                                <a href="https://twitter.com"><i class="icon fa fa-twitter"></i></a>
+                                <a href="https://linkedin.com"><i class="icon fa fa-linkedin"></i></a>
                                 <a href="#"><i class="icon fa fa-rss"></i></a>
-                                <a href="#"><i class="icon fa fa-pinterest"></i></a>
+                                <a href="https://pinterest.com"><i class="icon fa fa-pinterest"></i></a>
 
                             </div><!-- /.social-icons -->
                         </div><!-- /.module-body -->

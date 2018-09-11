@@ -51,7 +51,7 @@ class Categories extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['updated_at', 'created_at'], 'safe'],
+            [['id','updated_at', 'created_at'], 'safe'],
             [['title'], 'string', 'max' => 50],
             [['logo_class'], 'string', 'max' => 50],
         ];

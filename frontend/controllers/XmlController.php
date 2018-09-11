@@ -37,15 +37,16 @@ class XmlController extends Controller {
             'available' => 'Available',*/
       libxml_use_internal_errors(true);
     $result='';
-      $xml = simplexml_load_file('../../frontend/web/uploads/vygr.xml');
+      //$xml = simplexml_load_file('../../frontend/web/uploads/vygr.xml');
+      $xml = simplexml_load_file('../../frontend/web/uploads/odyag.xml');
     if (!$xml) {
       echo(libxml_get_errors());
       return;
     }
 
-    if (!Categories::find()->where(['title'=> 'Іграшки'])->one()) {
+    if (!Categories::find()->where(['title'=> 'Одяг'])->one()) {
     $category = new Categories();
-    $category->title = 'Іграшки';
+    $category->title = 'Одяг';
     $category->logo_class = '';
  //   $category->created_at = time();
     $category->save(false);
@@ -57,9 +58,9 @@ class XmlController extends Controller {
     }
 
     foreach ($xml->shop->offers->offer as $value) {
-     //var_dump($value);
+    // var_dump($value);die();
 
-
+/*
 $product = new Products();
 $product->title = $value->name;
 $product->category_id = $last_id;
@@ -68,23 +69,27 @@ $product->vendor = $value->vendorCode;
 $product->description = $value->description;
 $product->image = $value->picture;
 $product->available = $value->available;
+//$product->created_at = time();*/
+//
+//odyag
+$description = '';
+$product = new Products();
+$product->title = $value->model;
+$product->category_id = $last_id;
+$product->price = $value->price;
+$product->vendor = $value->vendor;
+foreach ($value->param as $param) {
+  $description .= $param . ' ';
+      }
+$product->description = $description . ' '. $value->description;
+$product->image = $value->picture[0];
+$product->available = $value->available;
 //$product->created_at = time();
 
 $product->save(false);
 
 
-      $ela_prod = new ElasticProducts();
-      $ela_prod->attributes = [
-        'id'=> $product->id,
-        'title'=> $value->name,
-        'category_id'=> $last_id,
-        'price'=> $value->price,
-        'vendor'=> $value->vendorCode,
-        'description'=> $value->description,
-        'image'=> $value->picture,
-        'available'=> $value->available,
-      ];
-      $ela_prod->save();
+
     }
 /*
     'title' => 'Title',
