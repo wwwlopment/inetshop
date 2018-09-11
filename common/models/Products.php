@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use himiklab\yii2\search\behaviors\SearchBehavior;
 use Yii;
 
 /**
@@ -21,29 +20,7 @@ use Yii;
  */
 class Products extends \yii\db\ActiveRecord
 {
-public function behaviors()
-{
-    return [
-        'search' => [
-            'class' => SearchBehavior::className(),
-            'searchScope' => function ($model) {
-                /** @var \yii\db\ActiveQuery $model */
-                $model->select(['id','title', 'description']);
-                $model->andWhere(['indexed' => true]);
-            },
-            'searchFields' => function ($model) {
-                /** @var self $model */
-                return [
-                    ['name' => 'title', 'value' => $model->title],
-                    ['name' => 'description', 'value' => strip_tags($model->description)],
-                    ['name' => 'id', 'value' => strip_tags($model->id)],
-                 //   ['name' => 'url', 'value' => $model->url, 'type' => SearchBehavior::FIELD_KEYWORD],
-                    // ['name' => 'model', 'value' => 'page', 'type' => SearchBehavior::FIELD_UNSTORED],
-                ];
-            }
-        ],
-    ];
-}
+
     /**
      * {@inheritdoc}
      */

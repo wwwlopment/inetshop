@@ -9,12 +9,12 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'search' => [
+   /*     'search' => [
           'class' => 'himiklab\yii2\search\Search',
           'models' => [
             'common\models\Products',
           ],
-        ],
+        ],*/
         'authManager'  => [
           'class'        => 'yii\rbac\DbManager',
         ],

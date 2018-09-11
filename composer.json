@@ -24,9 +24,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "phpoffice/phpspreadsheet": "^1.4",
         "mdmsoft/yii2-admin": "dev-master#e9cc1d8adc as 2.8-p1",
-        "dektrium/yii2-user": "^0.9.14",
-        "himiklab/yii2-search-component-v2" : "*",
-        "zendframework/zendsearch": "2.0.0rc6"
+        "dektrium/yii2-user": "^0.9.14"
 
     },
     "require-dev": {

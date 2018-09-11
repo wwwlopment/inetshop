@@ -39,10 +39,14 @@ class SearchProducts extends Products
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $additional=0)
     {
-        $query = Products::find();
 
+
+        $query = Products::find();
+      if($additional==1) {
+        $query->andWhere(['status'=>['some', 'other']]);
+      }
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

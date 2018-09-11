@@ -417,25 +417,18 @@ return $this->render('shopping_cart');
 
   public function actionSearch()
   {
-   $q = Yii::$app->request->queryParams['search'];
-    /** @var \himiklab\yii2\search\Search $search */
-    $search = Yii::$app->search;
-    //$searchData = $search->find($q); // Search by full index.
-    $searchData = $search->find($q, ['model' => 'products']); // Search by index provided only by model `page`.
+    $q = Yii::$app->request->queryParams['search'];
 
-    $dataProvider = new ArrayDataProvider([
-      'allModels' => $searchData['results'],
-      'pagination' => ['pageSize' => 10],
-    ]);
+    $query = Products::find()->where(['like', 'title', $q ])->where(['like', 'description', $q ]);
+    $pages = new Pagination([
+      'totalCount'=>$query->count(),
+      'pageSize'=>10,
+      'forcePageParam'=>false,
+      'pageSizeParam'=>false
+      ]);
+    $products = $query->offset($pages->offset)->limit($pages->limit)->all();
+    return $this->render('found', compact('products', 'pages', 'q'));
 
-    return $this->render(
-      'found',
-      [
-        'hits' => $dataProvider->getModels(),
-        'pagination' => $dataProvider->getPagination(),
-        'query' => $searchData['query']
-      ]
-    );
   }
 
 public function actionView($id) {

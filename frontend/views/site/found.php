@@ -4,26 +4,47 @@ use frontend\modules\search\SearchAssets;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 
-$query = yii\helpers\Html::encode($query);
-
+//$query = '';
+$query = yii\helpers\Html::encode($q);
+//var_dump($products);
 $this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['/site']];
 $this->title = "Результати пошуку по запиту \"$query\"";
 $this->params['breadcrumbs'][] = $this->title;
 
-SearchAssets::register($this);
-$this->registerJs("jQuery('.search').highlight('{$query}');");
+//SearchAssets::register($this);
+//$this->registerJs("jQuery('.search').highlight('{$query}');");
 ?>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-2">
+
 
     <?php
-    if (!empty($hits)):
-      foreach ($hits as $hit):
+    if (!empty($products)):
+      foreach ($products as $product):
+        if(isset($product->image)) {
+          $img_url = $product->image;
+        } else {
+          $img_url = '';
+        }
         ?>
-        <h3><a href="<?//= yii\helpers\Url::to($hit->url, true) ?>"><?= $hit->title ?></a></h3>
-        <p class="search"><?//= $hit->body ?></p>
+    <div class="col-md-12">
+          <div class="col-md-3">
+              <div class="product-image">
+                  <div class="image">
+                    <?= Html::a(Html::img($img_url,['width'=>'200px', 'data-echo'=>$img_url]), ['view', 'id' => $product->id])?>
+
+                  </div><!-- /.image -->
+
+              </div>
+          </div>
+    <div class="col-md-9">
+
+
+        <h3><?= Html::a($product->title, ['view', 'id' => $product->id])?></h3>
+        <p class="search"><?= $product->description ?></p>
         <hr />
+    </div>
+    </div>
       <?php
       endforeach;
     else:
@@ -32,19 +53,10 @@ $this->registerJs("jQuery('.search').highlight('{$query}');");
     <?php
     endif;
 
-    echo LinkPager::widget([
+/*    echo LinkPager::widget([
       'pagination' => $pagination,
     ]);
-    ?>
+    */?>
 
-
-  </div>
-  <div class="col-md-3">
-
-   <!-- <?/*//= $this->render('_search_form', ['text' => "{$query}"]) */?>-->
-
-  <!--  <?/*= app\components\SectionsWidget::widget() */?>
-    <hr>
-    --><?/*= app\components\TagsWidget::widget() */?>
-  </div>
 </div>
+

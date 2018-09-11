@@ -39,12 +39,12 @@ return [
             'csrfParam' => '_csrf-frontend',
           'baseUrl'=> '',
         ],
-      'search' => [
+/*      'search' => [
         'class' => 'himiklab\yii2\search\Search',
         'models' => [
           'common\models\Products',
         ],
-      ],
+      ],*/
       /*'user' => [
         'identityClass' => 'mdm\admin\models\User',
         'loginUrl' => ['rbac/user/login'],
