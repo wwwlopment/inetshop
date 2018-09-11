@@ -31,10 +31,6 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
 
-                  ['label' => 'Menu Users', 'options' => ['class' => 'header']],
-                         ['label' => 'Контроль прав RBAC', 'icon' => 'users', 'url' => ['/rbac/default/index']],
-                         ['label' => 'Користувачі', 'icon' => 'users', 'url' => ['/user/index']],
-
 
                   ['label' => 'Menu InetShop', 'options' => ['class' => 'header']],
                   ['label' => 'Категорії', 'icon' => 'reorder', 'url' => ['/category']],
@@ -46,6 +42,11 @@
                   ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
+
+                  ['label' => 'Menu Users', 'options' => ['class' => 'header']],
+                  ['label' => 'Контроль прав RBAC', 'icon' => 'users', 'url' => ['/rbac/default/index']],
+                  ['label' => 'Користувачі', 'icon' => 'users', 'url' => ['/user/index']],
+
                   ['label' => 'Змінити пароль', 'icon' => 'users', 'url' => ['/user/change_password']],
                     ['label' => 'Вхід', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
 

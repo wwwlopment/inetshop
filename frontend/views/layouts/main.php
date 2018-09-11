@@ -24,7 +24,7 @@ $upsell = Products::find()->limit(10)->all();
 $hot = Products::find()->limit(5)->all();
 
 /*$upsell = Yii::$app->params['upsel'];
-$hot = Yii::$app->params['hot'];*/
+$hot = Yii::$app->paramsш['hot'];*/
 /*if (isset($_SESSION['cart'])) {
   echo '<pre>';
   var_dump($_SESSION['cart']);
