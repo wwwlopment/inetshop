@@ -18,8 +18,10 @@ use common\widgets\Alert;
 
 
 
-$upsell = Products::find()->limit(10)->offset(15)->all();
-$hot = Products::find()->limit(5)->offset(25)->all();
+//$upsell = Products::find()->limit(10)->offset(15)->all();
+//$hot = Products::find()->limit(5)->offset(15)->all();
+$upsell = Products::find()->limit(10)->all();
+$hot = Products::find()->limit(5)->all();
 
 /*$upsell = Yii::$app->params['upsel'];
 $hot = Yii::$app->params['hot'];*/
