@@ -35,12 +35,12 @@ return [
       'authManager' => [
         'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\DbManager'
       ],
-      'search' => [
+ /*     'search' => [
         'class' => 'himiklab\yii2\search\Search',
         'models' => [
           'common\models\Products',
         ],
-      ],
+      ],*/
         'view' => [
           'theme' => [
             'pathMap' => [

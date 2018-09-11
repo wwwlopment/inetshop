@@ -26,14 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
           ['label'=>'Icon','content' => function ($model) { return '<i class="'.$model->logo_class.'">';}],
-
+          ['class' => 'yii\grid\ActionColumn'],
             'id',
             'title',
             'logo_class',
 
         //  'updated_at',
         //  'created_at',
-            ['class' => 'yii\grid\ActionColumn'],
+
 
         ],
     ]); ?>

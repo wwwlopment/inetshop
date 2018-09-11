@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
           ['label'=>'Image','content' => function ($model) { return '<img width = "50px" src="'.$model->image.'">';}],
-
+          ['class' => 'yii\grid\ActionColumn'],
             'id',
             'title',
             'category_id',
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
             'created_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+
         ],
     ]); ?>
 </div>
