@@ -136,7 +136,7 @@ UnicaseAsset::register($this);
 
                                     <ul class="dropdown-menu" role="menu" >
                               <?php
-                              $categories = Categories::find()->all();
+                              $categories = Categories::find()->orderBy('title')->all();
                               if (isset ($categories)) {
                                 foreach ($categories as $category) {
 
