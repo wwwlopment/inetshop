@@ -133,8 +133,7 @@ UnicaseAsset::register($this);
                             <ul class="categories-filter animate-dropdown">
 
                                 <li class="dropdown">
-
-                                    <a class="dropdown-toggle"  data-toggle="dropdown" href="#">Категорії <b class="caret"></b></a>
+                                  <a class="dropdown-toggle"  data-toggle="dropdown" href="#">Категорії <b class="caret"></b></a>
 
                                     <ul class="dropdown-menu" role="menu" >
                               <?php
@@ -265,7 +264,9 @@ UnicaseAsset::register($this);
     <div class='col-md-3 sidebar'>
         <!-- ================================== TOP NAVIGATION ================================== -->
         <div class="side-menu animate-dropdown outer-bottom-xs">
-            <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Категорії</div>
+            <div class="head"><i class="icon fa fa-align-justify fa-fw"></i>
+            <?=Html::a('Категорії', '/')?>
+            </div>
             <nav class="yamm megamenu-horizontal" role="navigation">
                 <ul class="nav">
 

@@ -85,8 +85,13 @@ class SiteController extends Controller
     {
       $categories = Categories::find()->all();
       $category_id = Yii::$app->request->get('cat');
-      if (!isset($category_id)) {
-        $category_id = 1;
+      if (isset($category_id)) {
+       // $category_id = 1;
+
+        $products = Products::find()->where(['category_id'=>$category_id])->orderBy('id');
+      }
+      else {
+        $products = Products::find();
       }
  /*     $params = [
         'match' => [
@@ -94,7 +99,7 @@ class SiteController extends Controller
         ],
         //'sort' => ['id' => 'asc'],
       ];*/
-      $products = Products::find()->where(['category_id'=>$category_id])->orderBy('id');
+
      // $products = Products::find()->query($params);
 
       $countQuery = clone $products;
