@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 
   <?php $form = ActiveForm::begin(); ?>
 
-  <?= $form->field($model, 'image')->fileInput(['maxlength' => true]) ?>
-
+  <?= $form->field($model, 'image')->widget(\kartik\file\FileInput::classname(), [
+    'options' => ['accept' => 'image/*'],
+  ]);?>
 
   <div class="form-group">
-    <?= Html::submitButton('Submit', ['class' => 'btn btn-success']) ?>
   </div>
 
   <?php ActiveForm::end(); ?>

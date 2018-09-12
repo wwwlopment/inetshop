@@ -24,6 +24,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 
+
+
     <?= $form->field($model, 'available')->textInput() ?>
 
     <?= $form->field($model, 'updated_at')->textInput() ?>
