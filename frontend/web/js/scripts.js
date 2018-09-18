@@ -138,8 +138,8 @@ if ($(owlElementID).hasClass("owl-one-item")) {
 
 $(owlElementID + ".owl-one-item").owlCarousel({
     singleItem: true,
-    navigation: false,
-    pagination: false
+    navigation: true,
+    pagination: true
 });
 
 $('#transitionType li a').click(function () {

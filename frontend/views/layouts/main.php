@@ -603,7 +603,9 @@ UnicaseAsset::register($this);
 
                         <div class="module-body m-t-20">
                             <p class="about-us">
-                                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.
+                             Замовлені товари можна отримати на першому поверсі
+                                КП "Луцька міська дитяча поліклініка" (просп. Волі, 3А)
+                                у магазині іграшок
                             </p>
 
                             <div class="social-icons">

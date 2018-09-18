@@ -20,7 +20,7 @@ class ImageUpload extends Model{
    ];
   }
 
-  public function uploadFile(UploadedFile $file, $currentImage)
+  public function uploadFile(UploadedFile $file, $currentImage='78')
   {
     $this->image = $file;
     if ($this->validate()) {

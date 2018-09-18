@@ -12,12 +12,17 @@ use yii\helpers\Html;
             <div class="product-item-holder size-big single-product-gallery small-gallery">
 
               <div id="owl-single-product">
-                <div class="single-product-gallery-item" id="slide1">
-                  <a data-lightbox="image-1" data-title="Gallery" href="<?=$product->image?>">
-                    <img class="img-responsive" alt="" src="<?=$product->image?>" data-echo="<?=$product->image?>" />
+                  <?php
+                  $n = 0;
+                  foreach ($images as $image) {
+                     $n++
+                      ?>
+                <div class="single-product-gallery-item" id="slide<?=$n?>">
+                  <a data-lightbox="image-1" data-title="Gallery" href="<?=$image->image?>">
+                    <img class="img-responsive" alt="" src="<?=$image->image?>" data-echo="<?=$image->image?>" />
                   </a>
                 </div><!-- /.single-product-gallery-item -->
-
+<?php }?>
 
 
               </div><!-- /.single-product-slider -->
@@ -26,11 +31,16 @@ use yii\helpers\Html;
               <div class="single-product-gallery-thumbs gallery-thumbs">
 
                 <div id="owl-single-product-thumbnails">
+                    <?php
+                    $n = 0;
+                    foreach ($images as $image) {
+                        $n++?>
                   <div class="item">
-                    <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
-                      <img class="img-responsive" width="85" alt="" src="<?=$product->image?>" data-echo="<?=$product->image?>" />
+                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="<?=$n?>" href="#slide<?=$n?>">
+                      <img class="img-responsive" width="85" alt="" src="/frontend/web/images/blank.gif" data-echo="<?=$image->image?>" />
                     </a>
                   </div>
+                    <?php } ?>
 
 
                 </div><!-- /#owl-single-product-thumbnails -->

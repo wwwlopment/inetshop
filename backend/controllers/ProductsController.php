@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\ElasticProducts;
+use common\models\Image;
 use common\models\ImageUpload;
 use Yii;
 use common\models\Products;
@@ -135,7 +136,12 @@ class ProductsController extends Controller
     if (Yii::$app->request->isPost) {
       $product = $this->findModel($id);
       $file = UploadedFile::getInstance($model, 'image');
-      if ($product->saveImage($model->uploadFile($file, $product->image))) {
+      //var_dump($file);die();
+      $name = strtolower(md5(uniqid($file->baseName)) . '.' . $file->extension);
+      $find = Image::findOne(['image'=>$name]);
+      $im = new Image();
+//var_dump($product->image);die();
+      if ($im->saveImage($model->uploadFile($file, $find), $product->id)) {
         return $this->redirect(['view', 'id' => $product->id]);
       }
 

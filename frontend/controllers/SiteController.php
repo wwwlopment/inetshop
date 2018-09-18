@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\Categories;
+use common\models\Image;
 use common\models\Order_descript;
 use common\models\Orders;
 use common\models\Products;
@@ -442,7 +443,8 @@ public function actionView($id) {
 $upsell = Products::find()->limit(10)->offset(15)->all();
 $hot = Products::find()->limit(5)->offset(25)->all();
 $product = Products::findOne(['id'=>$id]);
-return $this->render('view', ['product'=>$product, 'categories'=>$categories, 'upsell'=>$upsell, 'hot'=>$hot]);
+$images = Image::find()->where(['product_id'=>$id])->all();
+return $this->render('view', ['images'=> $images, 'product'=>$product, 'categories'=>$categories, 'upsell'=>$upsell, 'hot'=>$hot]);
     }
 
 }

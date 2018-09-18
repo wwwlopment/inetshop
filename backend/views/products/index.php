@@ -11,7 +11,9 @@ $this->title = 'Products';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="products-index">
-
+<div class="container-fluid page-container">
+    <div class="row">
+    <div class="col-md-12 col-sm-12">
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -41,4 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         ],
     ]); ?>
+    </div>
+</div>
+</div>
 </div>
