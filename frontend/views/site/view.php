@@ -72,7 +72,9 @@ use yii\helpers\Html;
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="stock-box">
-                       <span class="red-text"><?= ($product->available == 1) ? 'В наявності' : 'Немає в наявності' ?></span>
+                       <span class="<?= ($product->available == 1) ? 'blue-text' : 'red-text' ?>">
+                         <?= ($product->available == 1) ? 'В наявності' : 'Немає в наявності' ?>
+                       </span>
                     </div>
                   </div>
               <!--    <div class="col-sm-9">
