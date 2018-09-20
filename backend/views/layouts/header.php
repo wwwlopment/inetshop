@@ -24,8 +24,15 @@ use yii\helpers\Html;
                 <!-- Tasks: style can be found in dropdown.less -->
 
                 <!-- User Account: style can be found in dropdown.less -->
-
+                <div class="pull-right">
+              <?= Html::a(
+                'Вихід',
+                ['/site/logout'],
+                ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
+              ) ?>
+                </div>
                 <li class="dropdown user user-menu">
+
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
                         <span class="hidden-xs"><?= Yii::$app->user->identity->username;?> </span>
@@ -43,7 +50,7 @@ use yii\helpers\Html;
                             </p>
                         </li>
                         <!-- Menu Body -->
-             <!--           <li class="user-body">
+                        <li class="user-body">
                             <div class="col-xs-4 text-center">
                                 <a href="#">Followers</a>
                             </div>
