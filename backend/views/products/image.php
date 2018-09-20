@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
               foreach ($images as $item) { ?>
 
                 <div class="col-md-1 col-md-offset-1">
-                    <?=Html::a(Html::img($item->image, ['width'=>'100px']), ['set-default', 'id'=>$item->id], [])?>
+                    <?=Html::a(Html::img($item->image, ['width'=>'100px']), ['set-default', 'id'=>$product, 'img_id'=>$item->id], [])?>
                 </div>
               <?php
               }
