@@ -425,7 +425,7 @@ return $this->render('shopping_cart');
   {
     $q = Yii::$app->request->queryParams['search'];
 
-    $query = Products::find()->where(['like', 'title', $q ])->where(['like', 'description', $q ]);
+    $query = Products::find()->where(['like', 'title', $q ])->orWhere(['like', 'description', $q ]);
     $pages = new Pagination([
       'totalCount'=>$query->count(),
       'pageSize'=>10,
