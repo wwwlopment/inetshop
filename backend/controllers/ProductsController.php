@@ -147,7 +147,19 @@ class ProductsController extends Controller
 
     }
 
-    return $this->render('image', ['model' => $model]);
+    $images = Image::find()->where(['product_id'=>$id])->All();
+    return $this->render('image', ['model' => $model, 'images'=>$images]);
   }
+public function actionSetDefault($id) {
+  //if (Yii::$app->request->isPost) {
+    $product = $this->findModel($id);
+    $image = Image::find()->where(['id'=>$id])->one();
+    $product->image = $image->image;
+    $product->save(false);
+  //}
+  return $this->redirect(['view', 'id' => $id]);
+}
 
 }
+
+
