@@ -68,9 +68,8 @@ use yii\widgets\Pjax;
                                         <?php
                                         if (isset ($products)) {
                                         foreach ($products as $product) {
-                                          $image = Image::find()->where(['product_id'=>$product->id])->first();
-                                          if(isset($image)) {
-                                            $img_url = $image;
+                                          if(isset($product->image)) {
+                                            $img_url = $product->image;
                                           } else {
                                             $img_url = '';
                                           }
@@ -126,9 +125,8 @@ use yii\widgets\Pjax;
                                   <?php
                                   if (isset ($products)) {
                                       foreach ($products as $product) {
-                                        $image = Image::find()->where(['product_id'=>$product->id])->first();
-                                  if(isset($image)) {
-                                    $img_url = $image;
+                                  if(isset($product->image)) {
+                                    $img_url = $product->image;
                                   } else {
                                     $img_url = '';
                                   }
