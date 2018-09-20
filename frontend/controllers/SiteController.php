@@ -116,7 +116,7 @@ class SiteController extends Controller
 
 
 
-        return $this->render('index', ['products'=>$products, 'categories'=>$categories, 'pages'=>$pages]);
+        return $this->render('index', ['products'=>$products,  'categories'=>$categories, 'pages'=>$pages]);
     }
 
     /**
