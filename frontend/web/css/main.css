@@ -5237,3 +5237,11 @@ a {
   font-family: 'Bangers', cursive;
   font-size: 120px;
 }
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  background: #87b966 !important;
+  border: 1px solid #33982c !important;
+}
+.ui-widget-header {
+  background: #eef7d3 !important;
+}

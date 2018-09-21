@@ -24,7 +24,7 @@ class UnicaseAsset extends AssetBundle
     'css/rateit.css',
     'css/bootstrap-select.min.css',
     'css/config.css',
-
+    'http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/sunny/jquery-ui.css',
     //<!-- Icons/Glyphs -->
     'css/font-awesome.min.css',
     //<!-- Fonts -->
@@ -39,6 +39,9 @@ class UnicaseAsset extends AssetBundle
    // 'js/respond.min.js',
 
    // 'js/jquery-1.11.1.min.js',
+
+'//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
+'//ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js',
     'js/bootstrap.min.js',
     'js/bootstrap-hover-dropdown.min.js',
     'js/owl.carousel.min.js',

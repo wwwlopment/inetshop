@@ -293,20 +293,31 @@ $(document).ready(function(){
 /* PRICE SLIDER
 /*===================================================================================*/
 $(document).ready(function () {
+    $(function() {
 
-// Price Slider
-if ($('.price-slider').length > 0) {
-    $('.price-slider').slider({
-        min: 100,
-        max: 700,
-        step: 10,
-        value: [200, 500],
-        handle: "square"
-
+        $('#slider').slider({
+             animate: "fast",
+            min: 0,
+            max: parseInt($('.pull-right').text()),
+            values: [0, parseInt($('.pull-right').text())],
+           // step: 10,
+            //values: [0, 1000000],
+        range: true,
+        create: displaySliderValues,
+        slide:
+             function( event, ui ) {
+                 //console.log(ui.value);
+          //      $("#slider").css('background', 'linear-gradient(90deg, #abd07e'+ui.value+'%, #cccccc 0%)');
+                //$( "#price" ).val( "$" + ui.value);
+              // $('#lower').text($('#slider').slider("values", 0));
+               displaySliderValues();
+            }
+        });
+ function displaySliderValues() {
+        $('#lower').text($('#slider').slider("values", 0)+' грн.');
+        $('#upper').text($('#slider').slider("values", 1)+' грн.');
+    }
     });
-
-}
-
 });
 
 

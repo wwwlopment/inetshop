@@ -103,6 +103,7 @@ class SiteController extends Controller
 
      // $products = Products::find()->query($params);
 
+
       $countQuery = clone $products;
 
       // paginations - 10 items per page
@@ -116,7 +117,7 @@ class SiteController extends Controller
 
 
 
-        return $this->render('index', ['products'=>$products,  'categories'=>$categories, 'pages'=>$pages]);
+        return $this->render('index', ['products'=>$products, 'categories'=>$categories, 'pages'=>$pages]);
     }
 
     /**

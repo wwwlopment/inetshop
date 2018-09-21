@@ -312,19 +312,22 @@ UnicaseAsset::register($this);
                 <div class="sidebar-widget-body m-t-20">
                     <div class="price-range-holder">
       	    <span class="min-max">
-                 <span class="pull-left">200.00 грн.</span>
-                 <span class="pull-right">800.00 грн.</span>
+                <span id="lower" class="pull-left">0.00</span>
+                 <span id="upper" class="pull-right"><?= Products::find()->max('price');?></span>
             </span>
-                        <input type="text" id="amount" style="border:0; color:#666666; font-weight:bold;text-align:center;">
 
-                        <input type="text" class="price-slider" value="" >
+                        <!--<input type="text" id="amount" style="border:0; color:#666666; font-weight:bold;text-align:center;">
+
+                        <input type="text" class="price-slider" value="" >-->
 
                     </div><!-- /.price-range-holder -->
-                    <a href="#" class="lnk btn btn-primary">Показати</a>
+                    <div id="slider"></div>
+                    <a href="#" class="lnk btn btn-primary" style="margin-top: 20px">Показати</a>
                 </div><!-- /.sidebar-widget-body -->
             </div><!-- /.sidebar-widget -->
             <!-- ============================================== PRICE SILDER : END ============================================== -->
-            <!-- ============================================== MANUFACTURES============================================== -->
+
+                       <!-- ============================================== MANUFACTURES============================================== -->
             <div class="sidebar-widget outer-bottom-xs wow fadeInUp">
                 <div class="widget-header">
                     <h4 class="widget-title">Виробники</h4>
