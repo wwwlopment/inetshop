@@ -315,7 +315,9 @@ $(document).ready(function () {
         });
  function displaySliderValues() {
         $('#lower').text($('#slider').slider("values", 0)+' грн.');
+        $('#from').val($('#slider').slider("values", 0));
         $('#upper').text($('#slider').slider("values", 1)+' грн.');
+        $('#to').val($('#slider').slider("values", 1));
     }
     });
 });

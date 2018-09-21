@@ -421,6 +421,24 @@ return $this->render('shopping_cart');
   }
 
 
+  public function actionFilter() {
+  $from = Yii::$app->request->post('from');
+  $to = Yii::$app->request->post('to');
+  //$from= 10;
+  //$to = 500;
+//var_dump(Yii::$app->request->post());die();
+  $result = Products::find()->where(['>','price', $from])->andWhere(['<', 'price', $to]);
+    $pages = new Pagination([
+      'totalCount'=>$result->count(),
+      'pageSize'=>10,
+      'forcePageParam'=>false,
+      'pageSizeParam'=>false
+    ]);
+    $q ='ціна від '. $from . ' до ' . $to;
+    $products = $result->offset($pages->offset)->limit($pages->limit)->all();
+    return $this->render('found', compact('products', 'pages', 'q'));
+
+  }
 
   public function actionSearch()
   {

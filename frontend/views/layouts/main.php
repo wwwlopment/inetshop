@@ -309,12 +309,28 @@ UnicaseAsset::register($this);
                 <div class="widget-header">
                     <h4 class="widget-title">Ціна</h4>
                 </div>
+              <?php
+              // $search_model = new \app\models\Search();
+              // $q='';
+              $form = ActiveForm::begin([
+
+                'action'  => ['site/filter'],
+                'method'  => 'post',
+                'id' => 'form-price',
+                'options' => [
+                  'name'=>'price_filter',
+                  // 'class' => 'form-horizontal col-lg-11',
+                  // 'enctype' => 'multipart/form-data'
+                ],
+              ]); ?>
                 <div class="sidebar-widget-body m-t-20">
                     <div class="price-range-holder">
       	    <span class="min-max">
                 <span id="lower" class="pull-left">0.00</span>
                  <span id="upper" class="pull-right"><?= Products::find()->max('price');?></span>
             </span>
+                        <input type="text" hidden id="from" value="" name="from">
+                        <input type="text" hidden id="to"  value="" name="to">
 
                         <!--<input type="text" id="amount" style="border:0; color:#666666; font-weight:bold;text-align:center;">
 
@@ -322,8 +338,11 @@ UnicaseAsset::register($this);
 
                     </div><!-- /.price-range-holder -->
                     <div id="slider"></div>
-                    <a href="#" class="lnk btn btn-primary" style="margin-top: 20px">Показати</a>
-                </div><!-- /.sidebar-widget-body -->
+                  <?=Html::a('Показати', '#', ['style'=> 'margin-top: 20px', 'class' => 'lnk btn btn-primary', 'onclick'=>'$(\'#form-price\').submit();']);?>
+
+<!--                    <a href="#" class="lnk btn btn-primary" style="margin-top: 20px">Показати</a>
+-->                </div><!-- /.sidebar-widget-body -->
+                <?php ActiveForm::end(); ?>
             </div><!-- /.sidebar-widget -->
             <!-- ============================================== PRICE SILDER : END ============================================== -->
 
