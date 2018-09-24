@@ -12,6 +12,11 @@ use yii\helpers\Html;
             <div class="product-item-holder size-big single-product-gallery small-gallery">
 
               <div id="owl-single-product">
+                  <div class="single-product-gallery-item" id="slide<?=$n?>">
+                  <a data-lightbox="image-1" data-title="Gallery" href="<?=$product->image?>">
+                    <img class="img-responsive" alt="" src="<?=$product->image?>" data-echo="<?=$product->image?>" />
+                  </a>
+                </div>
                   <?php
                   $n = 0;
                   foreach ($images as $image) {
