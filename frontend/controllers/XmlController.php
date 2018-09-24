@@ -37,8 +37,8 @@ class XmlController extends Controller {
             'available' => 'Available',*/
       libxml_use_internal_errors(true);
     $result='';
-      //$xml = simplexml_load_file('../../frontend/web/uploads/vygr.xml');
-      $xml = simplexml_load_file('../../frontend/web/uploads/odyag.xml');
+      $xml = simplexml_load_file('../../frontend/web/uploads/vygr.xml');
+      //$xml = simplexml_load_file('../../frontend/web/uploads/odyag.xml');
     if (!$xml) {
       echo(libxml_get_errors());
       return;
