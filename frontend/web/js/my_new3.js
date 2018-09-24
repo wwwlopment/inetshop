@@ -17,12 +17,7 @@ $(document).ready(function() {
     }, function () {
         alert('Done!');
     });
-    $(window).load(function(){
-        $('.flexslider').flexslider({
-            animation: "pagination",
-            start: function(slider){
-                $('body').removeClass('loading');
-            }
-        });
-    });
+
+
+
 });

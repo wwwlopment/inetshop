@@ -120,6 +120,23 @@ class SiteController extends Controller
         return $this->render('index', ['products'=>$products, 'categories'=>$categories, 'pages'=>$pages]);
     }
 
+    public function actionCategory() {
+      $category_id = Yii::$app->request->get('cat');
+      $products = Products::find()->where(['category_id'=>$category_id])->orderBy('id');
+         $countQuery = clone $products;
+
+      // paginations - 10 items per page
+      $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 12]);
+
+      $pages->pageSizeParam = false;
+
+      $products = $products->offset($pages->offset)
+        ->limit($pages->limit)
+        ->all();
+
+      return $this->render('category', ['products'=>$products, 'pages'=>$pages]);
+    }
+
     /**
      * Logs in a user.
      *
@@ -440,9 +457,14 @@ return $this->render('shopping_cart');
 
   }
 
+  public function actionCheckout() {
+          return $this->render('checkout');
+  }
+
   public function actionSearch()
   {
-    $q = Yii::$app->request->queryParams['search'];
+  //  var_dump( Yii::$app->request->queryParams['SearchProducts']['title']);die();
+    $q = Yii::$app->request->queryParams['SearchProducts']['params'];
 
     $query = Products::find()->where(['like', 'title', $q ])->orWhere(['like', 'description', $q ]);
     $pages = new Pagination([

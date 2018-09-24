@@ -12,6 +12,7 @@ use common\models\Products;
  */
 class SearchProducts extends Products
 {
+  public $params;
     /**
      * {@inheritdoc}
      */
@@ -73,8 +74,8 @@ class SearchProducts extends Products
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'vendor', $this->vendor])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'image', $this->image]);
+            ->andFilterWhere(['like', 'description', $this->description]);
+          //  ->andFilterWhere(['like', 'image', $this->image]);
 
         return $dataProvider;
     }

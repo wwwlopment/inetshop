@@ -97,4 +97,36 @@ jQuery(document).ready(function($){
 			navigation.insertAfter('.cd-main-content');
 		}
 	}
+
+
+
+
+
+    $(function() {
+        $('.img-responsive').matchHeight({
+            byRow: true,
+            property: 'height',
+            target: null,
+            remove: false
+        });
+    });
+
+    $(function() {
+        $('.col-md-3').matchHeight({
+            byRow: true,
+            property: 'height',
+            target: null,
+            remove: false
+        });
+    });
+    $(function() {
+        $('.col-md-4').matchHeight({
+            byRow: true,
+            property: 'height',
+            target: null,
+            remove: false
+        });
+    });
+
+
 });
