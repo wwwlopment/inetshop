@@ -44,9 +44,9 @@ class XmlController extends Controller {
       return;
     }
 
-    if (!Categories::find()->where(['title'=> 'Одяг'])->one()) {
+    if (!Categories::find()->where(['title'=> 'Іграшки'])->one()) {
     $category = new Categories();
-    $category->title = 'Одяг';
+    $category->title = 'Іграшки';
     $category->logo_class = '';
  //   $category->created_at = time();
     $category->save(false);
