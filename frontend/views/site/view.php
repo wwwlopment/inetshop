@@ -12,13 +12,13 @@ use yii\helpers\Html;
             <div class="product-item-holder size-big single-product-gallery small-gallery">
 
               <div id="owl-single-product">
-                  <div class="single-product-gallery-item" id="slide<?=$n?>">
+                  <div class="single-product-gallery-item" id="slide1">
                   <a data-lightbox="image-1" data-title="Gallery" href="<?=$product->image?>">
                     <img class="img-responsive" alt="" src="<?=$product->image?>" data-echo="<?=$product->image?>" />
                   </a>
                 </div>
                   <?php
-                  $n = 0;
+                  $n = 1;
                   foreach ($images as $image) {
                      $n++
                       ?>
