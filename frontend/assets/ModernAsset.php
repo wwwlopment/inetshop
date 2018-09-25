@@ -17,17 +17,12 @@ class ModernAsset extends AssetBundle
   public $css = [
     'css/bootstrap.css',
     'css/style.css',
-    'css/flexslider.css',
-    'css/flexslider1.css',
     'css/animate.min.css',
   ];
   public $js = [
-  //  '//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js',
-
     'js/jquery-1.11.1.min.js',
     'js/jquery.countdown.min.js',
     'js/jquery.matchHeight.js',
-    'js/jquery.flexslider.js',
     'js/modernizr.custom.js',
     'js/simpleCart.min.js',
     'js/wow.min.js',
@@ -40,12 +35,12 @@ class ModernAsset extends AssetBundle
     'js/bootstrap.js',
     'js/imagezoom.js',
     'js/move-top.js',
-    'js/easing.js',
+    'js/jquery.flexslider.js',
 
   ];
   public $depends = [
     'yii\web\YiiAsset',
-    'yii\bootstrap\BootstrapAsset',
+   // 'yii\bootstrap\BootstrapAsset',
   ];
 
 }

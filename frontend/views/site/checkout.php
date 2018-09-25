@@ -14,11 +14,13 @@ $this->title = 'Checkout';
 </div>
 <!--//breadcrumbs-->
 <!--cart-items-->
+<div class="simpleCart_items"></div>
 <div class="cart-items">
   <div class="container">
-    <h3 class="wow fadeInUp animated" data-wow-delay=".5s">My Shopping Cart(3)</h3>
+    <h3 class="wow fadeInUp animated" data-wow-delay=".5s">My Shopping Cart</h3>
     <div class="cart-header wow fadeInUp animated" data-wow-delay=".5s">
-      <div class="alert-close"> </div>
+        <div class="simpleCart_items"></div>
+        <!--<div class="alert-close"> </div>
       <div class="cart-sec simpleCart_shelfItem">
         <div class="cart-item cyc">
           <a href="single.html"><img src="images/g1.jpg" class="img-responsive" alt=""></a>
@@ -79,6 +81,6 @@ $this->title = 'Checkout';
         </div>
         <div class="clearfix"></div>
       </div>
-    </div>
+    </div>-->
   </div>
 </div>

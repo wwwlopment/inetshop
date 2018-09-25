@@ -9,6 +9,8 @@ use yii\web\View;
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
 
+$this->registerCssFile('../css/flexslider.css');
+
 
 function limit_words($string, $word_limit) {
   $words=explode(" ",$string);
@@ -20,15 +22,7 @@ $upsell = Products::find()->limit(8)->offset(10)->all();
 $top = Products::find()->limit(4)->offset(15)->all();
 
 
-$script = "$(window).load(function(){
-        $('.flexslider').flexslider({
-            animation: \"pagination\",
-            start: function(slider){
-                $('body').removeClass('loading');
-            }
-        });
-    });";
-$this->registerJs($script, View::POS_READY);
+
 ?>
 
 
@@ -48,7 +42,7 @@ $this->registerJs($script, View::POS_READY);
       <div class="col-md-3 new-grid simpleCart_shelfItem wow flipInY animated" data-wow-delay=".<?=$time?>s"">
       <!--<div class="col-md-3 new-grid simpleCart_shelfItem wow flipInY animated" data-wow-delay="1.1s">-->
         <div class="new-top">
-          <a href="<?=\yii\helpers\Url::to(['site/view', 'id' => $hot_item->id])?>"><img style="width: 250px; height: 333px" src="<?= $hot_item->image ?>" class="img-responsive" alt=""/></a>
+          <a href="<?=\yii\helpers\Url::to(['site/view', 'id' => $hot_item->id])?>"><img style="width: 250px; height: 333px" src="<?= $hot_item->image ?>" class="item_image img-responsive" alt=""/></a>
           <div class="new-text">
             <ul>
               <li><a class="item_add" href=""> Купити</a></li>
@@ -59,7 +53,7 @@ $this->registerJs($script, View::POS_READY);
         </div>
         <div class="new-bottom">
           <h5>
-            <?= Html::a(limit_words($hot_item->title, 3), ['site/view', 'id' => $hot_item->id], ['class'=>'name']) ?>
+            <?= Html::a(limit_words($hot_item->title, 3), ['site/view', 'id' => $hot_item->id], ['class'=>'item_name name']) ?>
 
 <!--              <a class="name" href="single.html">Child Print Bike </a>-->
           </h5>
@@ -101,10 +95,10 @@ $this->registerJs($script, View::POS_READY);
       foreach ($upsell as $upsel_item) { ?>
       <div class="col-md-3 gallery-grid wow flipInY animated" data-wow-delay=".<?=$time?>s">
        <div class="intr">
-        <a href="<?=\yii\helpers\Url::to(['site/view', 'id' => $upsel_item->id])?>"><img src="<?=$upsel_item->image?>" class="img-responsive" alt=""/></a>
+        <a href="<?=\yii\helpers\Url::to(['site/view', 'id' => $upsel_item->id])?>"><img src="<?=$upsel_item->image?>" class="item_image img-responsive" alt=""/></a>
         <div class="gallery-text simpleCart_shelfItem">
           <h5>
-              <a class="name" href="<?=\yii\helpers\Url::to(['site/view', 'id' => $upsel_item->id])?>"><?=limit_words($upsel_item->title, 4)?></a>
+              <a class="item_name" href="<?=\yii\helpers\Url::to(['site/view', 'id' => $upsel_item->id])?>"><?=limit_words($upsel_item->title, 4)?></a>
           </h5>
           <p><span class="item_price"><?=$upsel_item->price?> грн.</span></p>
 <!--          <h4 class="sizes">Sizes: <a href="#"> s</a> - <a href="#">m</a> - <a href="#">l</a> - <a href="#">xl</a> </h4>

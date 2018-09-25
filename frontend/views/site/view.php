@@ -3,27 +3,27 @@
 use common\models\Products;
 use yii\web\View;
 
-//$this->registerJsFile('../js/jquery.flexslider.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
-//$this->registerCssFile('../css/flexslider1.css');
 ?>
 
 
 <?php
-/*$this->registerJsFile('../js/imagezoom.js');
-$this->registerJsFile('../js/move-top.js');
-$this->registerJsFile('../js/easing.js');*/
+$this->registerJsFile('../js/jquery-1.11.1.min.js', ['position' => View::POS_HEAD]);
+$this->registerJsFile('../js/jquery.flexslider.js');
+
+
 
 $related = Products::find()->limit(4)->offset(25)->all();
 
-$script = "$(window).load(function() {
-        $('.flexslider').flexslider({
-            animation: \"slide\",
-            controlNav: \"thumbnails\"
-        });
-    });";
-$this->registerJs($script, View::POS_READY);
+$this->registerCssFile('../css/flexslider1.css', ['position' => View::POS_HEAD]);
 ?>
-
+<script>
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            controlNav: "thumbnails"
+        });
+    });
+</script>
 
 <div class="single">
   <div class="container">
