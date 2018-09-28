@@ -11,7 +11,7 @@ $this->registerJsFile('../js/jquery-1.11.1.min.js', ['position' => View::POS_HEA
 $this->registerJsFile('../js/jquery.flexslider.js');
 
 
-
+$this->title = 'Перегляд товару';
 $related = Products::find()->limit(4)->offset(25)->all();
 
 $this->registerCssFile('../css/flexslider1.css', ['position' => View::POS_HEAD]);
@@ -24,7 +24,14 @@ $this->registerCssFile('../css/flexslider1.css', ['position' => View::POS_HEAD])
         });
     });
 </script>
-
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="<?=\yii\helpers\Url::to(['/'])?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active">Перегляд товару</li>
+        </ol>
+    </div>
+</div>
 <div class="single">
   <div class="container">
     <div class="single-info">

@@ -30,7 +30,7 @@ if (!empty($_SESSION['cart'])) {
 }
 
 
-$this->title = 'Cart';
+$this->title = 'Кошик';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -38,7 +38,7 @@ $this->title = 'Cart';
   <div class="container">
     <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
       <li><a href="<?=\yii\helpers\Url::to(['/'])?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-      <li class="active">Check Out page</li>
+      <li class="active">Кошик</li>
     </ol>
   </div>
 </div>

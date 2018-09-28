@@ -7,14 +7,24 @@ use yii\widgets\LinkPager;
 //$query = '';
 $query = yii\helpers\Html::encode($q);
 //var_dump($products);
-$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['/site']];
+//$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['/site']];
 $this->title = "Результати пошуку по запиту \"$query\"";
-$this->params['breadcrumbs'][] = $this->title;
-
+//$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Пошук';
 //SearchAssets::register($this);
 //$this->registerJs("jQuery('.search').highlight('{$query}');");
 ?>
-
+<div class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+      <li><a href="<?=\yii\helpers\Url::to(['/'])?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+      <li class="active">Пошук</li>
+    </ol>
+  </div>
+</div>
+<br>
+<br>
+<br>
 <div class="row">
 
 

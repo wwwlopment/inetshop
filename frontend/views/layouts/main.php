@@ -61,7 +61,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <link href='//fonts.googleapis.com/css?family=Pompiere' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Fascinate' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Caveat|Cormorant+Infant" rel="stylesheet">
-
+  <?php  $this->registerJsFile('https://code.jquery.com/jquery-migrate-3.0.0.js', ['position' => View::POS_HEAD]);
+?>
     <!--//for-mobile-apps -->
     <!--Custom Theme files -->
     <!--//end-smooth-scrolling-->
@@ -84,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="nav navbar-nav navbar-right header-two-right">
                 <div class="header-right my-account">
-                    <a href="contact.html"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> ДЕ НАС ЗНАЙТИ </a>
+                    <a href="<?=\yii\helpers\Url::to(['site/contact'])?>"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> ДЕ НАС ЗНАЙТИ </a>
                 </div>
               <?php Pjax::begin(['id' => 'pjaxContent']); ?>
                 <div class="header-right cart">
@@ -350,7 +351,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 ],
               ]); ?>
 
-              <?= $form->field($search_model, 'params') ?>
+              <?= $form->field($search_model, 'params')->hint('Пошук...')->label(false) ?>
                   <!--  <input style="font-style: italic" type="search" placeholder="Пошук...">-->
               <?php ActiveForm::end(); ?>
             </div>

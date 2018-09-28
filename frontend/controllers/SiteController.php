@@ -122,6 +122,7 @@ class SiteController extends Controller
 
     public function actionCategory() {
       $category_id = Yii::$app->request->get('cat');
+      $category = Categories::findOne(['id'=>$category_id]);
       $products = Products::find()->where(['category_id'=>$category_id])->orderBy('id');
          $countQuery = clone $products;
 
@@ -134,7 +135,7 @@ class SiteController extends Controller
         ->limit($pages->limit)
         ->all();
 
-      return $this->render('category', ['products'=>$products, 'pages'=>$pages]);
+      return $this->render('category', ['category' => $category,'products'=>$products, 'pages'=>$pages]);
     }
 
     /**
