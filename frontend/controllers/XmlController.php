@@ -60,7 +60,7 @@ class XmlController extends Controller {
     foreach ($xml->shop->offers->offer as $value) {
     // var_dump($value);die();
 
-/*
+
 $product = new Products();
 $product->title = $value->name;
 $product->category_id = $last_id;
@@ -68,11 +68,11 @@ $product->price = $value->price;
 $product->vendor = $value->vendorCode;
 $product->description = $value->description;
 $product->image = $value->picture;
-$product->available = $value->available;
-//$product->created_at = time();*/
+$product->available = 1;
+//$product->created_at = time();/**/
 //
 //odyag
-$description = '';
+/*$description = '';
 $product = new Products();
 $product->title = $value->model;
 $product->category_id = $last_id;
@@ -83,7 +83,7 @@ foreach ($value->param as $param) {
       }
 $product->description = $description . ' '. $value->description;
 $product->image = $value->picture[0];
-$product->available = $value->available;
+$product->available = $value->available;*/
 //$product->created_at = time();
 
 $product->save(false);
