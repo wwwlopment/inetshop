@@ -7,6 +7,7 @@ use common\models\Products;
 use frontend\models\SearchForm;
 use yii\helpers\Html;
 use common\models\Categories;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
@@ -22,10 +23,16 @@ use yii\helpers\Url;
 $upsell = Products::find()->limit(10)->all();
 $hot = Products::find()->limit(5)->all();
 ModernAsset::register($this);
-
- if (!empty($_SESSION['cart'])) {
    $subtotal = 0;
-   $sum = 0;
+      $sum = 0;
+if(isset($_SESSION['cart'])){
+    $count = count($_SESSION['cart']);
+} else {
+    $count = 0;
+}
+ if (!empty($_SESSION['cart'])) {
+/*   $subtotal = 0;
+   $sum = 0;*/
    foreach ($_SESSION['cart'] as $id => $item) {
      $sum = $item['quantity'] * $item['price'];
      $subtotal = $subtotal + $sum;
@@ -54,7 +61,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <link href='//fonts.googleapis.com/css?family=Pompiere' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Fascinate' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Caveat|Cormorant+Infant" rel="stylesheet">
-
 
     <!--//for-mobile-apps -->
     <!--Custom Theme files -->
@@ -86,7 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h4>
 
 
-                        <?= Html::a(Html::tag('span', $subtotal .' грн.'.'(' . Html::tag('span', count($_SESSION['cart']), ['id'=>'simpleCart_quantity', 'class'=>'simpleCart_quantity']).')',['class'=> 'simpleCart_total'] ), Url::to(['site/cart']), ['data-pjax'=>0])?>
+                        <?= Html::a(Html::tag('span', $subtotal .' грн.'.'(' . Html::tag('span', $count, ['id'=>'simpleCart_quantity', 'class'=>'simpleCart_quantity']).')',['class'=> 'simpleCart_total'] ), Url::to(['site/cart']), ['data-pjax'=>0])?>
 
 
                     </h4>

@@ -335,7 +335,7 @@ class SiteController extends Controller
     //}
   }
 
-public function actionCheckout() {
+public function actionCart() {
      // var_dump(Yii::$app->request->get());die();
   if (!empty($_SESSION['cart'])) {
     $model = new OrderForm();
@@ -382,12 +382,12 @@ public function actionCheckout() {
       return $this->redirect(['/']);
     } else {
 
-      return $this->render('checkout', ['model' => $model]);
+      return $this->render('cart', ['model' => $model]);
     }
 
     }
 
-return $this->render('shopping_cart');
+return $this->render('cart');
   }
 
 
@@ -451,9 +451,9 @@ return $this->render('shopping_cart');
 
   }
 
-  public function actionCart() {
+ /* public function actionCart() {
           return $this->render('cart');
-  }
+  }*/
 
   public function actionSearch()
   {

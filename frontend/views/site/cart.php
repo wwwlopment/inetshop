@@ -13,7 +13,13 @@ use yii\captcha\Captcha;
   echo count($_SESSION['cart']);
 }*/
 //unset($_SESSION['cart']);
-
+$subtotal = 0;
+$sum = 0;
+if(isset($_SESSION['cart'])){
+  $count = count($_SESSION['cart']);
+} else {
+  $count = 0;
+}
 if (!empty($_SESSION['cart'])) {
   $subtotal = 0;
   $sum = 0;
@@ -104,11 +110,36 @@ $this->title = 'Cart';
   </div>
 
 </div>
-    <div class="container">
+<div class="container">
     <div class="subtotal" style="text-align: center">
 
         <h4>
             <span class="text" style="font-size: 30px;" id="price_subtotal">Підсумок : <?=$subtotal . ' грн.'?></span>
         </h4>
+    </div>
+
+    <div class="cart-checkout-btn col-md-offset-3 col-md-6 col-sm-12">
+      <?php
+      if (!empty($_SESSION['cart'])) {
+        if (isset($model)) {
+          $form = ActiveForm::begin([
+            'id' => 'orderform',
+            'options' => ['class' => 'form-horizontal form-group'],
+          ]) ?>
+          <?= $form->field($model, 'name')->label('Ім\'я')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control name-input', 'placeholder' => 'You name..']) ?>
+          <?= $form->field($model, 'phone')->label('Телефон')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control phone-input', 'placeholder' => 'You phone..']) ?>
+          <?= $form->field($model, 'email')->label('Е-мейл')->textInput(['maxlength' => 255, 'class' => 'form-control unicase-form-control email-input', 'placeholder' => 'You email..']) ?>
+          <?= $form->field($model, 'verifyCode')->label('Код підтвердження')->widget(Captcha::className()) ?>
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-4 col-sm-offset-8 col-sm-4 col-xs-offset-4 col-xs-8">
+                  <?= Html::submitButton('ОФОРМИТИ ПОКУПКУ', ['class' => 'btn btn-primary ', 'type' => 'submit']); ?>
+                </div>
+            </div>
+          <?php ActiveForm::end();
+        }
+      }
+
+      ?>
+
     </div>
 </div>

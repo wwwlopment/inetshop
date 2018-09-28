@@ -87,11 +87,12 @@ $this->registerCssFile('../css/flexslider1.css', ['position' => View::POS_HEAD])
           <li><a href="#" class="pink"></a></li>
         </ul>-->
         <div class="clearfix"> </div>
-        <div class="quantity">
+       <!-- <div class="quantity">
           <p style="font-style: italic" class="qty"> Кількість :  </p><input min="1" type="number" value="1" class="item_quantity">
-        </div>
+        </div>-->
         <div class="btn_form">
-          <a href="#" class="add-cart item_add">КУПИТИ</a>
+            <a href="<?= \yii\helpers\Url::to(['site/addtocart', 'product_id' => $product->id]) ?>"
+               data-id="<?= $product->id ?>" class="buy"> КУПИТИ</a>
         </div>
       </div>
       <div class="clearfix"> </div>
@@ -175,11 +176,14 @@ $this->registerCssFile('../css/flexslider1.css', ['position' => View::POS_HEAD])
                                 src="<?=$related_item->image?>" class="img-responsive" alt=""/></a>
                     <div class="new-text">
                         <ul>
-                            <li><a class="item_add" href=""> Купити</a></li>
+                            <li><a href="<?= \yii\helpers\Url::to(['site/addtocart', 'product_id' => $related_item->id]) ?>"
+                                   data-id="<?= $related_item->id ?>" class="buy" >
+                                   <!-- <a class="item_add" href="">--> Купити</a>
+                            </li>
                             <li><a href="<?= \yii\helpers\Url::to(['site/view', 'id' => $related_item->id]) ?>">Переглянути</a>
                             </li>
                             <li>
-                                <a href="<?= \yii\helpers\Url::to(['site/category', 'id' => $related_item->category_id]) ?>">
+                                <a href="<?= \yii\helpers\Url::to(['site/category', 'cat' => $related_item->category_id]) ?>">
                                     До категорії </a></li>
                         </ul>
                     </div>

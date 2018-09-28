@@ -8,7 +8,8 @@ use common\models\Categories;
 use yii\web\View;
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
-
+//$this->registerJsFile('../js/jquery-1.11.1.min.js', ['position' => View::POS_HEAD]);
+ //  $this->registerJsFile('https://code.jquery.com/jquery-migrate-3.0.0.js', ['position' => View::POS_HEAD]);
 $this->registerCssFile('../css/flexslider.css');
 
 
@@ -48,7 +49,7 @@ $top = Products::find()->limit(4)->offset(15)->all();
               <li><a href="<?= \yii\helpers\Url::to(['site/addtocart', 'product_id' => $hot_item->id]) ?>"
                      data-id="<?= $hot_item->id ?>" class="buy"> Купити</a></li>
               <li><a href="<?=\yii\helpers\Url::to(['site/view', 'id' => $hot_item->id])?>">Переглянути </a></li>
-              <li><a href="<?=\yii\helpers\Url::to(['site/category', 'id' => $hot_item->id])?>">До категорії </a></li>
+              <li><a href="<?=\yii\helpers\Url::to(['site/category', 'cat' => $hot_item->category_id])?>">До категорії </a></li>
             </ul>
           </div>
         </div>
@@ -72,7 +73,9 @@ $top = Products::find()->limit(4)->offset(15)->all();
         </div>
       </div>
 
-      <?php }
+      <?php
+         $time=+2;
+         }
       }?>
 
       <div class="clearfix"> </div>
@@ -105,8 +108,8 @@ $top = Products::find()->limit(4)->offset(15)->all();
 <!--          <h4 class="sizes">Sizes: <a href="#"> s</a> - <a href="#">m</a> - <a href="#">l</a> - <a href="#">xl</a> </h4>
 -->          <ul>
 <!--            <li><a href="#"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></a></li>
--->            <li><a href="<?= \yii\helpers\Url::to(['site/addtocart', 'product_id' => $hot_item->id]) ?>"
-                      data-id="<?= $hot_item->id ?>" class="buy" ><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
+-->            <li><a href="<?= \yii\helpers\Url::to(['site/addtocart', 'product_id' => $upsel_item->id]) ?>"
+                      data-id="<?= $upsel_item->id ?>" class="buy" ><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
             <li><a href="#"><span class="glyphicon glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a></li>
           </ul>
         </div>
