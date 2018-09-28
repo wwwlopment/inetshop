@@ -353,6 +353,7 @@ ul.multi-column-dropdown:nth-child(3) {
 	white-space: nowrap;
 	color: transparent;
 	z-index: 3;
+	left: 150px;
 }
 
 .cd-search-trigger::before, .cd-search-trigger::after {
