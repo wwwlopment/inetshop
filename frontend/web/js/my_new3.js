@@ -27,9 +27,10 @@ $(document).ready(function() {
         });
     });
 
-    simpleCart({
+/*    simpleCart({
         cartColumns: [
             { attr: "name" , label: "Name" } ,
+            { attr: "image" , label: "Image" } ,
             { attr: "price" , label: "Price", view: 'currency' } ,
             { view: "decrement" , label: false , text: "-" } ,
             { attr: "quantity" , label: "Qty" } ,
@@ -37,7 +38,7 @@ $(document).ready(function() {
             { attr: "total" , label: "SubTotal", view: 'currency' } ,
             { view: "remove" , text: "Remove" , label: false }
         ]
-    });
+    });*/
 
 
 });

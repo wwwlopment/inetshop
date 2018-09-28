@@ -18,13 +18,24 @@ class ModernAsset extends AssetBundle
     'css/bootstrap.css',
     'css/style.css',
     'css/animate.min.css',
+    'css/font-awesome.min.css',
   ];
   public $js = [
-    'js/jquery-1.11.1.min.js',
+    //'//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js',
+    //'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
+    //'js/jquery-1.11.1.min.js',
+    //
+   'https://code.jquery.com/jquery-3.0.0.js',
+    'http://code.jquery.com/jquery-migrate-1.2.1.min.js',
+
+   // 'https://code.jquery.com/jquery-migrate-3.0.1.js',
+
+'https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js',
+
     'js/jquery.countdown.min.js',
     'js/jquery.matchHeight.js',
     'js/modernizr.custom.js',
-    'js/simpleCart.min.js',
+    //'js/simpleCart.min.js',
     'js/wow.min.js',
     'js/my_new.js',
     'js/move-top.js',
@@ -40,7 +51,7 @@ class ModernAsset extends AssetBundle
   ];
   public $depends = [
     'yii\web\YiiAsset',
-   // 'yii\bootstrap\BootstrapAsset',
+    'yii\bootstrap\BootstrapAsset',
   ];
 
 }

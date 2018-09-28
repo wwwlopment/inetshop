@@ -305,7 +305,7 @@ class SiteController extends Controller
 
 
    public function actionAddtocart() {
-
+//var_dump(Yii::$app->request->get('product_id')); die();
      $product_id = Yii::$app->request->get('product_id');
      $view_quantity =  Yii::$app->request->get('view_quantity');
      $product = Products::findOne($product_id);
@@ -335,7 +335,8 @@ class SiteController extends Controller
     //}
   }
 
-public function actionCreateorder() {
+public function actionCheckout() {
+     // var_dump(Yii::$app->request->get());die();
   if (!empty($_SESSION['cart'])) {
     $model = new OrderForm();
 
@@ -381,15 +382,8 @@ public function actionCreateorder() {
       return $this->redirect(['/']);
     } else {
 
-      return $this->render('shopping_cart', ['model' => $model]);
+      return $this->render('checkout', ['model' => $model]);
     }
-  //  $order = new Orders();
-   // $order_description = new Order_descript();
-    //foreach ($_SESSION['cart'] as $id => $item) {
-//$order->product_id = $item['id'];
-//$order->buyer_name = '';
-//$order->buyer_email = '';
-  //    $order->save(false);
 
     }
 
@@ -457,8 +451,8 @@ return $this->render('shopping_cart');
 
   }
 
-  public function actionCheckout() {
-          return $this->render('checkout');
+  public function actionCart() {
+          return $this->render('cart');
   }
 
   public function actionSearch()

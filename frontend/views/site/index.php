@@ -45,7 +45,8 @@ $top = Products::find()->limit(4)->offset(15)->all();
           <a href="<?=\yii\helpers\Url::to(['site/view', 'id' => $hot_item->id])?>"><img style="width: 250px; height: 333px" src="<?= $hot_item->image ?>" class="item_image img-responsive" alt=""/></a>
           <div class="new-text">
             <ul>
-              <li><a class="item_add" href=""> Купити</a></li>
+              <li><a href="<?= \yii\helpers\Url::to(['site/addtocart', 'product_id' => $hot_item->id]) ?>"
+                     data-id="<?= $hot_item->id ?>" class="buy"> Купити</a></li>
               <li><a href="<?=\yii\helpers\Url::to(['site/view', 'id' => $hot_item->id])?>">Переглянути </a></li>
               <li><a href="<?=\yii\helpers\Url::to(['site/category', 'id' => $hot_item->id])?>">До категорії </a></li>
             </ul>
@@ -104,7 +105,8 @@ $top = Products::find()->limit(4)->offset(15)->all();
 <!--          <h4 class="sizes">Sizes: <a href="#"> s</a> - <a href="#">m</a> - <a href="#">l</a> - <a href="#">xl</a> </h4>
 -->          <ul>
 <!--            <li><a href="#"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></a></li>
--->            <li><a class="item_add" href="#"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
+-->            <li><a href="<?= \yii\helpers\Url::to(['site/addtocart', 'product_id' => $hot_item->id]) ?>"
+                      data-id="<?= $hot_item->id ?>" class="buy" ><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
             <li><a href="#"><span class="glyphicon glyphicon glyphicon-heart-empty" aria-hidden="true"></span></a></li>
           </ul>
         </div>

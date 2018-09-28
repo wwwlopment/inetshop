@@ -15,6 +15,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\ModernAsset;
 use common\widgets\Alert;
+use yii\helpers\Url;
 
 
 
@@ -22,6 +23,14 @@ $upsell = Products::find()->limit(10)->all();
 $hot = Products::find()->limit(5)->all();
 ModernAsset::register($this);
 
+ if (!empty($_SESSION['cart'])) {
+   $subtotal = 0;
+   $sum = 0;
+   foreach ($_SESSION['cart'] as $id => $item) {
+     $sum = $item['quantity'] * $item['price'];
+     $subtotal = $subtotal + $sum;
+   }
+ }
 ?>
 <?php $this->beginPage() ?>
 
@@ -71,16 +80,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="header-right my-account">
                     <a href="contact.html"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> ДЕ НАС ЗНАЙТИ </a>
                 </div>
+              <?php Pjax::begin(['id' => 'pjaxContent']); ?>
                 <div class="header-right cart">
-                    <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-                    <h4><a href="<?=\yii\helpers\Url::to(['site/checkout'])?>">
-                            <span class="simpleCart_total"> 0.00 грн. </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)
-                        </a></h4>
-                        <div class="cart-box">
+                    <a href="<?=\yii\helpers\Url::to(['site/cart'])?>" data-pjax="0"><span class="glyphicon glyphicon-shopping-cart"  aria-hidden="true"></span></a>
+                    <h4>
+
+
+                        <?= Html::a(Html::tag('span', $subtotal .' грн.'.'(' . Html::tag('span', count($_SESSION['cart']), ['id'=>'simpleCart_quantity', 'class'=>'simpleCart_quantity']).')',['class'=> 'simpleCart_total'] ), Url::to(['site/cart']), ['data-pjax'=>0])?>
+
+
+                    </h4>
+                      <!--  <div class="cart-box">
                           <p><a href="javascript:;" class="simpleCart_empty">Очистити кошик</a></p>
                           <div class="clearfix"> </div>
-                        </div>
+                        </div>-->
                 </div>
+              <?php Pjax::end(); ?>
                 <div class="clearfix"> </div>
             </div>
             <div class="clearfix"> </div>
