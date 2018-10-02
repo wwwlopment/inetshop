@@ -1,4 +1,7 @@
 RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP:SSL} !=1 [NC]
+RewriteRule ^(.*)$ https://%{SERVER_NAME}/%{REQUEST_URI}$1 [L,R]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
