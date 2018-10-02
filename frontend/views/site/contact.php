@@ -31,7 +31,7 @@ $this->title = 'Про нас';
             <p> <a href="https://goo.gl/maps/QakkKNVaDon"> наприклад за цим посиланням </a> </p>
         </div>
         <iframe class="wow zoomIn animated animated" data-wow-delay=".5s"  width="600" height="450" frameborder="0" style="border:0"
-                src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJQdUbbu-ZJUcRNnapTvdbzLQ&key=AIzaSyCGoAT4MJK0xk4X_tJaaPrRx6g-i2jVJVc" allowfullscreen></iframe>
+                src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJQdUbbu-ZJUcRNnapTvdbzLQ&key=1F4mHKTgwxPWZ1Ui1b8fr4Bn2sI=" allowfullscreen></iframe>
 <!--        <iframe class="wow zoomIn animated animated" data-wow-delay=".5s" src="https://goo.gl/maps/uywJgkm89sC2" allowfullscreen=""></iframe>-->
     </div>
 </div>
