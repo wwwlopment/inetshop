@@ -18,7 +18,11 @@ use frontend\assets\ModernAsset;
 use common\widgets\Alert;
 use yii\helpers\Url;
 
-
+if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == "") {
+  $redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+  header("HTTP/1.1 301 Moved Permanently");
+  header("Location: $redirect");
+}
 
 $upsell = Products::find()->limit(10)->all();
 $hot = Products::find()->limit(5)->all();
