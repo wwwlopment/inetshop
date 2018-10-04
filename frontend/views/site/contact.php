@@ -30,7 +30,7 @@ $this->title = 'Про нас';
             <h3 class="title">Як нас<span> знайти </span></h3>
             <p> <a href="https://goo.gl/maps/QakkKNVaDon"> наприклад за цим посиланням </a> </p>
         </div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2452.662530801811!2d25.327409854255315!3d50.7471848524825!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472599ef6e1bd541%3A0x2ea2f2660661535a!2z0KTRltC70ZbRjyDihJYxINC00LjRgtGP0YfQvtGXINC_0L7Qu9GW0LrQu9GW0L3RltC60Lg!5e0!3m2!1suk!2sua!4v1538682213154" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d315.5643400505886!2d25.3275361!3d50.7474889!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472599ef6e1bd541%3A0x2ea2f2660661535a!2z0KTRltC70ZbRjyDihJYxINC00LjRgtGP0YfQvtGXINC_0L7Qu9GW0LrQu9GW0L3RltC60Lg!5e0!3m2!1suk!2sua!4v1538682399819" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 
         </div>
 </div>
