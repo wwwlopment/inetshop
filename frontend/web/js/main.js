@@ -309,4 +309,6 @@ jQuery(document).ready(function($){
         $('#price_subtotal').text('Підсумок : '+new_total +' грн.');
     }
 
+    $('.navbar-toggle').click();
+
 });
