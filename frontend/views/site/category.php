@@ -1,12 +1,16 @@
 <?php
-
-$this->title = $category->title;
+//var_dump($category);die();
+$this->title = $tree->name;
 ?>
 <div class="breadcrumbs">
     <div class="container">
         <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
             <li><a href="<?=\yii\helpers\Url::to(['/'])?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-            <li class="active"><?=$category->title?></li>
+
+            <?php foreach ($tree->parents()->All() as $parent) { ?>
+                <li class="active"><a href="<?=\yii\helpers\Url::to(['site/category', 'cat' => $parent->id])?>"><?=$parent->name;?></a></li>
+            <?php } ?>
+            <li class="active"><?=$tree->name;?></li>
         </ol>
     </div>
 </div>

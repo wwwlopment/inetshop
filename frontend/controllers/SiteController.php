@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use common\models\Categories;
 use common\models\Image;
+use common\models\KartikTreeMenu;
 use common\models\Order_descript;
 use common\models\Orders;
 use common\models\Products;
@@ -122,8 +123,12 @@ class SiteController extends Controller
 
     public function actionCategory() {
       $category_id = Yii::$app->request->get('cat');
-      $category = Categories::findOne(['id'=>$category_id]);
-      $products = Products::find()->where(['category_id'=>$category_id])->orderBy('id');
+      //$category = Categories::findOne(['id'=>$category_id]);
+      $tree = KartikTreeMenu::findOne(['id'=>$category_id]);
+      $category = $tree->children()->all();
+     // $products = Products::find()->where(['category_id'=>$category_id])->orderBy('id');
+      $products = Products::find()->where(['category_id'=>
+      array_merge([$category_id], $tree->children()->select('id')->column()),])->orderBy('id');
          $countQuery = clone $products;
 
       // paginations - 10 items per page
@@ -135,7 +140,7 @@ class SiteController extends Controller
         ->limit($pages->limit)
         ->all();
 
-      return $this->render('category', ['category' => $category,'products'=>$products, 'pages'=>$pages]);
+      return $this->render('category', ['tree' => $tree, 'category' => $category,'products'=>$products, 'pages'=>$pages]);
     }
 
     /**

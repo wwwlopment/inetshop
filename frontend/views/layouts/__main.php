@@ -127,52 +127,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav top-nav-info">
 <!--                        <li><a href="<?/*=\yii\helpers\Url::to(['/'])*/?>" class="active">Home</a></li>
--->
+-->                     <!--   <li class="dropdown">-->
                           <?php
-                          $categories = \common\models\KartikTreeMenu::find()->roots()->all();
+                          $categories = Categories::find()->orderBy('title')->all();
                           if (isset ($categories)) {
                             foreach ($categories as $category) {
-                              //echo Html::tag('li',Html::a($category->name, ['site/category', 'cat' => $category->id], ['role'=>'menuitem', 'tabindex'=>'-1']));
+                             /* <li><a href="codes.html">Special Offers</a></li>*/
+                              echo Html::tag('li',Html::a($category->title, ['site/category', 'cat' => $category->id], ['role'=>'menuitem', 'tabindex'=>'-1']));
+                              /*            <a role="menuitem" tabindex="-1" href="category.html">- Tv &amp; audio</a>*/
                               ?>
-                        <li class="dropdown grid">
-                            <?= Html::a($category->name . Html::tag('b', '', ['class'=>'caret']),['site/category', 'cat' => $category->id] ,['class'=> 'dropdown-toggle active', 'data-toggle' => 'dropdown'])?>
+
+                              <?php
+                            }
+                          }?>
+                            <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Baby<b class="caret"></b></a>
                             <ul class="dropdown-menu multi-column multi-column1">
                                 <div class="row">
-                                    <?php
-                                   // $subcat = \common\models\KartikTreeMenu::findOne(['id'=>$category->id]);
-                                   // $subcategory = $subcat->children(1)->all();
-                                    //foreach ($subcategory as $subcategory_item) {
-                                      ?>
-                                        <div class="col-sm-4 menu-grids menulist1">
-                                            <a href="<?=\yii\helpers\Url::to(['site/category', 'cat' => $category->id])?>">
-                                                <h4><?= $category->name ?></h4>
-                                            </a>
-                                            <ul class="multi-column-dropdown ">
-                                                <?php $subsubcat = \common\models\KartikTreeMenu::findOne(['id'=>$category->id]);
-                                                $subsubcategory = $subsubcat->children(1)->all();
-                                                foreach ($subsubcategory as $subsub_item){
-                                                ?>
-                                                <li><a class="list" href="<?=\yii\helpers\Url::to(['site/category', 'cat' => $subsub_item->id])?>"><?=$subsub_item->name?></a></li>
-                                                <?php }?>
-                                                <!--<li><a class="list" href="products.html">Baby Wipes</a></li>
-                                                <li><a class="list" href="products.html">Baby Soaps</a></li>
-                                                <li><a class="list" href="products.html">Lotions & Oils </a></li>
-                                                <li><a class="list" href="products.html">Powders</a></li>
-                                                <li><a class="list" href="products.html">Shampoos</a></li>-->
-                                            </ul>
-                                    <!--        <ul class="multi-column-dropdown">
-                                                <li><a class="list" href="products.html">Body Wash</a></li>
-                                                <li><a class="list" href="products.html">Cloth Diapers</a></li>
-                                                <li><a class="list" href="products.html">Baby Nappies</a></li>
-                                                <li><a class="list" href="products.html">Medical Care</a></li>
-                                                <li><a class="list" href="products.html">Grooming</a></li>
-                                                <li><h6><a class="list" href="products.html">Combo Packs</a></h6></li>
-                                            </ul>-->
-                                        </div>
-                                      <?php
-                                    //}
-                                    ?>
-                                    <!--<div class="col-sm-2 menu-grids">
+                                    <div class="col-sm-4 menu-grids menulist1">
+                                        <h4>Bath & Care</h4>
+                                        <ul class="multi-column-dropdown ">
+                                            <li><a class="list" href="products.html">Diapering</a></li>
+                                            <li><a class="list" href="products.html">Baby Wipes</a></li>
+                                            <li><a class="list" href="products.html">Baby Soaps</a></li>
+                                            <li><a class="list" href="products.html">Lotions & Oils </a></li>
+                                            <li><a class="list" href="products.html">Powders</a></li>
+                                            <li><a class="list" href="products.html">Shampoos</a></li>
+                                        </ul>
+                                        <ul class="multi-column-dropdown">
+                                            <li><a class="list" href="products.html">Body Wash</a></li>
+                                            <li><a class="list" href="products.html">Cloth Diapers</a></li>
+                                            <li><a class="list" href="products.html">Baby Nappies</a></li>
+                                            <li><a class="list" href="products.html">Medical Care</a></li>
+                                            <li><a class="list" href="products.html">Grooming</a></li>
+                                            <li><h6><a class="list" href="products.html">Combo Packs</a></h6></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-2 menu-grids">
                                         <h4>Baby Clothes</h4>
                                         <ul class="multi-column-dropdown">
                                             <li><a class="list" href="products.html">Onesies & Rompers</a></li>
@@ -204,15 +194,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             <li><a class="list" href="products.html">Cribs & Cradles</a></li>
                                             <li><a class="list" href="products.html">Booster Seats</a></li>
                                         </ul>
-                                    </div>-->
+                                    </div>
                                     <div class="clearfix"> </div>
                                 </div>
-                            </ul>
-                       </li>
-                              <?php
-                            }
-                          }?>
-                   <!--      <li class="dropdown grid">
+                            </ul>-->
+                   <!--     </li>
+                        <li class="dropdown grid">
                             <a href="#" class="dropdown-toggle list1" data-toggle="dropdown">Kids<b class="caret"></b></a>
                             <ul class="dropdown-menu multi-column multi-column2">
                                 <div class="row">

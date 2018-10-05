@@ -1,7 +1,9 @@
 <?php
 namespace common\models\Categories;
 
+use common\models\KartikTreeMenu;
 use common\models\Products;
+use common\models\Tree;
 use Yii;
 use yii\helpers\Html;
 use common\models\Categories;
@@ -21,9 +23,17 @@ function limit_words($string, $word_limit) {
 $hot = Products::find()->limit(4)->offset(3)->all();
 $upsell = Products::find()->limit(8)->offset(10)->all();
 $top = Products::find()->limit(4)->offset(15)->all();
-
-
-
+//$tree = KartikTreeMenu::find()->roots()->all();
+//$tree = KartikTreeMenu::find()->leaves()->all();
+//$tree = KartikTreeMenu::findOne(['name' => 'Електроніка']);
+//$tree2 = $tree->children()->all();
+/*foreach ($tree as $item) {
+    var_dump($item);
+}*/
+//var_dump($tree2);
+/*foreach ($tree2 as $item) {
+    var_dump($item->name);
+}*/
 ?>
 
 
