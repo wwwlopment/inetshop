@@ -43,5 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
   <?= Html::a('Set Image', ['set-image', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
-
+   <!-- ImageHelper::getImagine()->open(Yii::$app->basePath . '/../uploads/shop/' . $img, $image)
+    ->thumbnail(new Box(300, 500))
+    ->save(Yii::$app->basePath . '/../uploads/shop/thumbs/' . $img, [
+    'quality' => 80,
+    ]
+    );-->
 </div>

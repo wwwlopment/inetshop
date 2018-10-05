@@ -13,14 +13,19 @@ dmstr\web\AdminLteAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" crossorigin="anonymous"></script>
+
+
+  <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body class="login-page">
 
 <?php $this->beginBody() ?>
-
+ <!--use kartik\icons\FontAwesomeAsset;
+FontAwesomeAsset::register($this);-->
     <?= $content ?>
 
 <?php $this->endBody() ?>

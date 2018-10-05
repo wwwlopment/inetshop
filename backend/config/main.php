@@ -29,6 +29,10 @@ return [
         'layout' => 'left-menu',
         'mainLayout' => '@app/views/layouts/main.php',
         ],
+      'treemanager' =>  [
+        'class' => '\kartik\tree\Module',
+        // other module settings, refer detailed documentation
+      ],
 
     ],
     'components' => [

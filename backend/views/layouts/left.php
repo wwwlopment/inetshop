@@ -33,6 +33,7 @@
 
 
                   ['label' => 'Menu InetShop', 'options' => ['class' => 'header']],
+                  ['label' => 'Дерево', 'icon' => 'reorder', 'url' => ['/tree']],
                   ['label' => 'Категорії', 'icon' => 'reorder', 'url' => ['/category']],
                   ['label' => 'Продукти', 'icon' => 'gift', 'url' => ['/products']],
                   ['label' => 'Замовлення', 'icon' => 'pencil-square-o', 'url' => ['/orders']],
