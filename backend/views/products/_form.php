@@ -20,7 +20,6 @@ foreach ($models as $item) {
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'category_id')->dropDownList($model2) ?>
-    <?//= $form->field($model, 'category_id')->textInput() ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 
