@@ -389,7 +389,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".5s">
                 <h4 class="footer-logo"><a href="<?=\yii\helpers\Url::to(['/'])?>">Pony <b>Shop</b> <span class="tag">Все для дітей та батьків </span> </a></h4>
                 <p>© 2018 Pony Shop . All rights reserved | Developed by <a href="<?=\yii\helpers\Url::to(['/'])?>" target="_blank">wwwlopment</a></p>
-                <p>© 2018 Pony Shop . All rights reserved | Design by <a href="<?=\yii\helpers\Url::to(['/'])?>" target="_blank">W3layouts</a></p>
+                 Design by <a href="<?=\yii\helpers\Url::to(['/'])?>" target="_blank">W3layouts</a>
             </div>
             <!--<div class="col-md-4 footer-grids wow fadeInUp animated" data-wow-delay=".7s">
                 <h3>Popular</h3>
