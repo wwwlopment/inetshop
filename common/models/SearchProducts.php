@@ -62,6 +62,15 @@ class SearchProducts extends Products
             return $dataProvider;
         }
 
+      $query->joinWith('category');
+// Превратится в запрос
+// SELECT `product`.* FROM `product` LEFT JOIN `category` ON `product`.`category_uid` = `category`.`uid` ORDER BY `order` LIMIT 20
+
+      $dataProvider->sort->attributes['tree'] = [
+        'asc' => ['tree.name' => SORT_ASC],
+        'desc' => ['tree.name' => SORT_DESC],
+      ];
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -74,6 +83,7 @@ class SearchProducts extends Products
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'vendor', $this->vendor])
+            ->andFilterWhere(['like', 'tree.name', $this->category])
             ->andFilterWhere(['like', 'description', $this->description]);
           //  ->andFilterWhere(['like', 'image', $this->image]);
 

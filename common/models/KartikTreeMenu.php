@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "kartik_tree_menu".
@@ -85,5 +86,11 @@ class KartikTreeMenu extends \kartik\tree\models\Tree
       'removable' => 'Removable',
       'removable_all' => 'Removable All',
     ];
+  }
+
+  public function getAssocList()
+  {
+    $models = $this->findAll(array('order'=>'name ASC'));
+    return Html::activeDropDownList($models, 'id', 'name');
   }
 }

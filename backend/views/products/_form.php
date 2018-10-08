@@ -6,6 +6,11 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Products */
 /* @var $form yii\widgets\ActiveForm */
+$models = \common\models\KartikTreeMenu::find()->all();
+foreach ($models as $item) {
+    $model2[$item->id] = $item->name;
+}
+//var_dump($models);die();
 ?>
 
 <div class="products-form">
@@ -14,7 +19,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?= $form->field($model, 'category_id')->dropDownList($model2) ?>
+    <?//= $form->field($model, 'category_id')->textInput() ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 

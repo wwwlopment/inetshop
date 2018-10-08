@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\models\KartikTreeMenu;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\SearchProducts */
@@ -15,7 +16,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
     <div class="col-md-12 col-sm-12">
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php
+    //$n = KartikTreeMenu::findOne(['id', '1']);
+    // echo $this->render('_search', ['model' => $searchModel]);
+    ?>
 
     <p>
         <?= Html::a('Create Products', ['create'], ['class' => 'btn btn-success']) ?>
@@ -25,20 +29,28 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-          ['label'=>'Image','content' => function ($model) { return '<img width = "50px" src="'.$model->image.'">';}],
+          //  ['class' => 'yii\grid\SerialColumn'],
           ['class' => 'yii\grid\ActionColumn'],
-            'id',
+          ['label'=>'Image','content' => function ($model) { return '<img width = "50px" src="'.$model->image.'">';}],
+          [
+            'attribute' => 'tree',
+            'label' => 'Назва категорії',
+            'value' => 'category.name',
+          ],
+          'category_id',
+
             'title',
-            'category_id',
+          //$n->name,
+
             'price',
             'vendor',
-            'description',
+          //  'description',
           //  'image',
 
           'available',
-            'updated_at',
-            'created_at',
+          'id',
+        //    'updated_at',
+       //     'created_at',
 
 
         ],

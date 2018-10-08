@@ -71,6 +71,11 @@ class Products extends \yii\db\ActiveRecord
 
 
 
+  public function getCategory()
+  {
+    return $this->hasOne(KartikTreeMenu::className(), ['id' => 'category_id']);
+  }
+
 
   public function saveImage($filename) {
     $this->image = '../../frontend/web/uploads/'.$filename;
