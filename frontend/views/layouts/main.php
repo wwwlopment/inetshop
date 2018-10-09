@@ -78,11 +78,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <div class="header-two navbar navbar-default"><!--header-two-->
         <div class="container">
+
             <div class="nav navbar-nav header-two-left">
-                <ul>
-                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+38(067) 756-51-28  <p style="margin-left: 23px"> +38(095) 212-51-37</li>
+                <h3 style="color: #ff590f">Не знайшли - <b>замовляйте !</b></h3    >
+                <ul style="margin-top: 20px">
+                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+38(067) 756-51-28  <p style="margin-left: 23px"> +38(095) 212-51-37 (viber)</li>
                     <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:sergiymedd635@gmail.com">sergiymedd635@gmail.com</a></li>
+
                 </ul>
+
             </div>
             <div class="nav navbar-nav logo wow zoomIn animated" data-wow-delay=".7s">
                 <h1><a href="<?=\yii\helpers\Url::to(['/'])?>">Pony <br><b style="font-size: 22px; font-style: italic">інтернет-магазин</b><span class="tag">для дітей та батьків </span> </a></h1>
