@@ -28,10 +28,8 @@
         "kartik-v/yii2-widget-fileinput": "@dev",
         "yiister/yii2-gentelella": "~1.0",
         "kartik-v/yii2-tree-manager": "@dev",
-        "yii2mod/yii2-image": "*",
         "yii2mod/yii2-star-rating": "*",
-        "costa-rico/yii2-images": "dev-master",
-        "noam148/yii2-image-manager" : "*"
+        "yiisoft/yii2-imagine": "*"
 
     },
     "require-dev": {

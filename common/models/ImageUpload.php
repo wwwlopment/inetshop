@@ -2,6 +2,10 @@
 
 
 namespace common\models;
+use yii\imagine\Image;
+use Imagine\Gd;
+use Imagine\Image\Box;
+use Imagine\Image\BoxInterface;
 use Yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
@@ -53,8 +57,12 @@ class ImageUpload extends Model{
 
   public function saveImage() {
     $filename = $this->generateFilename();
+  $savePath = $this->getFolder() . $filename;
+  $newWidth = 800;
+  $newHeight = 800;
 
-    $this->image->saveAs($this->getFolder() . $filename);
+    $this->image->saveAs($savePath);
+    Image::getImagine()->open($savePath)->thumbnail(new Box($newWidth, $newHeight))->save($savePath , ['quality' => 90]);
 
     return $filename;
   }
