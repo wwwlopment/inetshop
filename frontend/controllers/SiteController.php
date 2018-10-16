@@ -8,6 +8,7 @@ use common\models\Order_descript;
 use common\models\Orders;
 use common\models\Products;
 use common\models\SearchProducts;
+use Imagine\Image\Box;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\data\ArrayDataProvider;
@@ -76,6 +77,26 @@ class SiteController extends Controller
              //   'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionResize() {
+      $newWidth = 800;
+      $newHeight = 800;
+$images = Image::find()->all();
+
+foreach ($images as $image) {
+  echo $image->image . '<br>';
+      \yii\imagine\Image::getImagine()->open($image->image)->thumbnail(new Box($newWidth, $newHeight))->save($image->image , ['quality' => 90]);
+
+}
+$images2 = Products::find()->all();
+      foreach ($images2 as $image2) {
+        if(substr($image2->image, 0, 3) == '../') {
+          echo $image2->image . '<br>';
+          \yii\imagine\Image::getImagine()->open($image2->image)->thumbnail(new Box($newWidth, $newHeight))->save($image2->image, ['quality' => 90]);
+        }
+      }
+
     }
 
     /**
