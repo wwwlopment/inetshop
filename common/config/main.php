@@ -5,6 +5,12 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+  'modules' => [
+    'treemanager' =>  [
+      'class' => '\kartik\tree\Module',
+      // other module settings, refer detailed documentation
+    ],
+  ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
