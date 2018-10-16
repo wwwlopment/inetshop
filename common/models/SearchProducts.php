@@ -83,7 +83,8 @@ class SearchProducts extends Products
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'vendor', $this->vendor])
-            ->andFilterWhere(['like', 'tree.name', $this->category])
+          //  ->andFilterWhere(['like', 'tree.name', $this->category_id])
+            ->andFilterWhere(['like', 'category_id', $this->category_id])
             ->andFilterWhere(['like', 'description', $this->description]);
           //  ->andFilterWhere(['like', 'image', $this->image]);
 
