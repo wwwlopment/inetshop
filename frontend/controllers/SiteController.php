@@ -79,7 +79,7 @@ class SiteController extends Controller
         ];
     }
 
-    public function actionResize() {
+/*    public function actionResize() {
       $newWidth = 800;
       $newHeight = 800;
 $images = Image::find()->all();
@@ -97,7 +97,7 @@ $images2 = Products::find()->all();
         }
       }
 
-    }
+    }*/
 
     /**
      * Displays homepage.
