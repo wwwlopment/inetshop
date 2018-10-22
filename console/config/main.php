@@ -25,19 +25,7 @@ return [
         'authManager'  => [
           'class'        => 'yii\rbac\DbManager',
         ],
-        'mailer' => [
-          'class' => 'yii\swiftmailer\Mailer',
-        //  'useFileTransport' => true,
-          'transport' => [
-            'class' => 'Swift_SmtpTransport',
-            'host' => 'ssl://smtp.gmail.com',
-            'username' => 'wwwlopment@gmail.com',
-            'password' => 'shadowed777',
-           // 'port' => '587',
-            'port' => '465',
-            'encryption' => 'tls',
-          ],
-        ],
+        
       'search' => [
         'class' => 'himiklab\yii2\search\Search',
         'models' => [
