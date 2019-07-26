@@ -31,10 +31,11 @@
         imageWidth = $(this).width(),
         imageHeight = $(this).height(),
         cursorSize = [(settings.zoomviewsize[0]/settings.magnification),(settings.zoomviewsize[1]/settings.magnification)];
+        console.log($this.selector);
         if(data.imagezoom == true){
           imageSrc = $(this).attr('src');
         }else{
-          imageSrc = $(this).get(0).getAttribute('data-imagezoom');
+          imageSrc = $(this).get(0).attr('data-imagezoom');
         }
 
         var posX = e.pageX,posY = e.pageY,zoomViewPositionX;

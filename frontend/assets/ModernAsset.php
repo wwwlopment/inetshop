@@ -25,10 +25,10 @@ class ModernAsset extends AssetBundle
     //'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
     //
     //
-    'js/jquery-1.11.1.min.js',
+    //'js/jquery-1.11.1.min.js',
     //
-   'https://code.jquery.com/jquery-3.0.0.js',
-    'http://code.jquery.com/jquery-migrate-1.2.1.min.js',
+   'https://code.jquery.com/jquery-3.4.0.js',
+    'http://code.jquery.com/jquery-migrate-3.0.0.min.js',
 
    // 'https://code.jquery.com/jquery-migrate-3.0.1.js',
 
@@ -47,9 +47,11 @@ class ModernAsset extends AssetBundle
     'js/main.js',
     'js/my_new3.js',
     'js/bootstrap.js',
-    'js/imagezoom.js',
+    //'js/imagezoom.js',
     'js/move-top.js',
     'js/jquery.flexslider.js',
+
+    'js/jquery.zoom.js',
 
   ];
   public $depends = [

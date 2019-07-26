@@ -65,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <link href='//fonts.googleapis.com/css?family=Pompiere' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Fascinate' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Caveat|Cormorant+Infant" rel="stylesheet">
-  <?php  $this->registerJsFile('https://code.jquery.com/jquery-migrate-3.0.0.js', ['position' => View::POS_HEAD]);
+<!--  --><?php /* $this->registerJsFile('https://code.jquery.com/jquery-migrate-3.0.0.js', ['position' => View::POS_HEAD]);*/
 ?>
     <!--//for-mobile-apps -->
     <!--Custom Theme files -->
@@ -372,7 +372,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 ],
               ]); ?>
 
-              <?= $form->field($search_model, 'params')->hint('Пошук...')->label(false) ?>
+              <?= $form->field($search_model, 'params')->textInput(['placeholder' => 'введіть текст для пошуку...',
+                'style' => ['font-style'=> 'italic'],
+              ])->label(false) ?>
                   <!--  <input style="font-style: italic" type="search" placeholder="Пошук...">-->
               <?php ActiveForm::end(); ?>
             </div>

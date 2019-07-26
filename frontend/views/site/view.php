@@ -39,7 +39,7 @@ $this->registerCssFile('../css/flexslider1.css', ['position' => View::POS_HEAD])
         <div class="flexslider">
           <ul class="slides">
             <li data-thumb="<?=$product->image?>">
-              <div class="thumb-image"> <img src="<?=$product->image?>" data-imagezoom="true" class="img-responsive" alt=""> </div>
+              <div class="thumb-image"> <img src="<?=$product->image?>" data-imagezoom="true" class="img-responsive image-zoom" alt="" data-zoom="<?=$product->image?>"> </div>
             </li>
             <?php
             $n = 0;
@@ -47,7 +47,7 @@ $this->registerCssFile('../css/flexslider1.css', ['position' => View::POS_HEAD])
             $n++
             ?>
             <li data-thumb="<?=$image->image?>">
-              <div class="thumb-image"> <img src="<?=$image->image?>" data-imagezoom="true" class="img-responsive" alt=""> </div>
+              <div class="thumb-image"> <img src="<?=$image->image?>" data-imagezoom="true" class="img-responsive image-zoom" alt=""  data-zoom="<?=$product->image?>"> </div>
             </li>
             <?php }?>
         <!--    <li data-thumb="images/s2.jpg">
@@ -302,3 +302,17 @@ $this->registerCssFile('../css/flexslider1.css', ['position' => View::POS_HEAD])
     <!--//related-products-->
   </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('.image-zoom')
+            .wrap('<span style="display:inline-block"></span>')
+            .css('display', 'block')
+            .parent()
+            .zoom({
+                url: $(this).find('img').attr('data-zoom')
+            });
+    });
+
+
+</script>
