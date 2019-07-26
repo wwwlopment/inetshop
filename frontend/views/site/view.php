@@ -310,7 +310,7 @@ $this->registerCssFile('../css/flexslider1.css', ['position' => View::POS_HEAD])
             .css('display', 'block')
             .parent()
             .zoom({
-                url: $(this).find('img').attr('data-zoom')
+                url: $(this).find('img .active-slide').attr('data-zoom')
             });
     });
 
