@@ -8,7 +8,7 @@ use yii\web\View;
 
 <?php
 $this->registerJsFile('../js/jquery-1.11.1.min.js', ['position' => View::POS_HEAD]);
-$this->registerJsFile('../js/jquery.flexslider.js');
+//$this->registerJsFile('../js/jquery.flexslider.js');
 
 
 $this->title = 'Перегляд товару';
@@ -16,14 +16,7 @@ $related = Products::find()->limit(4)->offset(25)->all();
 
 $this->registerCssFile('../css/flexslider1.css', ['position' => View::POS_HEAD]);
 ?>
-<script>
-    $(window).load(function() {
-        $('.flexslider').flexslider({
-            animation: "slide",
-            controlNav: "thumbnails"
-        });
-    });
-</script>
+
 <div class="breadcrumbs">
     <div class="container">
         <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
@@ -305,6 +298,10 @@ $this->registerCssFile('../css/flexslider1.css', ['position' => View::POS_HEAD])
 
 <script>
     $(document).ready(function(){
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+        });
         $('.image-zoom')
             .wrap('<span style="display:inline-block"></span>')
             .css('display', 'block')
