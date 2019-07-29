@@ -98,7 +98,27 @@ jQuery(document).ready(function($){
 		}
 	}
 
-
+    if ($('#toTop').length) {
+        var scrollTrigger = 500, // px
+            backToTop = function () {
+                var scrollTop = $(window).scrollTop();
+                if (scrollTop > scrollTrigger) {
+                    $('#toTop').addClass('show');
+                } else {
+                    $('#toTop').removeClass('show');
+                }
+            };
+        backToTop();
+        $(window).on('scroll', function () {
+            backToTop();
+        });
+        $('#toTop').on('click', function (e) {
+            e.preventDefault();
+            $('html,body').animate({
+                scrollTop: 0
+            }, 700);
+        });
+    }
 
 
 
@@ -111,7 +131,7 @@ jQuery(document).ready(function($){
         });
     });
 
-    $(function() {
+/*    $(function() {
         $('.col-md-3').matchHeight({
             byRow: true,
             property: 'height',
@@ -126,8 +146,15 @@ jQuery(document).ready(function($){
             target: null,
             remove: false
         });
+    });*/
+   $(function() {
+        $('.product-grids').matchHeight({
+            byRow: true,
+            property: 'height',
+            target: null,
+            remove: false
+        });
     });
-
 
 
 //CART

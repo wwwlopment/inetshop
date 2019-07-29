@@ -150,18 +150,21 @@ $images2 = Products::find()->all();
      // $products = Products::find()->where(['category_id'=>$category_id])->orderBy('id');
       $products = Products::find()->where(['category_id'=>
       array_merge([$category_id], $tree->children()->select('id')->column()),])->orderBy('id');
-         $countQuery = clone $products;
+     //    $countQuery = clone $products;
 
       // paginations - 10 items per page
-      $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 12]);
+    //  $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 12]);
 
-      $pages->pageSizeParam = false;
+    //  $pages->pageSizeParam = false;
 
-      $products = $products->offset($pages->offset)
-        ->limit($pages->limit)
+      $products = $products
+        //->offset($pages->offset)
+        //->limit($pages->limit)
         ->all();
 
-      return $this->render('category', ['tree' => $tree, 'category' => $category,'products'=>$products, 'pages'=>$pages]);
+      return $this->render('category', ['tree' => $tree, 'category' => $category,'products'=>$products,
+      //  'pages'=>$pages
+      ]);
     }
 
     /**

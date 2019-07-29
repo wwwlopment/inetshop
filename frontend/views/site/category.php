@@ -20,8 +20,8 @@ $this->title = $tree->name;
 
       <?php
 
-      use yii\web\View;
-      use yii\widgets\LinkPager;
+     // use yii\web\View;
+     // use yii\widgets\LinkPager;
 
       function limit_words($string, $word_limit) {
         $words=explode(" ",$string);
@@ -79,10 +79,10 @@ $this->title = $tree->name;
 
 
   </div>
-    <div class="text-right">
+   <!-- <div class="text-right">
     <div class="pagination-container">
     <?php
-    if (isset ($pages)) {
+/*    if (isset ($pages)) {
       echo LinkPager::widget([
         'pagination' => $pages,
         'options'      => [
@@ -90,7 +90,7 @@ $this->title = $tree->name;
 
       ]);
     }
-    ?>
+    */?>
     </div>
     </div><!-- /.pagination-container -->
 </div>

@@ -2054,6 +2054,7 @@ h2.typoh2{
 	text-indent: 100%;
 	background: url("../images/move-up.png") no-repeat 0px 0px;
 	z-index:999;
+	visibility: hidden;
 }
 #toTopHover {
 	width: 32px;
@@ -2064,6 +2065,9 @@ h2.typoh2{
 	opacity: 0;
 	-moz-opacity: 0;
 	filter: alpha(opacity=0);
+}
+#toTop.show {
+	visibility: initial;
 }
 /*--//slider-up-arrow--*/
 /*---- responsive-design -----*/
@@ -2088,6 +2092,8 @@ h2.typoh2{
 #toTop {
     right: 2%;
 }
+
+
 .footer {
     padding: 4em 0;
 }
