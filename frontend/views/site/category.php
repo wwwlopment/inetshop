@@ -16,7 +16,7 @@ $this->title = $tree->name;
 </div>
 <div class="products">
   <div class="container">
-    <div class="col-md-12 product-model-sec">
+    <div class="list col-md-12 product-model-sec">
 
       <?php
 
@@ -37,9 +37,11 @@ $this->title = $tree->name;
         $img_url = '';
       }
       ?>
-      <div class="product-grids simpleCart_shelfItem wow fadeInUp animated"  data-wow-delay=".<?=$time?>s">
+      <div class="list__item product-grids simpleCart_shelfItem wow fadeInUp animated"  data-wow-delay=".<?=$time?>s">
         <div class="new-top">
-          <a href="<?= \yii\helpers\Url::to(['site/view', 'id' => $product->id]) ?>"><img src="<?= $img_url ?>" class="img-responsive" alt=""/></a>
+          <a href="<?= \yii\helpers\Url::to(['site/view', 'id' => $product->id]) ?>">
+              <img src="<?= $img_url ?>" class="img-responsive" alt=""/>
+          </a>
           <div class="new-text">
             <ul>
               <li><a href="<?= \yii\helpers\Url::to(['site/view', 'id' => $product->id]) ?>">Переглянути </a></li>
@@ -52,7 +54,9 @@ $this->title = $tree->name;
           </div>
         </div>
         <div class="new-bottom">
-          <h5><a class="name" href="<?= \yii\helpers\Url::to(['site/view', 'id' => $product->id]) ?>"><?=limit_words($product->title, 4)?></a></h5>
+          <h5>
+              <a class="name" href="<?= \yii\helpers\Url::to(['site/view', 'id' => $product->id]) ?>"><?=limit_words($product->title, 4)?></a>
+          </h5>
           <div class="rating">
             <span class="on">☆</span>
             <span class="on">☆</span>
@@ -60,9 +64,11 @@ $this->title = $tree->name;
             <span class="on">☆</span>
             <span>☆</span>
           </div>
+            <br>
           <div class="ofr">
-<!--            <p class="pric1"><del>$2000.00</del></p>
--->            <p><span class="item_price"><?=$product->price?> грн.</span></p>
+          <!--  <p class="pric1"><del>2000.00 грн.</del></p>-->
+              <br>
+            <p><span class="item_price"><?=$product->price?> грн.</span></p>
           </div>
         </div>
       </div>

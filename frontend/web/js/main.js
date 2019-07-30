@@ -121,7 +121,7 @@ jQuery(document).ready(function($){
     }
 
 
-
+/*
     $(function() {
         $('.img-responsive').matchHeight({
             byRow: true,
@@ -129,7 +129,7 @@ jQuery(document).ready(function($){
             target: null,
             remove: false
         });
-    });
+    });*/
 
 /*    $(function() {
         $('.col-md-3').matchHeight({
@@ -147,14 +147,14 @@ jQuery(document).ready(function($){
             remove: false
         });
     });*/
-   $(function() {
+/*   $(function() {
         $('.product-grids').matchHeight({
             byRow: true,
             property: 'height',
             target: null,
             remove: false
         });
-    });
+    });*/
 
 
 //CART

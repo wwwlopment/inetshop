@@ -45,10 +45,10 @@ class ModernAsset extends AssetBundle
     'js/easing.js',
     //'js/my_new2.js',
     'js/main.js',
-    //'js/my_new3.js',
+    'js/my_new3.js',
     'js/bootstrap.js',
     //'js/imagezoom.js',
-    'js/move-top.js',
+    //'js/move-top.js',
     'js/jquery.flexslider.js',
 
     'js/jquery.zoom.js',
