@@ -42,16 +42,16 @@ $this->title = $tree->name;
           <a href="<?= \yii\helpers\Url::to(['site/view', 'id' => $product->id]) ?>">
               <img src="<?= $img_url ?>" class="img-responsive" alt=""/>
           </a>
-          <div class="new-text">
+<!--          <div class="new-text">
             <ul>
-              <li><a href="<?= \yii\helpers\Url::to(['site/view', 'id' => $product->id]) ?>">Переглянути </a></li>
-<!--              <li><input type="number" class="item_quantity" min="1" value="1"></li>
--->              <li>
-                    <a href="<?= \yii\helpers\Url::to(['site/addtocart', 'product_id' => $product->id]) ?>"
-                       data-id="<?= $product->id ?>" class="buy"> Купити</a>
+              <li><a href="<?/*= \yii\helpers\Url::to(['site/view', 'id' => $product->id]) */?>">Переглянути </a></li>-->
+<!--              <li><input type="number" class="item_quantity" min="1" value="1"></li>-->
+<!--                <li>
+                    <a href="<?/*= \yii\helpers\Url::to(['site/addtocart', 'product_id' => $product->id]) */?>"
+                       data-id="<?/*= $product->id */?>" class="buy"> Купити</a>
                 </li>
             </ul>
-          </div>
+          </div>-->
         </div>
         <div class="new-bottom">
           <h5>

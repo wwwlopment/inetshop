@@ -931,7 +931,7 @@ h3.title span {
     font-weight: 400;
 }
 .new-top {
-    position: relative;
+   /* position: relative;*/
     padding: 1.5em;
     background: #fff;
 }
